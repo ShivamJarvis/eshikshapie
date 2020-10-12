@@ -1,0 +1,245 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+{% block login %}active{% endblock %}
+{% block css %}
+
+<style>
+    .divider-text {
+        position: relative;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .divider-text span {
+        padding: 7px;
+        font-size: 12px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .divider-text:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+        top: 55%;
+        left: 0;
+        z-index: 1;
+    }
+
+    .btn-facebook {
+        background-color: #405D9D;
+        color: #fff;
+    }
+
+    .btn-twitter {
+        background-color: #42AEEC;
+        color: #fff;
+    }
+
+</style>
+{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class="container mt-5">
+
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style=" width: 90%!important;">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+
+            <!-- <p>
+            <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>   Login via Twitter</a>
+            <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login via facebook</a>
+        </p> -->
+
+            <form class="mt-5" method="POST" action="{% url 'register' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="s_id" class="form-control" value="{{user_id}}" type="text" readonly>
+                        </div> <!-- form-group// -->
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-6">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="f_name" class="form-control" placeholder="First name" type="text">
+                        </div> <!-- form-group// -->
+                    </div>
+                    <div class="col-6">
+
+
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="l_name" class="form-control" placeholder="Last name" type="text">
+                        </div> <!-- form-group// -->
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="username" class="form-control" placeholder="Username" type="text">
+                        </div> <!-- form-group// -->
+                        
+                    </div>
+                    <div class="col-6">
+
+                        
+                        
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                            </div>
+                            <input name="email" class="form-control" placeholder="Email address" type="email">
+                        </div> <!-- form-group// -->
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+                        </div>
+                        <select class="custom-select" style="max-width: 120px;">
+                            <option selected="">+91</option>
+                            
+                        </select>
+                        <input name="phone" class="form-control" placeholder="Phone number" type="text">
+                    </div> <!-- form-group// -->
+                </div>
+                <div class="col-6">
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="dob" class="form-control" placeholder="Date of Birth" type="date">
+                    </div> <!-- form-group// -->
+                </div>
+                
+            </div>
+
+                <div class="row">
+                    <div class="col-6">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="father_name" class="form-control" placeholder="Father Name" type="text">
+                        </div> <!-- form-group// -->
+                    </div>
+                    <div class="col-6">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="mother_name" class="form-control" placeholder="Mother Name" type="text">
+                        </div> <!-- form-group// -->
+                    </div>
+                </div>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> Student Image </span>
+                    </div>
+                    <input name="image" class="form-control" type="file">
+                </div> <!-- form-group// -->
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="address" class="form-control" placeholder="Address" type="text">
+                </div> <!-- form-group// -->
+
+              
+                <div class="row">
+                    <div class="col-4">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                            </div>
+                            <input name="state" class="form-control" placeholder="State" type="text">
+                        </div> <!-- form-group// -->
+                    </div>
+                        <div class="col-4">
+
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="city" class="form-control" placeholder="City" type="text">
+                            </div> <!-- form-group// -->
+                        </div>
+                        <div class="col-4">
+
+                            <div class="form-group input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="zip" class="form-control" placeholder="ZIP Code" type="text">
+                            </div> <!-- form-group// -->
+                        </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-6">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input class="form-control" name="pass1" placeholder="Create password" type="password">
+                        </div> <!-- form-group// -->
+                    </div>
+                    <div class="col-6">
+
+                        <div class="form-group input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input class="form-control" name="pass2" placeholder="Repeat password" type="password">
+                        </div> <!-- form-group// -->
+                    </div>
+            </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                </div> <!-- form-group// -->
+                <p class="text-center">Have an account? <a href="{% url 'handle_login' %}">Log In</a> </p>
+            </form>
+        </article>
+    </div> <!-- card.// -->
+
+</div>
+<!--container end.//-->
+
+
+
+{% endblock %}

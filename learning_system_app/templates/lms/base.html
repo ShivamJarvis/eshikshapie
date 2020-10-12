@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>eshikshapie</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'lms/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'lms/css/modern-business.css' %}" rel="stylesheet">
+
+  <!-- Fontawesome css -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <style>
+      .nav-item{
+          margin-right: 14px!important;
+      }
+  </style>
+{% block css %}
+{% endblock %}
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'lms/images/main-logo.png' %}" width="200" height="60" alt="">
+          </a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link {% block home %} {% endblock %}" href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% block about %} {% endblock %}" href="{% url 'about' %}">About Us</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Courses
+            </a>
+
+
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+              <a class="dropdown-item" href="">Pre-Foundation Online Courses</a>
+              <a class="dropdown-item" href="">Foundation Online Courses</a>
+              <a class="dropdown-item" href="">Boards,IIT-JEE And NEET</a>
+              <a class="dropdown-item" href="">Weekend Online Program</a>
+              <a class="dropdown-item" href="">Correspondence Program</a>
+              <a class="dropdown-item" href="">Test Series</a>
+
+
+            </div>
+
+
+
+          </li>
+       
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Our Partners</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% block contact %} {% endblock %}" href="{% url 'contact' %}">Contact Us</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link " href="">Dashboard</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'handle_logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link {% block login %} {% endblock %}" href="{% url 'handle_login' %}">Login / Register</a>
+          </li>
+          {% endif %}
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+   {% block body %}
+
+
+  {% endblock %}
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            
+          <p class="m-0 text-center text-white"> Copyright &copy; <img src="{% static 'lms/images/logo2.png' %}" alt="" style="width: 100px; height: 62px;"> 2020</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+    
+      <!-- Bootstrap core JavaScript -->
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      <script src="{% static 'lms/vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'lms/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'lms/js/jqBootstrapValidation.js' %}"></script>
+
+    {% block js %}
+    {% endblock %}
+    </body>
+    
+    </html>

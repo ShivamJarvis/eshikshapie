@@ -1,0 +1,349 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+{% block about %}active{% endblock %}
+{% block css %}
+<style>
+
+.intro-cards:hover{
+    
+    background-color:  #263faf!important;
+}
+.method-icon{
+  color: #5472D2;
+}
+.self-collap{
+  color: #17C787;
+  font-weight: bold;
+}
+
+.self-collap:hover{
+  color: #17C787;
+  text-decoration: none;
+
+}
+
+
+  </style>
+
+{% endblock %}
+{% block body %}
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class=" pt-5">
+
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="{% url 'index' %}">Home</a>
+      </li>
+      <li class="breadcrumb-item active">About</li>
+    </ol>
+
+    <!-- Intro Content -->
+    <div class="row">
+      <div class="col-lg-6">
+        <img class="img-fluid rounded mb-4" src="{% static 'lms/images/about-us.jpg' %}" alt="">
+      </div>
+      <div class="col-lg-6">
+        <h2>About Us</h2>
+        <p>e-Shiksha pie is the leading online coaching in the country at the school as well as competitive levels. We as team e-Shiksha pie ensure that each and every child/ student gets a coach or mentor to ignite his/her mind who can show them the right path to the success.</p>
+
+        <p>The degree or level of preparation of the students is different and vary; there is always an element of surprise in the question papers they face. This element of surprise can be stimulated if students have potential and experience in tackling the problems of the examination without being demoralized. It is precisely the experience that our study material e-Shiksha pie provides. E shiksha pie inculcates confidence and ability with positive attitude to find remedies of such problems.</p>
+
+
+        <p>Our team’s focus is on EXCELLENCE and to provide it, our structure system monitors the progress of each student at micro and macro level.</p>
+
+        <p>Only those who take right decision at right time and march forward with courage, confidence and determination may achieve their goals.
+          e-Shiksha pie is the perfect platform to move to the success.</p>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Team Members -->
+    <h2>Our Team</h2>
+
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Team Member</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#">name@example.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Team Member</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#">name@example.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100 text-center">
+          <img class="card-img-top" src="http://placehold.it/750x450" alt="">
+          <div class="card-body">
+            <h4 class="card-title">Team Member</h4>
+            <h6 class="card-subtitle mb-2 text-muted">Position</h6>
+            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus aut mollitia eum ipsum fugiat odio officiis odit.</p>
+          </div>
+          <div class="card-footer">
+            <a href="#">name@example.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Our Customers -->
+
+    <div class="row">
+      <div class="col-lg-3 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #AF2B26; padding: 55px 20px;">
+        <i class="far fa fa-user fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">Quality</h3>
+        <h5 class="mt-3"> ESHIKSHA PIE is committed to give a qualitative education to embrace the creativity of students.</h5>
+      </div>
+
+      <div class="col-lg-3 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #1A005E; padding: 55px 20px;">
+        <i class="fas fa fa-book fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">Personal</h3>
+        <h5 class="mt-3"> ESHIKSHA PIE is committed to give a qualitative education to embrace the creativity of students.</h5>
+      </div>
+
+
+      <div class="col-lg-3 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #AF2B26; padding: 55px 20px;">
+        <i class="fas fa fa-comment fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">Innovation</h3>
+        <h5 class="mt-3"> ESHIKSHA PIE is committed to give a qualitative education to embrace the creativity of students.</h5>
+      </div>
+
+
+      <div class="col-lg-3 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #1A005E; padding: 55px 20px;">
+        <i class="fas fa fa-quote-left fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">Commitment</h3>
+        <h5 class="mt-3"> ESHIKSHA PIE is committed to give a qualitative education to embrace the creativity of students.</h5>
+      </div>
+     
+      
+     
+     
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-3 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #1A005E; padding: 55px 20px;">
+        <i class="far fa fa-user fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">STRONG TEAMWORK</h3>
+        <h5 class="mt-3">E SHIKSHA PIE has a strong team of educationists who believe in determination, innovation and dedication with togetherness.</h5>
+      </div>
+
+      <div class="col-lg-3 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #AF2B26; padding: 55px 20px;">
+        <i class="fas fa fa-book fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">STANDARD OF EXCELLENCE</h3>
+        <h5 class="mt-3">E SHIKSHA PIE believes that each and every child has a spark of excellence. There is only a need to show the right direction to choose the right path. To nurture the excellence among the students, we mentor with excellence.</h5>
+      </div>
+
+
+      <div class="col-lg-3 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #1A005E; padding: 55px 20px;">
+        <i class="fas fa fa-comment fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">ATTITUDE</h3>
+        <h5 class="mt-3">E SHIKSHA PIE deals in its all domains with positive attitude.</h5>
+      </div>
+
+
+      <div class="col-lg-3 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color:#AF2B26; padding: 55px 20px;">
+        <i class="fas fa fa-quote-left fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">VALUE</h3>
+        <h5 class="mt-3">E SHIKSHA PIE provides education to inculcate various values among the children.</h5>
+      </div>
+    </div>
+    <!-- /.row -->
+
+
+
+
+    <div class="text-center container my-4">
+      <h1 style="text-transform: uppercase;">methodology</h1>
+      <p class="my-3">We as a team e-Shiksha pie is dedicated to provide a value-based education for all those who desire to get well education and want to work for the individual and for the society. Some elements are here, which explain why you choose us:</p>
+
+
+      <hr style="border: 0.2px solid black; border-bottom: none;">
+
+
+
+      <div class="row mt-5">
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-users fa-2x method-icon"></i>
+          
+          <p class="mt-3">E-Shiksha Pie have highly qualified and experienced faculty. Most of our teachers have teaching experience over 10 years.</p>
+        </div>
+
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="far fa fa-clock fa-2x method-icon"></i>
+          <p class="mt-3">Prior scheduled sessions of each class.</p>
+        </div>
+
+
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-video fa-2x method-icon"></i>
+          <p class="mt-3">Live and recorded lectures to the students.</p>
+        </div>
+  
+       
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-book fa-2x method-icon"></i>
+          <p class="mt-3">Provision of Comprehensive Study Material which is designed with the aim of your exam target.</p>
+        </div>
+  
+      </div>
+
+
+
+
+      <div class="row mt-5">
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-file-alt fa-2x method-icon"></i>
+          
+          <p class="mt-3">Focus on schools, Boards, NTSE, Olympiads, NDA, IIT-JEE, Medical and other Competitive Examinations Preparation.</p>
+        </div>
+
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="far fa fa-chart-line fa-2x method-icon"></i>
+          <p class="mt-3">Personal Attention to each and every Student & Regular interaction with the parents about the improvement in performance of student.</p>
+        </div>
+
+
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-file-alt fa-2x method-icon"></i>
+          <p class="mt-3">Provision of Comprehensive Study Material which is designed with the aim of your exam target.</p>
+        </div>
+  
+       
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-book-reader fa-2x method-icon"></i>
+          <p class="mt-3">Revision classes for three days in a month.</p>
+        </div>
+  
+      </div>
+
+
+
+
+      <div class="row mt-5">
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-handshake fa-2x method-icon"></i>
+          
+          <p class="mt-3">Personal Attention to each and every Student & Doubt-Clearing Session on Sundays or Holidays.</p>
+        </div>
+
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="far fa fa-stopwatch fa-2x method-icon"></i>
+          <p class="mt-3">Time saving: Time of way to move from one place to another for coaching classes.</p>
+        </div>
+
+
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-rupee-sign fa-2x method-icon"></i>
+          <p class="mt-3">Money saving: e-Shiksha pie is an online coaching which is providing quality education at affordable price.</p>
+        </div>
+  
+       
+        <div class="col-lg-3 col-sm-4 mb-4 text-center " >
+          <i class="fas fa fa-laptop fa-2x method-icon"></i>
+          <p class="mt-3">Anytime, anywhere and any subject you may seek by e-Shiksha pie.</p>
+        </div>
+  
+      </div>
+    </div>
+
+
+
+    <div class="container my-5 text-center">
+      <h1 style="text-transform: uppercase;">why choose us?</h1>
+      <hr class="my-5">
+
+
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <img src="{% static 'lms/images/logo2.png' %}" alt="">
+        </div>
+
+
+        <div class="col-lg-6 col-sm-12">
+          
+
+          <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                  <button class="btn btn-link btn-block text-left self-collap" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    OUR MISSION
+                  </button>
+                </h2>
+              </div>
+          
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  Empowering everyone to contribute, generating and means for betterment of humanity through quality educational services anywhere and anytime, active participation in community.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                  <button class="btn btn-link btn-block text-left collapsed self-collap" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    OUR VISION
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                  Our goal is to practise quality pedagogy, encourages innovation while instilling values and providing vibrant environment for holistic development of students into a valuable global citizens.
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                  <button class="btn btn-link btn-block text-left collapsed self-collap" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    OUR VALUE
+                  </button>
+                </h2>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                  Our values are to engage one in a process of self and community reflection that would lead to heighten awareness of the core values our institution have practiced and articulated.
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+  <!-- /.container -->
+
+{% endblock %}
