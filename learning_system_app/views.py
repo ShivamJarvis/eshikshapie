@@ -43,32 +43,42 @@ def register(request):
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
         dob = request.POST['dob']
-        if pass1 == pass2:
-            myfile = request.FILES['image']
-            fs = FileSystemStorage()
-            filename = fs.save(myfile.name,myfile)
-            url = fs.url(filename)
-            new_user = User.objects.create_user(first_name=f_name,username=username,last_name=l_name,email=email,is_active=False,password=pass1)
-            
-            new_user_profile = user_profile(phone=phone,student_id=user_id,school_name='',dob=dob,session='',mother_name=mother_name,father_name=father_name,address=address,state=state,city=city,zip_code=zip_code,user=new_user)
-            new_user_profile.save()
-            current_site = get_current_site(request).domain
-            subject = "Activate Your Account"
-            from_email = settings.EMAIL_HOST_USER
-            to_mail = [request.POST['email']]
-            
-            message = render_to_string('lms/activate.html',
-            {
-                'user':new_user,
-                'domain':current_site,
-                'uid':urlsafe_base64_encode(force_bytes(new_user.pk)),
-                'token':generate_token.make_token(new_user)
+        clientkey = request.POST['g-recaptcha-response']
+        secretkey = '6LeqZ9YZAAAAAL6jLRiF1M9G7v59iuNYSvThQxSB'
+        captchaData = {
+            "secret":secretkey,
+            "response":clientkey
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify',data=captchaData)
+        response = json.loads(r.text)
+        verify = response['success']
+        if verify:
+            if pass1 == pass2:
+                myfile = request.FILES['image']
+                fs = FileSystemStorage()
+                filename = fs.save(myfile.name,myfile)
+                url = fs.url(filename)
+                new_user = User.objects.create_user(first_name=f_name,username=username,last_name=l_name,email=email,is_active=False,password=pass1)
+                
+                new_user_profile = user_profile(phone=phone,student_id=user_id,school_name='',dob=dob,session='',mother_name=mother_name,father_name=father_name,address=address,state=state,city=city,zip_code=zip_code,user=new_user)
+                new_user_profile.save()
+                current_site = get_current_site(request).domain
+                subject = "Activate Your Account"
+                from_email = settings.EMAIL_HOST_USER
+                to_mail = [request.POST['email']]
+                
+                message = render_to_string('lms/activate.html',
+                {
+                    'user':new_user,
+                    'domain':current_site,
+                    'uid':urlsafe_base64_encode(force_bytes(new_user.pk)),
+                    'token':generate_token.make_token(new_user)
 
-            }
-            )
-            send_mail(subject,message,from_email,to_mail,fail_silently=True)
+                }
+                )
+                send_mail(subject,message,from_email,to_mail,fail_silently=True)
 
-            return redirect('register')
+                return redirect('register')
     context = {
         'user_id':user_id
     }
