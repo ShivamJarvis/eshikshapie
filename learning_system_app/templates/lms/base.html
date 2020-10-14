@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>eshikshapie</title>
+  <title>E-Shiksha Pie - Aspiring Your Minds</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'lms/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -34,7 +34,7 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">
-            <img src="{% static 'lms/images/main-logo.png' %}" width="200" height="60" alt="">
+            <img src="{% static 'lms/images/main-logo.png' %}" width="250" height="60" alt="">
           </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -77,7 +77,10 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link " href="">Dashboard</a>
+
+      
+            <a class="nav-link " href="{% url 'dashboard_student' %}">Dashboard</a>
+
           </li>
 
           <li class="nav-item">

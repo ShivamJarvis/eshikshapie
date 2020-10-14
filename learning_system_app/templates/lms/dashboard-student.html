@@ -1,0 +1,65 @@
+{% extends 'lms/layout.html' %}
+{% block title %}Student Dashboard{% endblock %}
+{% block dashboard %}active{% endblock %}
+{% block body %}
+
+    <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800" style="padding-top: 25px;">Your Profile</h1>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <div class="col-xl-12 col-md-12 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-2">
+                      <img src="{{user.user_profile.image}}" style="width: 200px; border-radius: 10px;" alt="">
+                    </div>
+                    <div class="col-8">
+                      
+
+                      <div class="row mt-3">
+                        <div class="col-2">
+                          <h5>Student Name</h5>
+                          <h5>Student ID</h5>
+                          <h5>Email</h5>
+                          <h5>Contact No.</h5>
+                          <h5>Date of Birth</h5>
+                          <h5>Address</h5>
+                          <h5>State</h5>
+                          <h5>City</h5>
+                         
+                        </div>
+                        <div class="col-10">
+                          <h5>{{user.first_name}} {{user.last_name}}</h5>
+                          <h5>{{user.user_profile.student_id}}</h5>
+                          <h5>{{user.email}}</h5>
+                         <h5> {{user.user_profile.phone}}</h5>
+                         <h5> {{user.user_profile.dob}}</h5>
+                         <h5> {{user.user_profile.address}}</h5>
+                         <h5> {{user.user_profile.state}}</h5>
+                         <h5> {{user.user_profile.city}}, {{user.user_profile.zip_code}}</h5>
+                    
+                        </div>
+                      </div>
+                      
+                    </div>
+                    <div class="col-2">
+                      <img src="/media/{{user.user_profile.image_qr}}" style="width: 260px; border-radius: 10px;" alt="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
+          </div>
+      </div>
+
+{% endblock %}

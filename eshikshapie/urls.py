@@ -22,3 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('learning_system_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+admin.site.site_header = "Eshiksha"
+admin.site.site_title = "Eshiksha Admin Portal"
+admin.site.index_title = "Welcome to Eshiksha Admin Portal"

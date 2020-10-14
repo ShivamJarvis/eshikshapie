@@ -1,6 +1,36 @@
 {% extends 'lms/base.html' %}
 {% load static %}
 {% block home %}active{% endblock %}
+{% block css %}
+<style>
+
+.intro-cards:hover{
+    
+    background-color:  #263faf!important;
+}
+.method-icon{
+  color: #5472D2;
+}
+.self-collap{
+  color: #17C787;
+  font-weight: bold;
+}
+
+.self-collap:hover{
+  color: #17C787;
+  text-decoration: none;
+
+}
+
+.course-image{
+  padding: 10px!important;
+  height: 300px!important;
+}
+
+
+  </style>
+
+{% endblock %}
 {% block body %}
   <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -13,22 +43,22 @@
         <!-- Slide One - Set the background image for this slide in the line below -->
         <div class="carousel-item active" style="background-image: url('/static/lms/images/banner1.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>First Slide</h3>
-            <p>This is a description for the first slide.</p>
+            <!-- <h3>First Slide</h3>
+            <p>This is a description for the first slide.</p> -->
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('/static/lms/images/banner2.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>Second Slide</h3>
-            <p>This is a description for the second slide.</p>
+            <!-- <h3>Second Slide</h3>
+            <p>This is a description for the second slide.</p> -->
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('/static/lms/images/banner3.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>Third Slide</h3>
-            <p>This is a description for the third slide.</p>
+            <!-- <h3>Third Slide</h3>
+            <p>This is a description for the third slide.</p> -->
           </div>
         </div>
       </div>
@@ -46,10 +76,62 @@
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="my-4">Welcome to Modern Business</h1>
+    <!-- <h1 class="my-4">Welcome to Modern Business</h1> -->
 
     <!-- Marketing Icons Section -->
-    <div class="row">
+
+    <div class="row mt-4">
+      <div class="col-lg-4 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #1A005E; padding: 55px 20px;">
+        <i class="far fa-user-graduate fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">EDUCATION</h3>
+        <h5 class="mt-3">Education is the tool or foundation of making the world a safe, peaceful and better place. We, our teachers, our students and partners all need to be always learning and looking for a platform where they can sort out all their problems related to a student life, especially learning and understanding.</h5>
+      </div>
+
+      <div class="col-lg-4 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #AF2B26; padding: 55px 20px;">
+        <i class="fas fa fa-book fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">INNOVATION</h3>
+        <h5 class="mt-3">Innovation is our priority, we/ our team work 24 × 7 for the betterment of a student educational life and we always do experiments and researches for the betterment of educational system.</h5>
+      </div>
+
+
+      <div class="col-lg-4 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #1A005E; padding: 55px 20px;">
+        <i class="fas fa fa-comment-dots fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">INTEGRITY</h3>
+        <h5 class="mt-3">Our team members are well qualified in their domain, demonstrating honesty and fairness in each other and every action we take.</h5>
+      </div>
+
+
+    
+    </div>
+
+    <div class="row my-4">
+      <div class="col-lg-4 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #1A005E; padding: 55px 20px;">
+        <i class="far fa fa-user fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">OUR MISSION</h3>
+        <h5 class="mt-3">The mission of e shiksha pie is: Empowering everyone to improve our beautiful world and provide a world class education to everyone, anywhere and anytime.</h5>
+      </div>
+
+      <div class="col-lg-4 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #AF2B26; padding: 55px 20px;">
+        <i class="fas fa fa-book fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">OUR VISION</h3>
+        <h5 class="mt-3">Our goals for the future are very simple to give a most effective place or platform for all educational concepts to the students to nurture them for the future.</h5>
+      </div>
+
+
+      <div class="col-lg-4 col-sm-4 mb-4 text-center text-white intro-cards" style="background-color: #1A005E; padding: 55px 20px;">
+        <i class="fas fa fa-comment fa-3x"></i>
+        <h3 style="text-transform: uppercase;" class="mt-3">OUR VALUES</h3>
+        <h5 class="mt-3">It is believed that one must possess some great values to accomplish the dream. There are some values which we encourage one another to uphold by fostering intelligence.</h5>
+      </div>
+
+
+    
+    </div>
+
+
+
+
+    <!-- <div class="row">
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
           <h4 class="card-header">Card Title</h4>
@@ -84,117 +166,68 @@
         </div>
       </div>
     </div>
-    <!-- /.row -->
+    /.row -->
 
     <!-- Portfolio Section -->
-    <h2>Portfolio Heading</h2>
+    <h2 class="text-center my-3" style="text-transform: uppercase; font-weight: bold;">Popular Courses</h2>
+    <hr style="border-bottom: 1px solid black;">
 
     <div class="row">
+      {% for course in courses %}
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+          <a href="{% url 'course_details' course_name=course.course_name course_id=course.id %}"><img class="card-img-top course-image" src="/media/{{ course.image }}" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">Project One</a>
+              <a href="{% url 'course_details' course_name=course.course_name course_id=course.id %}">{{course.course_name}}</a>
             </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+            <p class="card-text">{{course.mini_info|slice:":100"}}...</p>
+            <h4><strike style="color: #928e8e; font-size: 19px;">&#x20B9;25000</strike> &#x20B9;20000</h4>
           </div>
         </div>
       </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Two</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Three</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Four</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Five</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">Project Six</a>
-            </h4>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
+
     </div>
     <!-- /.row -->
 
     <!-- Features Section -->
-    <div class="row">
+    <div class="row p-4" style="background-color: #f2f2f2!important;">
       <div class="col-lg-6">
-        <h2>Modern Business Features</h2>
-        <p>The Modern Business template by Start Bootstrap includes:</p>
-        <ul>
-          <li>
-            <strong>Bootstrap v4</strong>
-          </li>
-          <li>jQuery</li>
-          <li>Font Awesome</li>
-          <li>Working contact form with validation</li>
-          <li>Unstyled page elements for easy customization</li>
-        </ul>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis, omnis doloremque non cum id reprehenderit, quisquam totam aspernatur tempora minima unde aliquid ea culpa sunt. Reiciendis quia dolorum ducimus unde.</p>
+        <h2>Director's Message</h2>
+        <hr>
+        <p>As we welcome you, the future leaders and productive citizens of the world, I would like to stress on our mission statement of grooming young minds and hearts as the pillar of advancement of a nation and hope of the future.</p>
+        
+        <p>Our institution is formed by a team of Service-oriented individuals with the aim to promote education and culture in all aspects in order to achieve and fulfill the mission statement that we believe in.</p>
+        
+        <p>We firmly believe that education is a dynamic and emerging field which is the key to a nation’s progress. And we will take it as our bounded duty to provide the best academic training a student possibly gets. E SHIKSHA PIE endeavors to comfort the students with all necessary knowledge and skills to become truly successful in future.</p>
+
+        <p>I want to acknowledge one of the great strengths of our E SHIKSHA PIE, the caring relationship between our teachers and our students. Our teachers are true mentors for the students in their care. They assist and inspire each child navigate the journey from childhood to adulthood in their request for a nobler and more perfect existence.</p>
+        <p>We have many plans on the anvil for the future and continue in our aspiration to build further on the excellence.
+
+        </p>
       </div>
       <div class="col-lg-6">
-        <img class="img-fluid rounded" src="http://placehold.it/700x450" alt="">
+        <img class="img-fluid rounded" src="{% static 'lms/images/director.jpg' %}" style="height: 480px; margin-top: 55px;"alt="">
       </div>
     </div>
     <!-- /.row -->
 
-    <hr>
 
-    <!-- Call to Action Section -->
-    <div class="row mb-4">
-      <div class="col-md-8">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-      </div>
-      <div class="col-md-4">
-        <a class="btn btn-lg btn-secondary btn-block" href="#">Call to Action</a>
-      </div>
-    </div>
 
-  </div>
+   <div class="row my-5" style="padding: 50px 0px;">
+     <div class="col-lg-4">
+      <img src="{% static 'lms/images/content.jpg' %}" style="width: 340px; height: 270px;" alt="">
+     </div>
+     <div class="col-lg-8">
+      <h1>WHY CHOOSE US ?</h1>
+      <h5 class="text-secondary">Giving You What is Needed</h5>
+      <hr>
+      <p class="text-secondary" style="font-weight: bold;">e-Shiksha pie is the leading online coaching in the country at the school as well as competitive levels. We as team e-Shiksha pie ensure that each and every child/ student gets a coach or mentor to ignite his/her mind who can show them the right path to the success.</p>
+      <a href="{% url 'about' %}" class="btn btn-primary">LEARN MORE</a>
+     </div>
+   </div>
+</div>
   <!-- /.container -->
-
 
 {% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'lms/layout.html' %}
+{% block title %}Student Dashboard{% endblock %}
+{% block enroll_courses %}active{% endblock %}
+{% block css %}
+<style>
+    .course-image {
+        padding: 10px !important;
+        height: 300px !important;
+    }
+</style>
+{% endblock %}
+{% block body %}
+
+<!-- Begin Page Content -->
+<div class="container-fluid p-5">
+
+    <h1>Enrolled Courses</h1>
+    <hr>
+
+    <div class="row">
+        {% for course in enroll_courses %}
+        <div class="col-lg-3 col-sm-6 portfolio-item">
+            <div class="card h-100">
+                <a href="{% url 'course_details' course_name=course.enroll.course.course_name course_id=course.enroll.course.id %}"><img
+                        class="card-img-top course-image" src="/media/{{ course.enroll.course.image }}" alt=""></a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a
+                            href="{% url 'course_details' course_name=course.enroll.course.course_name course_id=course.enroll.course.id %}">{{course.course_name}}</a>
+                    </h4>
+                    {% if not course.review %}
+                    
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#course{{course.enroll.course.id}}">
+                        Post Review
+                    </button>
+                    {% else %}
+                    <button type="button" disabled class="btn btn-primary" data-toggle="modal" data-target="#course{{course.enroll.course.id}}">
+                        Already Reviewed
+                    </button>
+
+                    {% endif %}
+  
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="course{{course.enroll.course.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{course.enroll.course.course_name}}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'submit_reviews' enroll_id=course.enroll.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <label for="review{{course.course.id}}">Write A Review :</label>
+                                        <textarea name="review" id="review{{course.course.id}}" class="form-control" cols="5" rows="5"></textarea>
+                                        <button class="btn btn-danger mt-3" type="submit">SUBMIT</button>
+                                    </form>
+                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+
+
+    </div>
+
+</div>
+
+{% endblock %}

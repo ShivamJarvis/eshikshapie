@@ -1,0 +1,128 @@
+{% extends 'lms/base.html' %}
+
+{% block css %}
+
+<style>
+
+.content-desc{
+    width: 100%!important;
+    height: 100%;
+    background-color: #ffff;
+    overflow-y: scroll;
+}
+.content-desc ul{
+    list-style: none;
+    margin-right: 50px;
+}
+.content-desc ul li a{
+    color: #000000;
+
+    font-weight: bold;
+    text-decoration: none;
+}
+.content-desc ul li a:hover{
+    border: none;
+}
+
+.content-desc ul li{
+    margin: 20px 0px;
+    
+    padding: 10px;
+    width: 100%;
+}
+.content-desc ul li:hover{
+    padding: 10px;
+    background-color:#EFEFF0;
+}
+.active-self{
+    background-color:#EFEFF0;
+    padding:10px;
+}
+.active-self:hover{
+    background-color:#ffffff;
+    padding:10px;
+}
+.self-class:hover{
+    text-decoration: none;
+    color: rgb(54, 2, 54);
+}
+.self-class{
+    color: rgb(54, 2, 54);
+}
+    </style>
+
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+
+    <div class="row pt-5">
+        <div class="col-8">
+            <iframe width="100%" height="730px" class="p-3" src="{{current_video.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="col-4 content-desc">
+            <h2 class="text-center mt-5" style="background-color: #EFEFF0; padding:20px;">{{course_name}}</h2>
+            <ul>
+                {% for video in videos %}
+                {% if current_video.id == video.id %}
+                <li class="active-self"><a href="{% url 'video_playlist' course_name=video.course.course_name course_id=video.course.id video_id=video.id %}"><i class="fas fa-play-circle"></i> {{video.title}}</a></li>
+                {% else %}
+                <li class=""><a href="{% url 'video_playlist' course_name=video.course.course_name course_id=video.course.id video_id=video.id %}"><i class="fas fa-play-circle"></i> {{video.title}}</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pl-5 pr-5 pt-3 pb-5">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left self-class" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Overview
+              </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed self-class" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Resources
+              </button>
+            </h2>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed self-class" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Q&A
+              </button>
+            </h2>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+             
+
+{% endblock %}
