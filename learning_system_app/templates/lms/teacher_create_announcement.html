@@ -1,0 +1,54 @@
+{% extends 'lms/teacher-layout.html' %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block create_announcement %}active{% endblock %}
+{% block body %}
+
+    <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+      <h1 class="p-3">Create Announcement</h1>
+            <hr>
+
+            <form action="{% url 'teacher_announce' %}" method="POST" enctype="multipart/form-data" class="mb-5">
+                {% csrf_token %}
+                <div class="form-item my-4">
+                    <label for="name">Message Subject</label>
+                    <input type="text" class="form-control" name="name" id="name" required>
+                </div>
+
+                <div class="form-item my-4">
+                    <label for="video_url">Live Class URL (If Any)</label>
+                    <input type="text" class="form-control" name="live_class_url" id="video_url">
+                </div>
+
+               
+                 
+                    
+
+                        <div class="form-item my-4">
+                            <label for="video_course">Choose Course</label>
+                            <select name="course" id="video_course" class="form-control" required>
+                                {% for course in courses %}
+                                <option value="{{course}}">{{course}}</option>
+                                {% endfor %}
+                            </select>
+                </div>
+                <div class="form-item-my-4">
+                    <label for="resource">Source Material (If Any)</label>
+                    <input type="file" name="resource" id="resource" class="form-control">
+                </div>
+
+                <div class="form-item my-4">
+                    <label for="desc">Message Description</label>
+                    <textarea name="description" id="desc" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Announce</button>
+
+
+
+            </form>
+
+      </div>
+
+{% endblock %}

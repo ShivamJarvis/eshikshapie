@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponse,redirect
 import requests
 import json
 from learning_system_app.utils import generate_token
-from django.core.mail import send_mail
+from django.core.mail import send_mail,EmailMessage
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
@@ -12,13 +12,14 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from .utils import generate_token
-from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video
+from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video,QuestionAnswer,Subject
 import pyqrcode 
 import png 
 from pyqrcode import QRCode
 from .Paytm import Checksum
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 MERCHANT_KEY = "7Gg9YJuMubv@MHim"
@@ -157,21 +158,39 @@ def contact(request):
 
 def course_details(request,course_name,course_id):
     course = Course.objects.filter(id=course_id).first()
-    video = Video.objects.filter(course__id=course_id).first()
-    enrolled_course = EnrolledCourse.objects.filter(user=request.user).filter(course=course).first()
-    reviews = Review.objects.filter(enrolled_course=enrolled_course).all()
-  
-       
+    if request.user.is_active:
+        enrolled_course = EnrolledCourse.objects.filter(user=request.user).filter(course=course).first()
+    else:
+        enrolled_course = []
+
+    reviews = Review.objects.filter(course=course).all()
+    subjects = Subject.objects.filter(course=course).all()
+    instructors = []
+    videos = []
+    enrolled_count = EnrolledCourse.objects.filter(course__id=course_id).count() + 1100
+    for subject in subjects:
+        video = Video.objects.filter(subject__id=subject.id).order_by('id').first()
+        if video:
+            videos.append({'subject':subject,'video':video.id})
+        else:
+            videos.append({'subject':subject,'video':0})
+        if not subject.instructor in instructors:
+            instructors.append(subject.instructor)
+            
    
     context = {
-        'video':video,
+        'videos':videos,
+        'instructors':instructors,
+        'subjects':subjects,
         'course':course,
         'enrolled' : enrolled_course,
-        'reviews':reviews
+        'reviews':reviews,
+        'enrolled_count':enrolled_count
+  
     }
     return render(request,'lms/course-detail.html',context)
 
-
+@login_required(login_url='handle_login')
 def enroll_to_course(request,course_id,course_name):
     last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
     if not last_enroll_no:
@@ -182,7 +201,8 @@ def enroll_to_course(request,course_id,course_name):
         new_enroll_no_int = enroll_no_int + 1
         enroll_id = 'ENCID'  + str(new_enroll_no_int).zfill(6)
     course = Course.objects.filter(id=course_id).first()
-    new_enroll = EnrolledCourse(course=course,user=request.user,enroll_id=enroll_id)
+    user = request.user
+    new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id)
     new_enroll.save()
     user = request.user.email
     param_dict = {
@@ -215,7 +235,7 @@ def handle_request(request):
             checksum = form[i]
             verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
             if verify:
-                if response_dict['RESPCODE'] == '01':
+                if not response_dict['RESPCODE'] == '01':
                    enroll.status = True
                    enroll.save()
                 else:
@@ -224,21 +244,28 @@ def handle_request(request):
       
     return render(request, 'lms/paymentstatus.html', {'response': response_dict})
 
-
-def video_playlist(request,course_name,course_id,video_id):
-    videos = Video.objects.filter(course__id=course_id).all()
+@login_required(login_url='handle_login')
+def video_playlist(request,course_name,course_id,subject_id,video_id):
+    videos = Video.objects.filter(subject__id=subject_id).all()
+    subject = Subject.objects.filter(id=subject_id).first()
     current_video = Video.objects.filter(id=video_id).first()
     context = {
         'current_video':current_video,
         'videos':videos,
-        'course_name':course_name
+        'course_name':course_name,
+        'subject':subject
     }
     return render(request,'lms/video-playlist.html',context)
 
-def dashboard_student(request):
-    return render(request,'lms/layout.html')
+@login_required(login_url='handle_login')
+def dashboard(request):
+    user = request.user
+    if user.is_staff:
+        return redirect('teacher_profile')
+    else:
+        return redirect('student_profile')
 
-
+@login_required(login_url='handle_login')
 def dashboard_enrolled_courses(request):
     enroll_courses = EnrolledCourse.objects.filter(user=request.user).all()
     information = []
@@ -255,21 +282,142 @@ def dashboard_enrolled_courses(request):
     }
     return render(request,'lms/enrolled_course_dashboard.html',context)
 
-
+@login_required(login_url='handle_login')
 def submit_reviews(request,enroll_id):
     if request.method == 'POST':
         review = request.POST['review']
         enroll_course = EnrolledCourse.objects.filter(id=enroll_id).first()
-        new_review = Review(review=review,enrolled_course=enroll_course,user=request.user)
+        course = Course.objects.filter(id=enroll_course.course.id).first()
+        new_review = Review(review=review,enrolled_course=enroll_course,user=request.user,course=course)
         new_review.save()
     return redirect('dashboard_enrolled_courses')
 
-
+@login_required(login_url='handle_login')
 def student_profile(request):
     user_id = request.user.id
     user = User.objects.filter(id=user_id).first()
     context = {
         'user':user
-        
     }
     return render(request,'lms/dashboard-student.html',context)
+
+@login_required(login_url='handle_login')
+def question_answer(request,course_name,course_id,video_id,subject_id):
+    if request.method == 'POST':
+        question = request.POST['question']
+        video = Video.objects.filter(id=video_id).first()
+        new_question = QuestionAnswer(question=question,user=request.user,video=video)
+        new_question.save()
+        return redirect('video_playlist',course_name=course_name,course_id=course_id,video_id=video_id,subject_id=subject_id)
+
+@login_required(login_url='handle_login')
+def student_question(request):
+    all_question = QuestionAnswer.objects.filter(user=request.user).all()
+    context = {
+        'questions':all_question
+    }
+    return render(request,'lms/student-dashboard-qa.html',context)
+
+@login_required(login_url='handle_login')
+def delete_student_question(request,question_id):
+    question = QuestionAnswer.objects.filter(id=question_id).first()
+    question.delete()
+    return redirect('student_question')
+
+
+@login_required(login_url='handle_login')
+def teacher_profile(request):
+    return render(request,'lms/teacher-profile.html')
+
+@login_required(login_url='handle_login')
+def teacher_add_video(request):
+    if request.method == 'POST':
+        video_title = request.POST['video_name']
+        video_url = request.POST['video_url']
+        video_subject = request.POST['subject']
+        video_course = request.POST['course']
+        video_description = request.POST['description']
+        subject = Subject.objects.filter(id=int(video_subject)).first()
+        if subject and subject.course.course_name == video_course:
+            try:
+                myfile = request.FILES.get('resource')
+                fs = FileSystemStorage()
+                filename = fs.save(myfile.name,myfile)
+                url = fs.url(filename)
+            except:
+                url = ''
+            new_video = Video(title=video_title,url=video_url,description=video_description,subject=subject,resources=url)
+            new_video.save()
+            return redirect('teacher_add_video')
+
+    subjects = Subject.objects.filter(instructor__user__id=request.user.id).all()
+    courses = []
+    for subject in subjects:
+        if not subject.course.course_name in courses:
+            courses.append(subject.course.course_name)
+    context = {
+        'subjects':subjects,
+        'courses':courses
+    }
+    return render(request,'lms/teacher-add-video.html',context)
+
+
+@login_required(login_url='handle_login')
+def teacher_announce(request):
+    if request.method == 'POST':
+        msg_subject = request.POST['name']
+        live_class_url = request.POST['live_class_url']
+
+        course_name = request.POST['course']
+        body = request.POST['description']
+        if live_class_url:
+            body = f'{body}\nLive Class Link : {live_class_url}'
+
+        course = Course.objects.filter(course_name=course_name).first()
+        enrolled = EnrolledCourse.objects.filter(course=course).all()
+        students = []
+        for enroll in enrolled:
+            students.append(enroll.user.email)
+        print(students)
+        try:
+            myfile = request.FILES.get('resource')
+        except:
+            myfile=''
+        email = EmailMessage(
+                subject=msg_subject,
+                body=body,
+                from_email=settings.EMAIL_HOST_USER,
+                to=students,
+            )
+        if myfile:
+            email.attach(myfile.name,myfile.read(),myfile.content_type)
+        email.send(fail_silently=True)
+        
+        return redirect('teacher_announce')
+
+
+    subjects = Subject.objects.filter(instructor__user__id=request.user.id).all()
+    courses = []
+    for subject in subjects:
+        if not subject.course.course_name in courses:
+            courses.append(subject.course.course_name)
+    context = {
+        'subjects':subjects,
+        'courses':courses
+    }
+    return render(request,'lms/teacher_create_announcement.html',context)
+
+
+def teacher_student(request):
+    teacher_subject = Subject.objects.filter(instructor__user__id=request.user.id).all()
+    students = []
+    for i in teacher_subject:
+        course = EnrolledCourse.objects.filter(course__id=i.course.id).all()
+        for j in course:
+            student = User.objects.filter(id=j.user.id).first()
+            if not student in students:
+                students.append(student)
+    context = {
+        'students':students
+    }
+    return render(request,'lms/teacher_enroll_student.html',context)

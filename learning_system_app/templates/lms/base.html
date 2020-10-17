@@ -19,6 +19,8 @@
 
   <!-- Fontawesome css -->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  
+
   <style>
       .nav-item{
           margin-right: 14px!important;
@@ -79,7 +81,7 @@
           <li class="nav-item">
 
       
-            <a class="nav-link " href="{% url 'dashboard_student' %}">Dashboard</a>
+            <a class="nav-link " href="{% url 'dashboard' %}">Dashboard</a>
 
           </li>
 
@@ -117,7 +119,7 @@
       <script src="{% static 'lms/vendor/jquery/jquery.min.js' %}"></script>
       <script src="{% static 'lms/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
       <script src="{% static 'lms/js/jqBootstrapValidation.js' %}"></script>
-
+   
     {% block js %}
     {% endblock %}
     </body>

@@ -89,16 +89,30 @@ class Course(models.Model):
     def __str__(self):
         return f'{self.id} {self.course_name} by ({self.instructor.user.first_name} {self.instructor.user.last_name})'
 
+
+class Subject(models.Model):
+    subject_name = models.CharField(max_length=100,null=False,blank=False)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='subject_course')
+    instructor = models.ForeignKey(Instructor,on_delete=models.CASCADE,related_name='subject_instructor')
+    def __str__(self):
+        return f'{self.subject_name} by ({self.instructor.user.first_name} {self.instructor.user.last_name})'
+
+
+
+
 class EnrolledCourse(models.Model):
     enroll_id = models.CharField(max_length=30,null=False,blank=False)
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='enrolled_course_detail')
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='enrolled_user_detail')
     status = models.BooleanField(default=False)
+    def __str__(self):
+        return f'{self.enroll_id}'
 
 
 class Review(models.Model):
     review = models.TextField(max_length=400,null=False,blank=False)
     enrolled_course = models.ForeignKey(EnrolledCourse,on_delete=models.CASCADE,related_name='review_enrolled')
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='review_course',blank=True,null=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='review_user')
     is_approved = models.BooleanField(default=False)
 
@@ -107,5 +121,15 @@ class Video(models.Model):
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     description = models.TextField(max_length=2000)
-    course = models.ForeignKey(Course,on_delete=models.CASCADE)
+    subject = models.ForeignKey(Subject,on_delete=models.CASCADE,null=True,blank=True)
+    resources = models.CharField(max_length=200,null=True,blank=True)
+    def __str__(self):
+        return f'{self.title} of ({self.subject.subject_name})'
     
+class QuestionAnswer(models.Model):
+    question = models.TextField(max_length=1000,null=False,blank=False)
+    answer = models.TextField(max_length=1000,null=True,blank=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_question')
+    video = models.ForeignKey(Video,on_delete=models.CASCADE,related_name='video_question')
+
+

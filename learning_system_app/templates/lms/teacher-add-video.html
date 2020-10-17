@@ -1,0 +1,64 @@
+{% extends 'lms/teacher-layout.html' %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block add_video %}active{% endblock %}
+{% block body %}
+
+    <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+      <h1 class="p-3">Add Video</h1>
+            <hr>
+
+            <form action="{% url 'teacher_add_video' %}" method="POST" enctype="multipart/form-data" class="mb-5">
+                {% csrf_token %}
+                <div class="form-item my-4">
+                    <label for="video_name">Video Title</label>
+                    <input type="text" class="form-control" name="video_name" id="video_name" required>
+                </div>
+                <div class="form-item my-4">
+                    <label for="video_url">Video URL</label>
+                    <input type="text" class="form-control" name="video_url" id="video_url" required>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                        <div class="form-item my-4">
+                            <label for="video_subject">Choose Subject</label>
+                            <select name="subject" id="video_subject" class="form-control" required>
+                                {% for subject in subjects %}
+                                <option value="{{subject.id}}">{{subject.subject_name}}</option>
+                                {% endfor %}
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+
+                        <div class="form-item my-4">
+                            <label for="video_course">Choose Course</label>
+                            <select name="course" id="video_course" class="form-control" required>
+                                {% for course in courses %}
+                                <option value="{{course}}">{{course}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item-my-4">
+                    <label for="resource">Source Material (If Any)</label>
+                    <input type="file" name="resource" id="resource" class="form-control">
+                </div>
+
+                <div class="form-item my-4">
+                    <label for="video_desc">Video Description</label>
+                    <textarea name="description" id="video_desc" class="form-control" cols="30" rows="10"></textarea>
+                </div>
+
+                <button class="btn btn-primary" type="submit">Add Video</button>
+
+
+
+            </form>
+
+      </div>
+
+{% endblock %}

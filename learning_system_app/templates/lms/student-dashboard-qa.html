@@ -1,0 +1,39 @@
+{% extends 'lms/layout.html' %}
+{% block title %}Student Dashboard{% endblock %}
+{% block q&a %}active{% endblock %}
+{% block css %}
+
+{% endblock %}
+{% block body %}
+
+<!-- Begin Page Content -->
+<div class="container-fluid p-5">
+
+
+<h1>Your Questions</h1>
+<hr>
+{% if questions %}
+{% for question in questions %}
+<div class="card">
+    <div class="card-header">
+      Question & Answers
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"></h5>
+      <p class="card-text">Question : {{question.question}}</p>
+      {% if question.answer %}
+      <p class="card-text">Answer : {{question.answer}}</p>
+      <a href="{% url 'delete_student_question' question_id=question.id %}" class="btn btn-danger">Delete question</a>
+      {% else %}
+      <h3>Answer is Pending</h3>
+      {% endif %}
+    </div>
+  </div>
+{% endfor %}
+{% else %}
+<h3>No Questions Asked...</h3>
+{% endif %}
+
+</div>
+
+{% endblock %}
