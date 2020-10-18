@@ -24,5 +24,6 @@ urlpatterns = [
     path('dashboard/teacher/add-video/',views.teacher_add_video,name='teacher_add_video'),
     path('dashboard/teacher/create-announcement/',views.teacher_announce,name='teacher_announce'),
     path('dashboard/teacher/enroll-student/',views.teacher_student,name='teacher_student'),
+    path('dashboard/teacher/q&a/',views.teacher_qa,name='teacher_qa'),
 
 ]

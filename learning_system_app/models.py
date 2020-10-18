@@ -121,7 +121,8 @@ class Video(models.Model):
     title = models.CharField(max_length=200)
     url = models.CharField(max_length=200)
     description = models.TextField(max_length=2000)
-    subject = models.ForeignKey(Subject,on_delete=models.CASCADE,null=True,blank=True)
+    subject = models.ForeignKey(Subject,on_delete=models.CASCADE,null=True,blank=True,related_name='subject_video')
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,null=True,blank=True,related_name='course_video')
     resources = models.CharField(max_length=200,null=True,blank=True)
     def __str__(self):
         return f'{self.title} of ({self.subject.subject_name})'
@@ -131,5 +132,7 @@ class QuestionAnswer(models.Model):
     answer = models.TextField(max_length=1000,null=True,blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_question')
     video = models.ForeignKey(Video,on_delete=models.CASCADE,related_name='video_question')
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='course_question',blank=True,null=True)
+    subject = models.ForeignKey(Subject,on_delete=models.CASCADE,related_name='subject_question',blank=True,null=True)
 
 

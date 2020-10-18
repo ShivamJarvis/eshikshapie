@@ -305,14 +305,16 @@ def student_profile(request):
 def question_answer(request,course_name,course_id,video_id,subject_id):
     if request.method == 'POST':
         question = request.POST['question']
+        course = Course.objects.filter(id=course_id).first()
+        subject = Subject.objects.filter(id=subject_id).first()
         video = Video.objects.filter(id=video_id).first()
-        new_question = QuestionAnswer(question=question,user=request.user,video=video)
+        new_question = QuestionAnswer(question=question,user=request.user,video=video,course=course,subject=subject)
         new_question.save()
         return redirect('video_playlist',course_name=course_name,course_id=course_id,video_id=video_id,subject_id=subject_id)
 
 @login_required(login_url='handle_login')
 def student_question(request):
-    all_question = QuestionAnswer.objects.filter(user=request.user).all()
+    all_question = QuestionAnswer.objects.filter(user=request.user).order_by('-id').all()
     context = {
         'questions':all_question
     }
@@ -346,7 +348,8 @@ def teacher_add_video(request):
                 url = fs.url(filename)
             except:
                 url = ''
-            new_video = Video(title=video_title,url=video_url,description=video_description,subject=subject,resources=url)
+            course = Course.objects.filter(course_name=video_course).first()
+            new_video = Video(title=video_title,url=video_url,description=video_description,subject=subject,resources=url,course=course)
             new_video.save()
             return redirect('teacher_add_video')
 
@@ -421,3 +424,24 @@ def teacher_student(request):
         'students':students
     }
     return render(request,'lms/teacher_enroll_student.html',context)
+
+def teacher_qa(request):
+    if request.method == 'POST':
+        question_id = request.POST['question_id']
+        answer = request.POST['answer']
+        question = QuestionAnswer.objects.filter(id=int(question_id)).first()
+        question.answer = answer
+        question.save()
+    # courses = Course.objects.filter(instructor__user__id)
+    subjects = Subject.objects.filter(instructor__user__id=request.user.id).all()
+    print(subjects)
+    question_list = []
+    for subject in subjects:
+        questions = QuestionAnswer.objects.filter(course__id=subject.course.id).filter(subject__id=subject.id).all()
+        for question in questions:
+            if not question.answer and not question in question_list:
+                question_list.append(question)
+    context = {
+        'questions':question_list
+    }
+    return render(request,'lms/teacher-qa.html',context)

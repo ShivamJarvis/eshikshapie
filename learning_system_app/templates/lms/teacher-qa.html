@@ -1,0 +1,43 @@
+{% extends 'lms/teacher-layout.html' %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block q&a %}active{% endblock %}
+{% block body %}
+
+    <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <h1>Questions Asked By Students</h1>
+            <hr>
+            {% if questions %}
+            {% for question in questions %}
+            {% if not question.answer %}
+            <div class="card">
+                <div class="card-header">
+                  Question & Answers
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"></h5>
+                  <p class="card-text">Question : {{question.question}}</p>
+                    <form action="{% url 'teacher_qa' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{question.id}}" name="question_id">
+                        <p class="card-text">Answer : </p>
+                        <input type="text" class="form-control" name="answer">
+                        <button class="btn btn-info mt-3" type="submit" >Submit</button>
+                    </form>
+   
+            
+                </div>
+              </div>
+              {% endif %}
+            {% endfor %}
+            {% else %}
+            <h3>No Questions Pending</h3>
+            {% endif %}
+            
+      </div>
+
+  
+
+
+{% endblock %}
+
