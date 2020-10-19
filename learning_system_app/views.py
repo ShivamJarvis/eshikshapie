@@ -221,7 +221,6 @@ def enroll_to_course(request,course_id,course_name):
     return render(request=request, template_name="lms/paytm.html", context={'param_dict':param_dict})
     return redirect('index')
 
-
 @csrf_exempt
 def handle_request(request):
     form = request.POST
@@ -326,7 +325,6 @@ def delete_student_question(request,question_id):
     question.delete()
     return redirect('student_question')
 
-
 @login_required(login_url='handle_login')
 def teacher_profile(request):
     return render(request,'lms/teacher-profile.html')
@@ -364,7 +362,6 @@ def teacher_add_video(request):
     }
     return render(request,'lms/teacher-add-video.html',context)
 
-
 @login_required(login_url='handle_login')
 def teacher_announce(request):
     if request.method == 'POST':
@@ -381,7 +378,7 @@ def teacher_announce(request):
         students = []
         for enroll in enrolled:
             students.append(enroll.user.email)
-        print(students)
+
         try:
             myfile = request.FILES.get('resource')
         except:
@@ -410,7 +407,7 @@ def teacher_announce(request):
     }
     return render(request,'lms/teacher_create_announcement.html',context)
 
-
+@login_required(login_url='handle_login')
 def teacher_student(request):
     teacher_subject = Subject.objects.filter(instructor__user__id=request.user.id).all()
     students = []
@@ -425,6 +422,7 @@ def teacher_student(request):
     }
     return render(request,'lms/teacher_enroll_student.html',context)
 
+@login_required(login_url='handle_login')
 def teacher_qa(request):
     if request.method == 'POST':
         question_id = request.POST['question_id']
@@ -434,7 +432,7 @@ def teacher_qa(request):
         question.save()
     # courses = Course.objects.filter(instructor__user__id)
     subjects = Subject.objects.filter(instructor__user__id=request.user.id).all()
-    print(subjects)
+ 
     question_list = []
     for subject in subjects:
         questions = QuestionAnswer.objects.filter(course__id=subject.course.id).filter(subject__id=subject.id).all()

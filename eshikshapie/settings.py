@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'learning_system_app.middlewares.OneSessionPerUser',
 ]
 
 ROOT_URLCONF = 'eshikshapie.urls'
