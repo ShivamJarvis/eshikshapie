@@ -4,7 +4,7 @@
 {% block body %}
 
     <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container">
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -19,39 +19,39 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-lg-2 col-md-12 col-sm-12">
-                      <img src="/media/{{user.instructor.image}}" style="width: 200px; border-radius: 10px;" alt="">
+                      <img src="/media/{{user.instructor.image}}" style="width: 110px; border-radius: 10px;" alt="">
                     </div>
                     <div class="col-lg-8 col-md-12 col-sm-12">
                       
 
                       <div class="row mt-3">
-                        <div class="col-lg-2 col-md-6 col-sm-6 d-none d-sm-block">
-                          <h5 >Teacher ID</h5>
-                          <h5>Teacher Name</h5>
-                          <h5>Email</h5>
-                          <h5>Contact No.</h5>
-                          <h5>Date of Birth</h5>
-                          <h5>Address</h5>
-                          <h5>State</h5>
-                          <h5>City</h5>
+                        <div class="col-lg-3 col-md-6 col-sm-6 d-none d-sm-block">
+                          <h6 >Teacher ID</h6>
+                          <h6>Teacher Name</h6>
+                          <h6>Email</h6>
+                          <h6>Contact No.</h6>
+                          <h6>Date of Birth</h6>
+                          <h6>Address</h6>
+                          <h6>State</h6>
+                          <h6>City</h6>
                          
                         </div>
-                        <div class="col-lg-10 col-md-6 col-sm-6">
-                          <h5>{{user.instructor.instructor_id}}</h5>
-                          <h5>{{user.first_name}} {{user.last_name}}</h5>
-                          <h5>{{user.email}}</h5>
-                         <h5> {{user.instructor.phone}}</h5>
-                         <h5> {{user.instructor.dob}}</h5>
-                         <h5> {{user.instructor.address}}</h5>
-                         <h5> {{user.instructor.state}}</h5>
-                         <h5> {{user.instructor.city}}, {{user.instructor.zip_code}}</h5>
+                        <div class="col-lg-9 col-md-6 col-sm-6">
+                          <h6>{{user.instructor.instructor_id}}</h6>
+                          <h6>{{user.first_name}} {{user.last_name}}</h6>
+                          <h6>{{user.email}}</h6>
+                         <h6> {{user.instructor.phone}}</h6>
+                         <h6> {{user.instructor.dob}}</h6>
+                         <h6> {{user.instructor.address}}</h6>
+                         <h6> {{user.instructor.state}}</h6>
+                         <h6> {{user.instructor.city}}, {{user.instructor.zip_code}}</h6>
                     
                         </div>
                       </div>
                       
                     </div>
                     <div class="col-lg-2 col-md-12 col-sm-12">
-                      <img src="/media/{{user.instructor.image_qr}}" style="width: 260px; border-radius: 10px;" alt="">
+                      <img src="/media/{{user.instructor.image_qr}}" style="width: 100px; border-radius: 10px;" alt="">
                     </div>
                   </div>
                 </div>
