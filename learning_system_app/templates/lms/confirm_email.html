@@ -1,0 +1,26 @@
+{% extends 'lms/base.html' %}
+{% block login %}active{% endblock %}
+
+
+{% block body %}
+
+{% if messages %}
+ 
+
+
+<div class="container text-center  text-white" style="margin-bottom: 110px; padding: 176px; margin-top: 100px; text-transform: capitalize; background-color: rgb(12, 12, 80);">
+
+<h1 class="display-4">Confirm Your Email</h1>
+<p>We Have Sent You Confirmation Link To Your Email. Please verify your email to activate your account.</p>
+<p>Now you can close this Page</p>
+
+
+<a href="{% url 'index' %}" class="btn btn-info" style="border-radius: 0px!important; background-color: rgb(99, 0, 0)!important; border: 1px solid rgb(99, 0, 0);">Go To Home</a>
+
+
+</div>
+
+{% endblock %}
+
+{% block js %}
+{% endblock %}

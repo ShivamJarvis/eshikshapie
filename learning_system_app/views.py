@@ -4,6 +4,7 @@ import json
 from learning_system_app.utils import generate_token
 from django.core.mail import send_mail,EmailMessage
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.core.files.storage import FileSystemStorage
@@ -39,6 +40,9 @@ def about(request):
     return render(request,'lms/about.html')
 
 def register(request):
+    if request.user.is_authenticated:
+        messages.add_message(request,messages.WARNING,"Warning, You already logged in.")
+        return redirect('index')
     last_student_no = user_profile.objects.all().order_by('id').last()
     if not last_student_no:
         user_id =  'ESKP' + '000001'
@@ -96,11 +100,18 @@ def register(request):
                 }
                 )
                 send_mail(subject,message,from_email,to_mail,fail_silently=True)
+                return render(request,'lms/confirm_email.html')
+            else:
+                messages.add_message(request,messages.WARNING,"Try Again, Password not match with confirm password.")
                 return redirect('register')
+        else:
+            messages.add_message(request,messages.WARNING,"Sorry, seems you are a Robot.")
+            return redirect('register')
     context = {
         'user_id':user_id
     }
     return render(request,'lms/register.html',context)
+
 
 def activate(request,uidb64,token):
     try:
@@ -109,34 +120,44 @@ def activate(request,uidb64,token):
         if user and generate_token.check_token(user,token):
             user.is_active = True
             user.save()
-            
-            
+            messages.add_message(request,messages.SUCCESS,"Congratulations, Your email has been verified successfully.")
             return redirect('index')
     except:
+        messages.add_message(request,messages.WARNING,"Sorry, Seems your ID is Deactivated Permanantly, Register Again.")
         return redirect('handle_login')
 
 def handle_login(request):
-    if request.method == 'POST':
-        clientkey = request.POST['g-recaptcha-response']
-        secretkey = '6LeqZ9YZAAAAAL6jLRiF1M9G7v59iuNYSvThQxSB'
-        captchaData = {
-            "secret":secretkey,
-            "response":clientkey
-        }
-        r = requests.post('https://www.google.com/recaptcha/api/siteverify',data=captchaData)
-        response = json.loads(r.text)
-        verify = response['success']
-        if verify:
-            name = request.POST['username']
-            password = request.POST['password']
-            user = authenticate(username=name,password=password)
-            if user:
-                login(request,user)
-                return redirect('index')
-    return render(request,'lms/login.html')
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            clientkey = request.POST['g-recaptcha-response']
+            secretkey = '6LeqZ9YZAAAAAL6jLRiF1M9G7v59iuNYSvThQxSB'
+            captchaData = {
+                "secret":secretkey,
+                "response":clientkey
+            }
+            r = requests.post('https://www.google.com/recaptcha/api/siteverify',data=captchaData)
+            response = json.loads(r.text)
+            verify = response['success']
+            if verify:
+                name = request.POST['username']
+                password = request.POST['password']
+                user = authenticate(username=name,password=password)
+                if user:
+                    login(request,user)
+                    messages.add_message(request,messages.SUCCESS,f"Welcome, {request.user.first_name} {request.user.last_name} you logged in successfully.")
+                    return redirect('index')
+                else:
+                    messages.add_message(request,messages.WARNING,"Sorry, check again your password or username.")
+            else:
+                messages.add_message(request,messages.WARNING,"Sorry, seems you are a Robot.")
+        return render(request,'lms/login.html')
+    else:
+        messages.add_message(request,messages.WARNING,"Warning, You already logged in.")
+        return redirect('index')
 
 def handle_logout(request):
     logout(request)
+    messages.add_message(request,messages.SUCCESS,"Success, You Logged Out Successfully.")
     return redirect('index')
 
 def contact(request):
@@ -190,8 +211,11 @@ def course_details(request,course_name,course_id):
     }
     return render(request,'lms/course-detail.html',context)
 
-@login_required(login_url='handle_login')
+
 def enroll_to_course(request,course_id,course_name):
+    if not request.user.is_authenticated:
+        messages.add_message(request,messages.WARNING,"Sorry, seems you are not login or registered with us.")
+        return redirect('handle_login')
     last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
     if not last_enroll_no:
         enroll_id =  'ENCID' + '000001'

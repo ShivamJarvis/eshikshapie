@@ -32,6 +32,16 @@
 
 {% endblock %}
 {% block body %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning mt-0 mb-0 alert-dismissible fade show" style="padding-top: 45px;" role="alert">
+    {{ message }}
+    <button type="button" class="close" style="padding-top: 45px;" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endfor %}
+{% endif %}
   <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
