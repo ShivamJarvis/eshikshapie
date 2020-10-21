@@ -96,15 +96,18 @@ class Course(models.Model):
         return f'{self.id} {self.course_name} by ({self.instructor.user.first_name} {self.instructor.user.last_name})'
 
 
+class Category(models.Model):
+    category_name = models.CharField(max_length=200,null=True,blank=True)
+    course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='category_course')
+
+
+
 class Subject(models.Model):
     subject_name = models.CharField(max_length=100,null=False,blank=False)
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='subject_course')
     instructor = models.ForeignKey(Instructor,on_delete=models.CASCADE,related_name='subject_instructor')
     def __str__(self):
         return f'{self.subject_name} by ({self.instructor.user.first_name} {self.instructor.user.last_name})'
-
-
-
 
 class EnrolledCourse(models.Model):
     enroll_id = models.CharField(max_length=30,null=False,blank=False)
@@ -114,14 +117,12 @@ class EnrolledCourse(models.Model):
     def __str__(self):
         return f'{self.enroll_id}'
 
-
 class Review(models.Model):
     review = models.TextField(max_length=400,null=False,blank=False)
     enrolled_course = models.ForeignKey(EnrolledCourse,on_delete=models.CASCADE,related_name='review_enrolled')
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='review_course',blank=True,null=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='review_user')
     is_approved = models.BooleanField(default=False)
-
 
 class Video(models.Model):
     title = models.CharField(max_length=200)

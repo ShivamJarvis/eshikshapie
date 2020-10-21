@@ -13,7 +13,7 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from .utils import generate_token
-from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video,QuestionAnswer,Subject
+from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video,QuestionAnswer,Subject,Category
 import pyqrcode 
 import png 
 from pyqrcode import QRCode
@@ -21,9 +21,13 @@ from .Paytm import Checksum
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator,EmptyPage
 # Create your views here.
 
 MERCHANT_KEY = "7Gg9YJuMubv@MHim"
+
+def error_404_view(request,exception):
+    return render(request,'lms/404.html')
 
 def index(request):
     enroll = EnrolledCourse.objects.all()
@@ -448,6 +452,7 @@ def teacher_student(request):
 
 @login_required(login_url='handle_login')
 def teacher_qa(request):
+
     if request.method == 'POST':
         question_id = request.POST['question_id']
         answer = request.POST['answer']
@@ -467,3 +472,21 @@ def teacher_qa(request):
         'questions':question_list
     }
     return render(request,'lms/teacher-qa.html',context)
+
+
+def category_details(request,category_name):
+    courses = Category.objects.filter(category_name=category_name).all()
+    course_per_page = Paginator(courses,6)
+    page_num = request.GET.get('page',1)
+    try:
+        current_page = course_per_page.page(page_num)
+    except EmptyPage:
+        current_page = course_per_page.page(1)
+    context = {
+        'courses':current_page,
+        'category':category_name
+    }
+
+    return render(request,'lms/course_by_category.html',context)
+
+

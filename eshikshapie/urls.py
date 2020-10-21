@@ -27,3 +27,5 @@ urlpatterns = [
 admin.site.site_header = "Eshiksha"
 admin.site.site_title = "Eshiksha Admin Portal"
 admin.site.index_title = "Welcome to Eshiksha Admin Portal"
+
+handler404 = 'learning_system_app.views.error_404_view'
