@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 18, 2020 at 09:04 AM
+-- Generation Time: Oct 21, 2020 at 09:25 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -121,7 +121,15 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (57, 'Can add session', 15, 'add_session'),
 (58, 'Can change session', 15, 'change_session'),
 (59, 'Can delete session', 15, 'delete_session'),
-(60, 'Can view session', 15, 'view_session');
+(60, 'Can view session', 15, 'view_session'),
+(61, 'Can add logged in user', 16, 'add_loggedinuser'),
+(62, 'Can change logged in user', 16, 'change_loggedinuser'),
+(63, 'Can delete logged in user', 16, 'delete_loggedinuser'),
+(64, 'Can view logged in user', 16, 'view_loggedinuser'),
+(65, 'Can add category', 17, 'add_category'),
+(66, 'Can change category', 17, 'change_category'),
+(67, 'Can delete category', 17, 'delete_category'),
+(68, 'Can view category', 17, 'view_category');
 
 -- --------------------------------------------------------
 
@@ -148,11 +156,13 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$M2ajmfwunzju$2a5aG0XQfZXjT4igBWRTPurtuXbo3uMR7uh0b9th32g=', '2020-10-18 07:02:04.492048', 1, 'admin', '', '', 'spdevelopers2000@gmail.com', 1, 1, '2020-10-17 07:54:28.361793'),
-(2, 'pbkdf2_sha256$216000$kdvtkHgHUQ4x$WIyEub5Nux93g6J5ge23BXpc7l8JEIN82tsHBCqDl+o=', '2020-10-18 06:49:08.480225', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-10-17 07:56:32.000000'),
-(3, 'pbkdf2_sha256$216000$EihILIlIV9pn$eyGjN62mA2rq85Rib689JLbMsBIvNXcyftdF2Ifv4cs=', '2020-10-18 06:58:53.157429', 0, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-10-17 08:04:46.000000'),
-(4, 'pbkdf2_sha256$216000$gO6iDpDhvo3S$h1PrD9oXo9UrMjTjJsX/Pv/Z5xOoi7zIfa5fQKJXgoM=', '2020-10-18 07:00:31.268498', 0, 'shinchan', 'Shinchan', 'Nohara', 'jarvis12g@gmail.com', 0, 1, '2020-10-17 08:10:47.353673'),
-(5, 'pbkdf2_sha256$216000$UsXnJledoM3V$ZOkeR1uL6XzYfv+PnnbDb1N7TM12yRd2qdYaVOnOM9Y=', '2020-10-17 10:04:59.908220', 0, 'himawari', 'Himawari', 'Nohara', 'shivamgupta812367@gmail.com', 0, 1, '2020-10-17 10:02:36.582852');
+(1, 'pbkdf2_sha256$216000$M2ajmfwunzju$2a5aG0XQfZXjT4igBWRTPurtuXbo3uMR7uh0b9th32g=', '2020-10-21 06:25:45.861276', 1, 'admin', '', '', 'spdevelopers2000@gmail.com', 1, 1, '2020-10-17 07:54:28.361793'),
+(2, 'pbkdf2_sha256$216000$kdvtkHgHUQ4x$WIyEub5Nux93g6J5ge23BXpc7l8JEIN82tsHBCqDl+o=', '2020-10-20 15:24:17.631326', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-10-17 07:56:32.000000'),
+(3, 'pbkdf2_sha256$216000$EihILIlIV9pn$eyGjN62mA2rq85Rib689JLbMsBIvNXcyftdF2Ifv4cs=', '2020-10-20 15:21:12.925256', 0, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-10-17 08:04:46.000000'),
+(4, 'pbkdf2_sha256$216000$gO6iDpDhvo3S$h1PrD9oXo9UrMjTjJsX/Pv/Z5xOoi7zIfa5fQKJXgoM=', '2020-10-20 15:27:57.386060', 0, 'shinchan', 'Shinchan', 'Nohara', 'jarvis12g@gmail.com', 0, 1, '2020-10-17 08:10:47.353673'),
+(5, 'pbkdf2_sha256$216000$UsXnJledoM3V$ZOkeR1uL6XzYfv+PnnbDb1N7TM12yRd2qdYaVOnOM9Y=', '2020-10-17 10:04:59.908220', 0, 'himawari', 'Himawari', 'Nohara', 'shivamgupta812367@gmail.com', 0, 1, '2020-10-17 10:02:36.582852'),
+(7, 'pbkdf2_sha256$216000$zU2dUYEDmUQ5$ALJGvPxKI+WIsbDskHHnccgoUzXHuRy2VKpG7rainjg=', '2020-10-20 07:29:23.920302', 0, 'kartik', 'Kartik', 'Gupta', 'rg63026@gmail.com', 0, 1, '2020-10-20 07:12:05.696239'),
+(8, 'pbkdf2_sha256$216000$c6sAP4yC0wIm$8PMlvT4eN1VeQD0Ncvv0c2Flz5b8ccwaCdeULquCUs0=', NULL, 0, 'abc', 'Kartik', 'Gupta', 'apulkit672@gmail.com', 0, 0, '2020-10-20 15:30:20.201957');
 
 -- --------------------------------------------------------
 
@@ -225,7 +235,20 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (23, '2020-10-18 06:47:16.646138', '5', 'English (Foundation) by (Shivam Gupta)', 1, '[{\"added\": {}}]', 9, 2),
 (24, '2020-10-18 06:47:30.558283', '6', 'How To Make A Website Using HTML CSS Bootstrap | Complete Website Design Tutorial of (English (Foundation))', 2, '[{\"changed\": {\"fields\": [\"Subject\"]}}]', 7, 2),
 (25, '2020-10-18 06:48:17.283160', '9', 'ENCID000005', 3, '', 5, 2),
-(26, '2020-10-18 06:58:25.551600', '6', 'Science (Foundation) by (Pulkit Arora)', 1, '[{\"added\": {}}]', 9, 1);
+(26, '2020-10-18 06:58:25.551600', '6', 'Science (Foundation) by (Pulkit Arora)', 1, '[{\"added\": {}}]', 9, 1),
+(27, '2020-10-20 07:08:49.695112', '6', 'kartik', 3, '', 13, 1),
+(28, '2020-10-21 06:26:42.532540', '1', 'Category object (1)', 1, '[{\"added\": {}}]', 17, 1),
+(29, '2020-10-21 06:26:50.465642', '2', 'Category object (2)', 1, '[{\"added\": {}}]', 17, 1),
+(30, '2020-10-21 07:00:21.452147', '3', 'Category object (3)', 1, '[{\"added\": {}}]', 17, 1),
+(31, '2020-10-21 07:00:26.116988', '4', 'Category object (4)', 1, '[{\"added\": {}}]', 17, 1),
+(32, '2020-10-21 07:00:30.022204', '5', 'Category object (5)', 1, '[{\"added\": {}}]', 17, 1),
+(33, '2020-10-21 07:00:41.541929', '6', 'Category object (6)', 1, '[{\"added\": {}}]', 17, 1),
+(34, '2020-10-21 07:00:50.683444', '7', 'Category object (7)', 1, '[{\"added\": {}}]', 17, 1),
+(35, '2020-10-21 07:04:16.554655', '7', 'Category object (7)', 3, '', 17, 1),
+(36, '2020-10-21 07:04:16.625104', '6', 'Category object (6)', 3, '', 17, 1),
+(37, '2020-10-21 07:04:16.665574', '5', 'Category object (5)', 3, '', 17, 1),
+(38, '2020-10-21 07:04:16.715459', '4', 'Category object (4)', 3, '', 17, 1),
+(39, '2020-10-21 07:04:16.812323', '3', 'Category object (3)', 3, '', 17, 1);
 
 -- --------------------------------------------------------
 
@@ -249,10 +272,12 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (11, 'auth', 'permission'),
 (13, 'auth', 'user'),
 (14, 'contenttypes', 'contenttype'),
+(17, 'learning_system_app', 'category'),
 (1, 'learning_system_app', 'contact'),
 (4, 'learning_system_app', 'course'),
 (5, 'learning_system_app', 'enrolledcourse'),
 (3, 'learning_system_app', 'instructor'),
+(16, 'learning_system_app', 'loggedinuser'),
 (8, 'learning_system_app', 'questionanswer'),
 (6, 'learning_system_app', 'review'),
 (9, 'learning_system_app', 'subject'),
@@ -320,7 +345,9 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (40, 'learning_system_app', '0022_review_course', '2020-10-17 09:46:43.046670'),
 (41, 'learning_system_app', '0023_questionanswer_course', '2020-10-18 05:51:03.603308'),
 (42, 'learning_system_app', '0024_auto_20201018_1154', '2020-10-18 06:24:47.177265'),
-(43, 'learning_system_app', '0025_questionanswer_subject', '2020-10-18 06:32:28.861574');
+(43, 'learning_system_app', '0025_questionanswer_subject', '2020-10-18 06:32:28.861574'),
+(44, 'learning_system_app', '0026_loggedinuser', '2020-10-19 08:28:27.540042'),
+(45, 'learning_system_app', '0027_category', '2020-10-21 06:25:27.127257');
 
 -- --------------------------------------------------------
 
@@ -339,7 +366,28 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('2ftqdjfoeh9soiyuqqt0dstzau231jqc', '.eJxVjDsOwjAQRO_iGln-O6Kk5wzWOruLA8iW4qSKuDuJlAKaKea9mU0kWJeS1k5zmlBchRaX3y7D-KJ6AHxCfTQ5trrMU5aHIk_a5b0hvW-n-3dQoJd97Qk1GjY2R8qZomILHDQjO-OUJ2-tAXLeKRwc7xltHpADEWhlOYjPFwKSOIM:1kU2hg:71NpJjLz68WoYIIpZabldT1w-S4Vh1TrH-WAQTimumc', '2020-11-01 07:02:04.587033');
+('2ftqdjfoeh9soiyuqqt0dstzau231jqc', '.eJxVjDsOwjAQRO_iGln-O6Kk5wzWOruLA8iW4qSKuDuJlAKaKea9mU0kWJeS1k5zmlBchRaX3y7D-KJ6AHxCfTQ5trrMU5aHIk_a5b0hvW-n-3dQoJd97Qk1GjY2R8qZomILHDQjO-OUJ2-tAXLeKRwc7xltHpADEWhlOYjPFwKSOIM:1kU2hg:71NpJjLz68WoYIIpZabldT1w-S4Vh1TrH-WAQTimumc', '2020-11-01 07:02:04.587033'),
+('jxqnkipz9trniwpwb11zr7y2hdobj5s9', '.eJxVjDsOwjAQRO_iGln-O6Kk5wzWOruLA8iW4qSKuDuJlAKaKea9mU0kWJeS1k5zmlBchRaX3y7D-KJ6AHxCfTQ5trrMU5aHIk_a5b0hvW-n-3dQoJd97Qk1GjY2R8qZomILHDQjO-OUJ2-tAXLeKRwc7xltHpADEWhlOYjPFwKSOIM:1kV7ZB:fTHjkfTL8xd8-7JaDnUSCJi-het5kWDYfdn5BuJYw-Y', '2020-11-04 06:25:45.966652');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `learning_system_app_category`
+--
+
+CREATE TABLE `learning_system_app_category` (
+  `id` int(11) NOT NULL,
+  `category_name` varchar(200) DEFAULT NULL,
+  `course_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `learning_system_app_category`
+--
+
+INSERT INTO `learning_system_app_category` (`id`, `category_name`, `course_id`) VALUES
+(1, 'Crash Courses', 1),
+(2, 'Crash Courses', 2);
 
 -- --------------------------------------------------------
 
@@ -408,7 +456,9 @@ INSERT INTO `learning_system_app_enrolledcourse` (`id`, `enroll_id`, `course_id`
 (3, 'ENCID000001', 1, 2, 1),
 (6, 'ENCID000002', 1, 4, 1),
 (7, 'ENCID000003', 1, 5, 1),
-(8, 'ENCID000004', 2, 4, 1);
+(8, 'ENCID000004', 2, 4, 1),
+(10, 'ENCID000005', 2, 7, 1),
+(11, 'ENCID000006', 1, 7, 1);
 
 -- --------------------------------------------------------
 
@@ -443,6 +493,25 @@ INSERT INTO `learning_system_app_instructor` (`id`, `instructor_id`, `phone`, `i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `learning_system_app_loggedinuser`
+--
+
+CREATE TABLE `learning_system_app_loggedinuser` (
+  `id` int(11) NOT NULL,
+  `session_key` varchar(32) DEFAULT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `learning_system_app_loggedinuser`
+--
+
+INSERT INTO `learning_system_app_loggedinuser` (`id`, `session_key`, `user_id`) VALUES
+(19, 'jxqnkipz9trniwpwb11zr7y2hdobj5s9', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `learning_system_app_questionanswer`
 --
 
@@ -461,11 +530,7 @@ CREATE TABLE `learning_system_app_questionanswer` (
 --
 
 INSERT INTO `learning_system_app_questionanswer` (`id`, `question`, `answer`, `user_id`, `video_id`, `course_id`, `subject_id`) VALUES
-(2, 'Question on english?', 'ok', 4, 3, 1, 3),
-(3, 'Question on math?', 'ok', 4, 2, 1, 1),
-(5, 'Maths?', 'okj', 4, 2, 1, 1),
-(6, 'New course?', 'ff', 2, 6, 2, 5),
-(7, 'This is question?', 'fff', 4, 6, 2, 5);
+(6, 'New course?', 'ff', 2, 6, 2, 5);
 
 -- --------------------------------------------------------
 
@@ -487,7 +552,8 @@ CREATE TABLE `learning_system_app_review` (
 --
 
 INSERT INTO `learning_system_app_review` (`id`, `review`, `is_approved`, `enrolled_course_id`, `user_id`, `course_id`) VALUES
-(1, 'This awesome course', 0, 7, 5, 1);
+(1, 'This awesome course', 0, 7, 5, 1),
+(2, 'This is good course', 0, 6, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -544,7 +610,9 @@ CREATE TABLE `learning_system_app_user_profile` (
 
 INSERT INTO `learning_system_app_user_profile` (`id`, `student_id`, `phone`, `image`, `school_name`, `dob`, `session`, `mother_name`, `father_name`, `address`, `state`, `city`, `zip_code`, `user_id`, `image_qr`) VALUES
 (1, 'ESKP000001', '7777777777', '/media/1.png', '', '1994-04-12', '', 'Mixi', 'Harry', 'Japan', 'Tokyo', 'Kasukabe', '4582155', 4, 'qr_codeESKP000001_8q2icNp.png'),
-(2, 'ESKP000002', '7777777777', '/media/326639b9222134ad58bac74de715d468a18e7e1bv2_hq.jpg', '', '2000-04-10', '', 'Mixi', 'Harry', 'Japan', 'Tokyo', 'Kasukabe', '452445', 5, 'qr_codeESKP000002.png');
+(2, 'ESKP000002', '7777777777', '/media/326639b9222134ad58bac74de715d468a18e7e1bv2_hq.jpg', '', '2000-04-10', '', 'Mixi', 'Harry', 'Japan', 'Tokyo', 'Kasukabe', '452445', 5, 'qr_codeESKP000002.png'),
+(4, 'ESKP000003', '7777777777', '/media/IMG_20170105_103651_HDR_FFSJPVL.jpg', '', '2013-03-21', '', 'XYZ', 'ABC', 'Iscon Flower Society', 'Ahemadabad', 'Gujarat', '1152265', 7, 'qr_codeESKP000003_RpKwM7y.png'),
+(5, 'ESKP000004', '77777777777', '/media/unnamed.png', '', '2020-10-16', '', 'XYZ', 'ABC', 'Delhi', 'Delhi', 'Delhi', '110051', 8, 'qr_codeESKP000004.png');
 
 -- --------------------------------------------------------
 
@@ -654,6 +722,13 @@ ALTER TABLE `django_session`
   ADD KEY `django_session_expire_date_a5c62663` (`expire_date`);
 
 --
+-- Indexes for table `learning_system_app_category`
+--
+ALTER TABLE `learning_system_app_category`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `learning_system_app__course_id_9d3f1bbd_fk_learning_` (`course_id`);
+
+--
 -- Indexes for table `learning_system_app_contact`
 --
 ALTER TABLE `learning_system_app_contact`
@@ -678,6 +753,13 @@ ALTER TABLE `learning_system_app_enrolledcourse`
 -- Indexes for table `learning_system_app_instructor`
 --
 ALTER TABLE `learning_system_app_instructor`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `learning_system_app_loggedinuser`
+--
+ALTER TABLE `learning_system_app_loggedinuser`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_id` (`user_id`);
 
@@ -743,13 +825,13 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -767,19 +849,25 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `learning_system_app_category`
+--
+ALTER TABLE `learning_system_app_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_contact`
@@ -797,7 +885,7 @@ ALTER TABLE `learning_system_app_course`
 -- AUTO_INCREMENT for table `learning_system_app_enrolledcourse`
 --
 ALTER TABLE `learning_system_app_enrolledcourse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_instructor`
@@ -806,16 +894,22 @@ ALTER TABLE `learning_system_app_instructor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `learning_system_app_loggedinuser`
+--
+ALTER TABLE `learning_system_app_loggedinuser`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `learning_system_app_questionanswer`
 --
 ALTER TABLE `learning_system_app_questionanswer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_review`
 --
 ALTER TABLE `learning_system_app_review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_subject`
@@ -827,7 +921,7 @@ ALTER TABLE `learning_system_app_subject`
 -- AUTO_INCREMENT for table `learning_system_app_user_profile`
 --
 ALTER TABLE `learning_system_app_user_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_video`
@@ -874,6 +968,12 @@ ALTER TABLE `django_admin_log`
   ADD CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
+-- Constraints for table `learning_system_app_category`
+--
+ALTER TABLE `learning_system_app_category`
+  ADD CONSTRAINT `learning_system_app__course_id_9d3f1bbd_fk_learning_` FOREIGN KEY (`course_id`) REFERENCES `learning_system_app_course` (`id`);
+
+--
 -- Constraints for table `learning_system_app_course`
 --
 ALTER TABLE `learning_system_app_course`
@@ -891,6 +991,12 @@ ALTER TABLE `learning_system_app_enrolledcourse`
 --
 ALTER TABLE `learning_system_app_instructor`
   ADD CONSTRAINT `learning_system_app_instructor_user_id_095fc803_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
+
+--
+-- Constraints for table `learning_system_app_loggedinuser`
+--
+ALTER TABLE `learning_system_app_loggedinuser`
+  ADD CONSTRAINT `learning_system_app__user_id_f223ae98_fk_auth_user` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);
 
 --
 -- Constraints for table `learning_system_app_questionanswer`
