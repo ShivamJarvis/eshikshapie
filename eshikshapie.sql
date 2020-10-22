@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 21, 2020 at 09:25 AM
+-- Generation Time: Oct 22, 2020 at 08:14 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -129,7 +129,11 @@ INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALU
 (65, 'Can add category', 17, 'add_category'),
 (66, 'Can change category', 17, 'change_category'),
 (67, 'Can delete category', 17, 'delete_category'),
-(68, 'Can view category', 17, 'view_category');
+(68, 'Can view category', 17, 'view_category'),
+(69, 'Can add study material', 18, 'add_studymaterial'),
+(70, 'Can change study material', 18, 'change_studymaterial'),
+(71, 'Can delete study material', 18, 'delete_studymaterial'),
+(72, 'Can view study material', 18, 'view_studymaterial');
 
 -- --------------------------------------------------------
 
@@ -156,7 +160,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$M2ajmfwunzju$2a5aG0XQfZXjT4igBWRTPurtuXbo3uMR7uh0b9th32g=', '2020-10-21 06:25:45.861276', 1, 'admin', '', '', 'spdevelopers2000@gmail.com', 1, 1, '2020-10-17 07:54:28.361793'),
+(1, 'pbkdf2_sha256$216000$M2ajmfwunzju$2a5aG0XQfZXjT4igBWRTPurtuXbo3uMR7uh0b9th32g=', '2020-10-22 05:23:15.346648', 1, 'admin', '', '', 'spdevelopers2000@gmail.com', 1, 1, '2020-10-17 07:54:28.361793'),
 (2, 'pbkdf2_sha256$216000$kdvtkHgHUQ4x$WIyEub5Nux93g6J5ge23BXpc7l8JEIN82tsHBCqDl+o=', '2020-10-20 15:24:17.631326', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-10-17 07:56:32.000000'),
 (3, 'pbkdf2_sha256$216000$EihILIlIV9pn$eyGjN62mA2rq85Rib689JLbMsBIvNXcyftdF2Ifv4cs=', '2020-10-20 15:21:12.925256', 0, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-10-17 08:04:46.000000'),
 (4, 'pbkdf2_sha256$216000$gO6iDpDhvo3S$h1PrD9oXo9UrMjTjJsX/Pv/Z5xOoi7zIfa5fQKJXgoM=', '2020-10-20 15:27:57.386060', 0, 'shinchan', 'Shinchan', 'Nohara', 'jarvis12g@gmail.com', 0, 1, '2020-10-17 08:10:47.353673'),
@@ -248,7 +252,25 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (36, '2020-10-21 07:04:16.625104', '6', 'Category object (6)', 3, '', 17, 1),
 (37, '2020-10-21 07:04:16.665574', '5', 'Category object (5)', 3, '', 17, 1),
 (38, '2020-10-21 07:04:16.715459', '4', 'Category object (4)', 3, '', 17, 1),
-(39, '2020-10-21 07:04:16.812323', '3', 'Category object (3)', 3, '', 17, 1);
+(39, '2020-10-21 07:04:16.812323', '3', 'Category object (3)', 3, '', 17, 1),
+(40, '2020-10-22 05:26:53.003997', '1', 'StudyMaterial object (1)', 1, '[{\"added\": {}}]', 18, 1),
+(41, '2020-10-22 05:31:24.455748', '2', 'StudyMaterial object (2)', 1, '[{\"added\": {}}]', 18, 1),
+(42, '2020-10-22 05:33:04.644045', '3', 'StudyMaterial object (3)', 1, '[{\"added\": {}}]', 18, 1),
+(43, '2020-10-22 05:33:47.498054', '4', 'StudyMaterial object (4)', 1, '[{\"added\": {}}]', 18, 1),
+(44, '2020-10-22 05:34:33.653137', '5', 'StudyMaterial object (5)', 1, '[{\"added\": {}}]', 18, 1),
+(45, '2020-10-22 05:35:10.741206', '6', 'StudyMaterial object (6)', 1, '[{\"added\": {}}]', 18, 1),
+(46, '2020-10-22 05:35:44.644668', '7', 'StudyMaterial object (7)', 1, '[{\"added\": {}}]', 18, 1),
+(47, '2020-10-22 05:35:50.556626', '6', 'StudyMaterial object (6)', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 18, 1),
+(48, '2020-10-22 05:36:33.479738', '8', 'StudyMaterial object (8)', 1, '[{\"added\": {}}]', 18, 1),
+(49, '2020-10-22 05:36:39.496582', '8', 'StudyMaterial object (8)', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 18, 1),
+(50, '2020-10-22 05:37:21.146114', '9', 'StudyMaterial object (9)', 1, '[{\"added\": {}}]', 18, 1),
+(51, '2020-10-22 05:38:06.838306', '10', 'StudyMaterial object (10)', 1, '[{\"added\": {}}]', 18, 1),
+(52, '2020-10-22 05:38:43.454916', '11', 'StudyMaterial object (11)', 1, '[{\"added\": {}}]', 18, 1),
+(53, '2020-10-22 05:39:17.777383', '12', 'StudyMaterial object (12)', 1, '[{\"added\": {}}]', 18, 1),
+(54, '2020-10-22 05:39:56.191145', '13', 'StudyMaterial object (13)', 1, '[{\"added\": {}}]', 18, 1),
+(55, '2020-10-22 05:40:42.693652', '14', 'StudyMaterial object (14)', 1, '[{\"added\": {}}]', 18, 1),
+(56, '2020-10-22 06:02:30.664612', '15', 'Science for class 6 Chapter 1 (Chapter-1)', 1, '[{\"added\": {}}]', 18, 1),
+(57, '2020-10-22 06:03:26.784301', '15', 'Science for class 6 Chapter 1 (Food: Where Does It Come From)', 2, '[{\"changed\": {\"fields\": [\"Name\"]}}]', 18, 1);
 
 -- --------------------------------------------------------
 
@@ -280,6 +302,7 @@ INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
 (16, 'learning_system_app', 'loggedinuser'),
 (8, 'learning_system_app', 'questionanswer'),
 (6, 'learning_system_app', 'review'),
+(18, 'learning_system_app', 'studymaterial'),
 (9, 'learning_system_app', 'subject'),
 (2, 'learning_system_app', 'user_profile'),
 (7, 'learning_system_app', 'video'),
@@ -347,7 +370,10 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (42, 'learning_system_app', '0024_auto_20201018_1154', '2020-10-18 06:24:47.177265'),
 (43, 'learning_system_app', '0025_questionanswer_subject', '2020-10-18 06:32:28.861574'),
 (44, 'learning_system_app', '0026_loggedinuser', '2020-10-19 08:28:27.540042'),
-(45, 'learning_system_app', '0027_category', '2020-10-21 06:25:27.127257');
+(45, 'learning_system_app', '0027_category', '2020-10-21 06:25:27.127257'),
+(46, 'learning_system_app', '0028_studymaterial', '2020-10-22 05:13:36.787368'),
+(47, 'learning_system_app', '0029_studymaterial_subject', '2020-10-22 05:24:11.465977'),
+(48, 'learning_system_app', '0030_studymaterial_name', '2020-10-22 05:25:36.045059');
 
 -- --------------------------------------------------------
 
@@ -367,7 +393,7 @@ CREATE TABLE `django_session` (
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
 ('2ftqdjfoeh9soiyuqqt0dstzau231jqc', '.eJxVjDsOwjAQRO_iGln-O6Kk5wzWOruLA8iW4qSKuDuJlAKaKea9mU0kWJeS1k5zmlBchRaX3y7D-KJ6AHxCfTQ5trrMU5aHIk_a5b0hvW-n-3dQoJd97Qk1GjY2R8qZomILHDQjO-OUJ2-tAXLeKRwc7xltHpADEWhlOYjPFwKSOIM:1kU2hg:71NpJjLz68WoYIIpZabldT1w-S4Vh1TrH-WAQTimumc', '2020-11-01 07:02:04.587033'),
-('jxqnkipz9trniwpwb11zr7y2hdobj5s9', '.eJxVjDsOwjAQRO_iGln-O6Kk5wzWOruLA8iW4qSKuDuJlAKaKea9mU0kWJeS1k5zmlBchRaX3y7D-KJ6AHxCfTQ5trrMU5aHIk_a5b0hvW-n-3dQoJd97Qk1GjY2R8qZomILHDQjO-OUJ2-tAXLeKRwc7xltHpADEWhlOYjPFwKSOIM:1kV7ZB:fTHjkfTL8xd8-7JaDnUSCJi-het5kWDYfdn5BuJYw-Y', '2020-11-04 06:25:45.966652');
+('k9w5189plul7q0ofmpb7plvzoja6ezug', '.eJxVjDsOwjAQRO_iGln-O6Kk5wzWOruLA8iW4qSKuDuJlAKaKea9mU0kWJeS1k5zmlBchRaX3y7D-KJ6AHxCfTQ5trrMU5aHIk_a5b0hvW-n-3dQoJd97Qk1GjY2R8qZomILHDQjO-OUJ2-tAXLeKRwc7xltHpADEWhlOYjPFwKSOIM:1kVT4F:8ZCASa-oexkcgQoDFtTTit2EqSsA-tXBli6t3zkqo5k', '2020-11-05 05:23:15.468669');
 
 -- --------------------------------------------------------
 
@@ -507,7 +533,7 @@ CREATE TABLE `learning_system_app_loggedinuser` (
 --
 
 INSERT INTO `learning_system_app_loggedinuser` (`id`, `session_key`, `user_id`) VALUES
-(19, 'jxqnkipz9trniwpwb11zr7y2hdobj5s9', 1);
+(20, 'k9w5189plul7q0ofmpb7plvzoja6ezug', 1);
 
 -- --------------------------------------------------------
 
@@ -554,6 +580,43 @@ CREATE TABLE `learning_system_app_review` (
 INSERT INTO `learning_system_app_review` (`id`, `review`, `is_approved`, `enrolled_course_id`, `user_id`, `course_id`) VALUES
 (1, 'This awesome course', 0, 7, 5, 1),
 (2, 'This is good course', 0, 6, 4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `learning_system_app_studymaterial`
+--
+
+CREATE TABLE `learning_system_app_studymaterial` (
+  `id` int(11) NOT NULL,
+  `study_file` varchar(200) DEFAULT NULL,
+  `answer_file` varchar(200) DEFAULT NULL,
+  `class_level` int(11) NOT NULL,
+  `chapter_no` int(11) NOT NULL,
+  `subject` varchar(100) DEFAULT NULL,
+  `name` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `learning_system_app_studymaterial`
+--
+
+INSERT INTO `learning_system_app_studymaterial` (`id`, `study_file`, `answer_file`, `class_level`, `chapter_no`, `subject`, `name`) VALUES
+(1, '/media/CHAPTER  1 KNOWING OUR NUMBERS.pdf', '/media/CHAPTER  1.pdf', 6, 1, 'Maths', 'KNOWING OUR NUMBERS'),
+(2, '/medial/CHAPTER  2 WHOLE NUMBERS.pdf', '/media/CHAPTER  2.pdf', 6, 2, 'Maths', 'WHOLE NUMBERS'),
+(3, '/media/CHAPTER  3 PLAYING WITH NUMBERS.pdf', '/media/CHAPTER  3.pdf', 6, 3, 'Maths', 'PLAYING WITH NUMBERS'),
+(4, '/media/CHAPTER  4 BASIC GEOMETRICAL IDEAS.pdf', '/media/CHAPTER  4.pdf', 6, 4, 'Maths', 'BASIC GEOMETRICAL IDEAS'),
+(5, '/media/CHAPTER  5 UNDERSTANDING ELEMENTARY SHAPES.pdf', '/media/CHAPTER  5.pdf', 6, 5, 'Maths', 'UNDERSTANDING ELEMENTARY SHAPES'),
+(6, '/media/CHAPTER  6 INTEGERS.pdf', '/media/CHAPTER  6.pdf', 6, 6, 'Maths', 'INTEGERS'),
+(7, '/media/CHAPTER  7 FRACTION.pdf', '/media/CHAPTER  7.pdf', 6, 7, 'Maths', 'CHAPTER  7 FRACTION'),
+(8, '/media/CHAPTER  8 DECIMALS.pdf', '/media/CHAPTER  8.pdf', 6, 8, 'Maths', 'DECIMALS'),
+(9, '/media/CHAPTER  9 DATA HANDLING.pdf', '/media/CHAPTER  9.pdf', 6, 9, 'Maths', 'DATA HANDLING'),
+(10, '/media/CHAPTER  10 MENSURATION.pdf', '/media/CHAPTER  10.pdf', 6, 10, 'Maths', 'MENSURATION'),
+(11, '/media/CHAPTER  11 ALGEBRA.pdf', '/media/CHAPTER  11.pdf', 6, 11, 'Maths', 'ALGEBRA'),
+(12, '/media/CHAPTER  12 RATIO AND PROPORTION.pdf', '/media/CHAPTER  12.pdf', 6, 12, 'Maths', 'RATIO AND PROPORTION'),
+(13, '/media/CHAPTER  13 SYMMETRY.pdf', '/media/CHAPTER  13.pdf', 6, 13, 'Maths', 'SYMMETRY'),
+(14, '/media/CHAPTER  14 PRACTICAL GEOMETRY.pdf', '/media/CHAPTER  14.pdf', 6, 14, 'Maths', 'PRACTICAL GEOMETRY'),
+(15, '/media/Chapter-1.pdf', '/media/Chapter-1.pdf', 6, 1, 'Science', 'Food: Where Does It Come From');
 
 -- --------------------------------------------------------
 
@@ -783,6 +846,12 @@ ALTER TABLE `learning_system_app_review`
   ADD KEY `learning_system_app__course_id_bad3c82f_fk_learning_` (`course_id`);
 
 --
+-- Indexes for table `learning_system_app_studymaterial`
+--
+ALTER TABLE `learning_system_app_studymaterial`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `learning_system_app_subject`
 --
 ALTER TABLE `learning_system_app_subject`
@@ -825,7 +894,7 @@ ALTER TABLE `auth_group_permissions`
 -- AUTO_INCREMENT for table `auth_permission`
 --
 ALTER TABLE `auth_permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `auth_user`
@@ -849,19 +918,19 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
 ALTER TABLE `django_content_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_category`
@@ -897,7 +966,7 @@ ALTER TABLE `learning_system_app_instructor`
 -- AUTO_INCREMENT for table `learning_system_app_loggedinuser`
 --
 ALTER TABLE `learning_system_app_loggedinuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_questionanswer`
@@ -910,6 +979,12 @@ ALTER TABLE `learning_system_app_questionanswer`
 --
 ALTER TABLE `learning_system_app_review`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `learning_system_app_studymaterial`
+--
+ALTER TABLE `learning_system_app_studymaterial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_subject`

@@ -13,10 +13,7 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from .utils import generate_token
-from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video,QuestionAnswer,Subject,Category
-import pyqrcode 
-import png 
-from pyqrcode import QRCode
+from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video,QuestionAnswer,Subject,Category,StudyMaterial
 from .Paytm import Checksum
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -473,7 +470,6 @@ def teacher_qa(request):
     }
     return render(request,'lms/teacher-qa.html',context)
 
-
 def category_details(request,category_name):
     courses = Category.objects.filter(category_name=category_name).all()
     course_per_page = Paginator(courses,6)
@@ -489,4 +485,17 @@ def category_details(request,category_name):
 
     return render(request,'lms/course_by_category.html',context)
 
+
+def study_material(request,class_level):
+    materials = StudyMaterial.objects.filter(class_level=class_level).all()
+    subjects = []
+    for material in materials:
+        if not material.subject in subjects:
+            subjects.append(material.subject)
+
+    context = {'materials':materials,
+                'subjects':subjects    
+
+    }
+    return render(request,'lms/study-material.html',context)
 

@@ -1,0 +1,47 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+{% block body %}
+
+  <!-- Page Content -->
+  <div class="container-fluid pt-5" style="padding-bottom: 240px;">
+    {% for subject in subjects %}
+    <div class="card text-center my-3">
+        <div class="card-header" style="font-weight: bold; font-size: 24px; ">
+          {{subject}}
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Chapter No</th>
+                    <th scope="col">Chapter Name</th>
+                    <th scope="col">Study Material</th>
+                    <th scope="col">Solutions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for material in materials %}
+                    {% if material.subject == subject %}
+                  <tr>
+                    <td>{{material.chapter_no}}</td>
+                    <td>{{material.name}}</td>
+                    <td><a href="{{material.study_file}}" class="btn btn-info" download>Download</a></td>
+                    <td><a href="{{material.answer_file}}" class="btn btn-danger" download>Download</a></td>
+                    
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+        </div>
+      </div>
+      {% endfor %}
+
+  </div>
+  <!-- /.container -->
+
+  {% endblock %}
+
+

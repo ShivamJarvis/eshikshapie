@@ -1,5 +1,5 @@
 from django.contrib import admin
-from learning_system_app.models import Contact,user_profile,Instructor,Course,EnrolledCourse,Review,Video,QuestionAnswer,Subject,Category
+from learning_system_app.models import Contact,user_profile,Instructor,Course,EnrolledCourse,Review,Video,QuestionAnswer,Subject,Category,StudyMaterial
 # Register your models here.
 
 admin.site.register(Contact)
@@ -12,3 +12,4 @@ admin.site.register(Video)
 admin.site.register(Subject)
 admin.site.register(QuestionAnswer)
 admin.site.register(Category)
+admin.site.register(StudyMaterial)

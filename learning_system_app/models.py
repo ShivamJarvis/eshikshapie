@@ -142,4 +142,14 @@ class QuestionAnswer(models.Model):
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='course_question',blank=True,null=True)
     subject = models.ForeignKey(Subject,on_delete=models.CASCADE,related_name='subject_question',blank=True,null=True)
 
+class StudyMaterial(models.Model):
+    name = models.CharField(max_length=200,null=True,blank=True)
+    study_file = models.CharField(max_length=200,null=True,blank=True)
+    answer_file = models.CharField(max_length=200,null=True,blank=True)
+    subject = models.CharField(max_length=100,null=True,blank=True)
+    class_level = models.IntegerField()
+    chapter_no = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.subject} for class {self.class_level} Chapter {self.chapter_no} ({self.name})' 
 
