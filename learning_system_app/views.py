@@ -13,7 +13,7 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from .utils import generate_token
-from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video,QuestionAnswer,Subject,Category,StudyMaterial
+from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video,QuestionAnswer,Subject,Category,StudyMaterial,CategoryName
 from .Paytm import Checksum
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
@@ -28,19 +28,26 @@ def error_404_view(request,exception):
 
 def index(request):
     enroll = EnrolledCourse.objects.all()
+    category = CategoryName.objects.all()
     for en in enroll:
         if not en.status:
             en.delete()
     courses = Course.objects.filter(is_popular=True).all()
     context = {
-        'courses':courses
+        'courses':courses,
+        'category':category
     }
     return render(request,'lms/index.html',context)
 
 def about(request):
-    return render(request,'lms/about.html')
+    category_names = CategoryName.objects.all()
+    context = {
+        'category':category_names
+    }
+    return render(request,'lms/about.html',context)
 
 def register(request):
+    category_names = CategoryName.objects.all()
     if request.user.is_authenticated:
         messages.add_message(request,messages.WARNING,"Warning, You already logged in.")
         return redirect('index')
@@ -101,18 +108,19 @@ def register(request):
                 }
                 )
                 send_mail(subject,message,from_email,to_mail,fail_silently=True)
-                return render(request,'lms/confirm_email.html')
+                return render(request,'lms/confirm_email.html',{'category':category_names})
             else:
                 messages.add_message(request,messages.WARNING,"Try Again, Password not match with confirm password.")
                 return redirect('register')
         else:
             messages.add_message(request,messages.WARNING,"Sorry, seems you are a Robot.")
             return redirect('register')
+    
     context = {
-        'user_id':user_id
+        'user_id':user_id,
+        'category':category_names
     }
     return render(request,'lms/register.html',context)
-
 
 def activate(request,uidb64,token):
     try:
@@ -128,41 +136,48 @@ def activate(request,uidb64,token):
         return redirect('handle_login')
 
 def handle_login(request):
-    if not request.user.is_authenticated:
-        if request.method == 'POST':
-            clientkey = request.POST['g-recaptcha-response']
-            secretkey = '6LeqZ9YZAAAAAL6jLRiF1M9G7v59iuNYSvThQxSB'
-            captchaData = {
-                "secret":secretkey,
-                "response":clientkey
-            }
-            r = requests.post('https://www.google.com/recaptcha/api/siteverify',data=captchaData)
-            response = json.loads(r.text)
-            verify = response['success']
-            if verify:
-                name = request.POST['username']
-                password = request.POST['password']
-                user = authenticate(username=name,password=password)
-                if user:
-                    login(request,user)
-                    messages.add_message(request,messages.SUCCESS,f"Welcome, {request.user.first_name} {request.user.last_name} you logged in successfully.")
-                    return redirect('index')
-                else:
-                    messages.add_message(request,messages.WARNING,"Sorry, check again your password or username.")
-            else:
-                messages.add_message(request,messages.WARNING,"Sorry, seems you are a Robot.")
-        return render(request,'lms/login.html')
-    else:
+    if request.user.is_authenticated:
         messages.add_message(request,messages.WARNING,"Warning, You already logged in.")
         return redirect('index')
-
+    category_names = CategoryName.objects.all()
+    context = {
+        'category':category_names
+    }
+    if request.method == 'POST':
+        clientkey = request.POST['g-recaptcha-response']
+        secretkey = '6LeqZ9YZAAAAAL6jLRiF1M9G7v59iuNYSvThQxSB'
+        captchaData = {
+            "secret":secretkey,
+            "response":clientkey
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify',data=captchaData)
+        response = json.loads(r.text)
+        verify = response['success']
+        if verify:
+            name = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=name,password=password)
+            if user:
+                login(request,user)
+                messages.add_message(request,messages.SUCCESS,f"Welcome, {request.user.first_name} {request.user.last_name} you logged in successfully.")
+                return redirect('index')
+            else:
+                messages.add_message(request,messages.WARNING,"Sorry, check again your password or username.")
+        else:
+            messages.add_message(request,messages.WARNING,"Sorry, seems you are a Robot.")
+    return render(request,'lms/login.html',context)
+    
+    
 def handle_logout(request):
     logout(request)
     messages.add_message(request,messages.SUCCESS,"Success, You Logged Out Successfully.")
     return redirect('index')
 
 def contact(request):
-
+    category_names = CategoryName.objects.all()
+    context = {
+        'category':category_names
+    }
     if request.method == 'POST':
         name = request.POST['name']
         email = request.POST['email']
@@ -176,9 +191,10 @@ def contact(request):
         from_email = settings.EMAIL_HOST_USER
         to_mail = [email]
         send_mail(subject,message,from_email,to_mail,fail_silently=True)
-    return render(request,'lms/contact.html')
+    return render(request,'lms/contact.html',context)
 
 def course_details(request,course_name,course_id):
+    category_names = CategoryName.objects.all()
     course = Course.objects.filter(id=course_id).first()
     if request.user.is_active:
         enrolled_course = EnrolledCourse.objects.filter(user=request.user).filter(course=course).first()
@@ -189,7 +205,7 @@ def course_details(request,course_name,course_id):
     subjects = Subject.objects.filter(course=course).all()
     instructors = []
     videos = []
-    enrolled_count = EnrolledCourse.objects.filter(course__id=course_id).count() + 1100
+    enrolled_count = EnrolledCourse.objects.filter(course__id=course_id).count() + 11
     for subject in subjects:
         video = Video.objects.filter(subject__id=subject.id).order_by('id').first()
         if video:
@@ -207,11 +223,11 @@ def course_details(request,course_name,course_id):
         'course':course,
         'enrolled' : enrolled_course,
         'reviews':reviews,
-        'enrolled_count':enrolled_count
+        'enrolled_count':enrolled_count,
+        'category':category_names
   
     }
     return render(request,'lms/course-detail.html',context)
-
 
 def enroll_to_course(request,course_id,course_name):
     if not request.user.is_authenticated:
@@ -271,13 +287,15 @@ def handle_request(request):
 @login_required(login_url='handle_login')
 def video_playlist(request,course_name,course_id,subject_id,video_id):
     videos = Video.objects.filter(subject__id=subject_id).all()
+    category_names = CategoryName.objects.all()
     subject = Subject.objects.filter(id=subject_id).first()
     current_video = Video.objects.filter(id=video_id).first()
     context = {
         'current_video':current_video,
         'videos':videos,
         'course_name':course_name,
-        'subject':subject
+        'subject':subject,
+        'category':category_names
     }
     return render(request,'lms/video-playlist.html',context)
 
@@ -471,7 +489,8 @@ def teacher_qa(request):
     return render(request,'lms/teacher-qa.html',context)
 
 def category_details(request,category_name):
-    courses = Category.objects.filter(category_name=category_name).all()
+    category_names = CategoryName.objects.all()
+    courses = Category.objects.filter(category_name__name=category_name).all()
     course_per_page = Paginator(courses,6)
     page_num = request.GET.get('page',1)
     try:
@@ -480,13 +499,16 @@ def category_details(request,category_name):
         current_page = course_per_page.page(1)
     context = {
         'courses':current_page,
-        'category':category_name
+        'category_name':category_name,
+        'category':category_names 
     }
 
     return render(request,'lms/course_by_category.html',context)
 
 
 def study_material(request,class_level):
+    category_names = CategoryName.objects.all()
+    
     materials = StudyMaterial.objects.filter(class_level=class_level).all()
     subjects = []
     for material in materials:
@@ -494,8 +516,34 @@ def study_material(request,class_level):
             subjects.append(material.subject)
 
     context = {'materials':materials,
-                'subjects':subjects    
+                'subjects':subjects,
+                'category':category_names  
 
     }
     return render(request,'lms/study-material.html',context)
 
+
+
+def search_result(request,slug):
+    if request.method=='POST':
+        search = request.POST['search']
+        if not search == slug:
+            return redirect('search_result',slug=search)
+    search = slug
+    courses = Course.objects.all()
+    search_result = []
+    for course in courses:
+        if search.lower() in course.course_name.lower():
+            search_result.append(course)
+    course_per_page = Paginator(search_result,6)
+    page_num = request.GET.get('page',1)
+    try:
+        current_page = course_per_page.page(page_num)
+    except EmptyPage:
+        current_page = course_per_page.page(1)
+
+    context = {
+        'search_name':search,
+        'courses':current_page
+    }
+    return render(request,'lms/search_result.html',context)

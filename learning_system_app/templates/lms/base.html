@@ -10,7 +10,7 @@
   <meta name="author" content="">
 
   <title>E-Shiksha Pie - Aspiring Your Minds</title>
-
+ 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'lms/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -20,11 +20,52 @@
   <!-- Fontawesome css -->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
   <style>
+    *{
+      font-family: 'Nunito', sans-serif;
+
+    }
+    html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+  body{
+    padding-bottom: 6rem;
+    position: relative;
+    min-height: 100%;
+  }
+
+  footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  
+  }
+  
+  .form-control-self{
+    border: none;
+    border-bottom: 1px solid rgb(128, 128, 128);
+    border-radius: 0px!important;
+    display: inline; 
+    width: 70%;
+  }
       .nav-item{
           margin-right: 14px!important;
       }
+     .form-control-self:focus{
+        outline: none!important;
+        box-shadow: none!important;
+        border: none!important;
+
+      }
+
+
   </style>
 {% block css %}
 {% endblock %}
@@ -33,21 +74,21 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
-    <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="font-size: 15x;">
+    <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'lms/images/main-logo.png' %}" width="250" height="60" alt="">
+            <img src="{% static 'lms/images/main-logo.png' %}" width="200" height="45" alt="">
           </a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto mr-auto">
           <li class="nav-item">
             <a class="nav-link {% block home %} {% endblock %}" href="{% url 'index' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {% block about %} {% endblock %}" href="{% url 'about' %}">About Us</a>
+            <a class="nav-link {% block about %} {% endblock %}" href="{% url 'about' %}">About</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,15 +98,9 @@
 
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio1">
-              <a class="dropdown-item" href="">Pre-Foundation Online Courses</a>
-              <a class="dropdown-item" href="">Foundation Online Courses</a>
-              <a class="dropdown-item" href="">Boards,IIT-JEE And NEET</a>
-              <a class="dropdown-item" href="">Weekend Online Program</a>
-              <a class="dropdown-item" href="">Correspondence Program</a>
-              <a class="dropdown-item" href="">Test Series</a>
-              <a class="dropdown-item" href="{% url 'category_details' category_name='Crash Courses' %}">Crash Courses Program</a>
-
-
+              {% for names in category %}
+              <a class="dropdown-item" href="{% url 'category_details' category_name=names.name %}">{{names.name}}</a>
+              {% endfor %}
             </div>
 
 
@@ -96,12 +131,12 @@
 
 
           </li>
-       
+<!--        
           <li class="nav-item">
             <a class="nav-link" href="contact.html">Our Partners</a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link {% block contact %} {% endblock %}" href="{% url 'contact' %}">Contact Us</a>
+            <a class="nav-link {% block contact %} {% endblock %}" href="{% url 'contact' %}">Contact</a>
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
@@ -116,12 +151,22 @@
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link {% block login %} {% endblock %}" href="{% url 'handle_login' %}">Login / Register</a>
+            <a class="nav-link {% block login %} {% endblock %}" href="{% url 'handle_login' %}">Login</a>
           </li>
           {% endif %}
-          
+
+         
           
         </ul>
+
+
+
+       
+        <form action="{% url 'search_result' slug='this is slug' %}" method="POST">
+          {% csrf_token %}
+          <i class="fas fa-search" style="color: rgb(128,128,128);"></i>
+          <input type="text" name="search" id="search"  placeholder="Search" class="form-control form-control-self">
+        </form>
       </div>
     </div>
   </nav>
@@ -132,7 +177,7 @@
   {% endblock %}
 
     <!-- Footer -->
-    <footer class="py-5" style="background-color: rgb(73, 0, 0);">
+    <footer class="py-3 footer" style="background-color: rgb(73, 0, 0);">
         <div class="container">
             
           <p class="m-0 text-center text-white"> Copyright &copy; <img src="{% static 'lms/images/logo2.png' %}" alt="" style="width: 100px; height: 62px;"> 2020</p>

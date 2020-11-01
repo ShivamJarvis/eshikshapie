@@ -27,16 +27,13 @@
         left: 0;
         z-index: 1;
     }
-
-    .btn-facebook {
-        background-color: #405D9D;
-        color: #fff;
+    .create-btn{
+        border-radius: 0px!important;
+  background-color: #054546!important;
+  border-color: #054546;
     }
 
-    .btn-twitter {
-        background-color: #42AEEC;
-        color: #fff;
-    }
+  
 
 </style>
 {% endblock %}
@@ -240,7 +237,7 @@
             </div>
             <div class="g-recaptcha mt-4 mb-3" data-sitekey="6LeqZ9YZAAAAAMcx8jfqoL22OpowhKrzCC5Z2RNG"></div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-block"> Create Account </button>
+                    <button type="submit" class="btn btn-primary btn-block create-btn"> Create Account </button>
                 </div> <!-- form-group// -->
                 <p class="text-center">Have an account? <a href="{% url 'handle_login' %}">Log In</a> </p>
             </form>

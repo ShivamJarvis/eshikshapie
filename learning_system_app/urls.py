@@ -6,6 +6,7 @@ urlpatterns = [
     path('about/',views.about,name='about'),
     path('course/details/<course_name>/<int:course_id>',views.course_details,name='course_details'),
     path('contact/',views.contact,name='contact'),
+    path('search-results/<slug>/',views.search_result,name='search_result'),
     path('login/',views.handle_login,name='handle_login'),
     path('register/',views.register,name='register'),
     path('activate/<uidb64>/<token>/',views.activate,name='activate'),

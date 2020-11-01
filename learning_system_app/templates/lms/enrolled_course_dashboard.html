@@ -26,12 +26,12 @@
                 <div class="card-body">
                     <h4 class="card-title">
                         <a
-                            href="{% url 'course_details' course_name=course.enroll.course.course_name course_id=course.enroll.course.id %}">{{course.course_name}}</a>
+                            href="{% url 'course_details' course_name=course.enroll.course.course_name course_id=course.enroll.course.id %}">{{course.enroll.course.course_name}}</a>
                     </h4>
                     {% if not course.review %}
                     
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#course{{course.enroll.course.id}}">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" style="border-radius: 0px!important;" data-target="#course{{course.enroll.course.id}}">
                         Post Review
                     </button>
                     {% else %}

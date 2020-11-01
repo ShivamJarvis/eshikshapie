@@ -45,17 +45,18 @@
 
   <div class="container">
       <div class="row">
-          <div class="col-lg-5 col-12">
+          <div class="col-lg-7 col-12">
               <img src="/media/{{course.image}}" alt="">
           </div>
-          <div class="col-lg-7 col-12">
-              <h1>{{course.course_name}}</h1>
+          <div class="col-lg-5 col-12">
+              <h1 style="font-family: 'Nunito', sans-serif;">{{course.course_name}}</h1>
               <span><i class="fas fa-user-graduate"></i> Enrolled Students : {{enrolled_count}}</span>
               {% if not request.user.is_staff %}
               {% if enrolled.status %}
               <h2 class="mt-3">Already Enrolled</h2>
               {% else %}
-              <h2 class="mt-3" style="color: #054546;"><strike style="font-size: 22px; color: #928e8e;">&#x20B9;{{course.price}}</strike>  &#x20B9;{{course.special_price}}</h2>
+              <h2 class="mt-3" style="color: #054546;
+              "><strike style="font-size: 22px; color: #928e8e;">&#x20B9;{{course.price}}</strike>  &#x20B9;{{course.special_price}}</h2>
               {% endif %}
               {% if enrolled.status %}
               {% if videos %}
@@ -63,7 +64,7 @@
                     {% for subject_video in videos %}
                     {% if subject_video.video %}
                     <div class="col-4">
-                        <a href="{% url 'video_playlist' course_name=course.course_name course_id=course.id video_id=subject_video.video subject_id=subject_video.subject.id %}" class="btn btn-primary btn-take-course mt-3">Watch Videos of {{subject_video.subject.subject_name}}</a>
+                        <a href="{% url 'video_playlist' course_name=course.course_name course_id=course.id video_id=subject_video.video subject_id=subject_video.subject.id %}" class="btn btn-primary btn-take-course mt-3">Watch Videos of {{subject_video.subject.display_name}}</a>
                     </div>
                     {% endif %}
                     {% endfor %}
@@ -92,24 +93,28 @@
               <hr>
               <p>{{course.description}}</p>
           </div>
-          <div class="col-lg-4 col-12">
+          <div class="col-lg-4 col-12" >
             <h2>Course Info</h2>
             <div class="row course-info-row">
-                <div class="col-6">
+                <div class="col-6" >
 
                     <h6 class="course-info"><i class="fas fa-clock"></i> Duration : </h6>
                     <hr>
                     <h6 class="course-info"><i class="fas fa-globe-europe"></i> Language : </h6>
                    <hr>
+                    <h6 class="course-info"><i class="fas fa-chalkboard"></i> Mode : </h6>
+                   <hr>
                     <h6 class="course-info"><i class="fas fa-certificate"></i> CERTIFICATE : </h6>
                    <hr>
-                    <h6 class="course-info"><i class="fas fa-books"></i> SUBJECTs : </h6>
+                    <h6 class="course-info"><i class="fas fa-books"></i> SUBJECTS : </h6>
                  
                 </div>
                 <div class="col-6">
                     <h6> {{course.duration}} </h6>
                     <hr>
                     <h6>{{course.language}} </h6>
+                    <hr>
+                    <h6>Online</h6>
                     <hr>
                     {% if not course.has_certificate %}
                     <h6>No</h6>
@@ -118,7 +123,7 @@
                     {% endif %}
                     <hr>
                     {% for subject in subjects %}
-                    <h6>{{subject.subject_name}}</h6>
+                    <h6>{{subject.display_name}}</h6>
                     {% endfor %}
                 </div>
             </div>
@@ -127,7 +132,7 @@
       <hr>
   </div>
 
-  <div class="container my-2">
+  <div class="container my-2" >
     <h3 class="my-3">CURRICULUMS</h3>
     {% if course.curriculum %}
     <a href="#" class="btn btn-info">Download Curriculum</a>
@@ -135,7 +140,7 @@
     <hr>
   </div>
 
-  <div class="container mt-5">
+  <div class="container mt-5" > 
       <h4 class="text-secondary">
           About Instructor
       </h4>
@@ -157,6 +162,10 @@
 
     <h2 class="text-secondary">REVIEWS</h2>
     <hr>
+    {% if not reviews %}
+    <h2 class="text-center text-secondary display-4">No Reviews Yet...</h2>
+    
+    {% endif %}
     {% for review in reviews %}
     <p class="my-4" style="border: 1px solid #f2f2f2;"><i class="fas text-secondary fa-user fa-2x"></i><span class="ml-3">{{review.review}}</span><br> <span class="mt-3"><i>By {{review.user.first_name}} {{review.user.last_name}}</i></span></p>
     {% endfor %}

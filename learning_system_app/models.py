@@ -95,14 +95,19 @@ class Course(models.Model):
     def __str__(self):
         return f'{self.id} {self.course_name} by ({self.instructor.user.first_name} {self.instructor.user.last_name})'
 
+class CategoryName(models.Model):
+    name = models.CharField(max_length=200)
+    def __str__(self):
+        return self.name
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=200,null=True,blank=True)
+    category_name = models.ForeignKey(CategoryName,on_delete=models.CASCADE,related_name='category_name')
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='category_course')
 
 
 
 class Subject(models.Model):
+    display_name = models.CharField(max_length=200,null=False,blank=False)
     subject_name = models.CharField(max_length=100,null=False,blank=False)
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='subject_course')
     instructor = models.ForeignKey(Instructor,on_delete=models.CASCADE,related_name='subject_instructor')

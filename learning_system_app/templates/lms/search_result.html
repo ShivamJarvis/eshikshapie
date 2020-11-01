@@ -19,11 +19,11 @@
   <div class="container pt-5">
 
     <!-- Page Heading-->
-    <h1 class="mt-4 mb-3">In 
-      <small>{{category_name}}</small>
+    <h1 class="mt-4 mb-3">In   
+      <small>"{{search_name}}"</small>
     </h1>
     {% if not courses %}
-    <h1 class="text-center display-4 text-secondary">Coming Soon...</h1>
+    <h1 class="text-center display-4 text-secondary">No Result Found...</h1>
     {% endif %}
     {% for course in courses %}
     <!-- Blog Post -->
@@ -32,18 +32,19 @@
         <div class="row">
           <div class="col-lg-3">
             <a href="#">
-              <img class="img-fluid rounded" style="width: 240px;" src="/media/{{course.course.image}}" alt="">
+              <img class="img-fluid rounded" style="width: 240px;" src="/media/{{course.image}}" alt="">
             </a>
           </div>
           <div class="col-lg-9">
-            <h2 class="card-title">{{course.course.course_name}}</h2>
-            <p class="card-text">{{course.course.mini_info|slice:":200"}} ...</p>
-            <a href="{% url 'course_details' course_name=course.course.course_name course_id=course.course.id %}" class="btn btn-primary show-detail-btn">Show Details</a>
+            <h2 class="card-title">{{course.course_name}} </h2>
+            
+            <p class="card-text">{{course.mini_info|slice:":200"}} ...</p>
+            <a href="{% url 'course_details' course_name=course.course_name course_id=course.id %}" class="btn btn-primary show-detail-btn">Show Details</a>
           </div>
         </div>
       </div>
       <div class="card-footer text-muted">
-        Duration : {{course.course.duration}}
+        Duration : {{course.duration}}
       </div>
     </div>
   {% endfor %} 
@@ -55,12 +56,12 @@
     <ul class="pagination justify-content-center mb-4">
       {% if courses.has_previous %}
       <li class="page-item">
-        <a class="page-link" href="{% url 'category_details' category_name=category %}?page={{courses.previous_page_number}}">&larr; Previous</a>
+        <a class="page-link" href="{% url 'search_result' slug=search_name %}?page={{courses.previous_page_number}}">&larr; Previous</a>
       </li>
       {% endif %}
       {% if  courses.has_next %}
       <li class="page-item">
-        <a class="page-link" href="{% url 'category_details' category_name=category %}?page={{courses.next_page_number}}">Next &rarr;</a>
+        <a class="page-link" href="{% url 'search_result' slug=search_name %}?page={{courses.next_page_number}}">Next &rarr;</a>
       </li>
       {% endif %}
     </ul>

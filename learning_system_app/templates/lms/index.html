@@ -26,6 +26,13 @@
   padding: 10px!important;
   height: 300px!important;
 }
+.learn-more-btn{
+  border-radius: 0px!important;
+  background-color: #054546!important;
+  border-color: #054546;;
+}
+
+
 
 
   </style>
@@ -142,11 +149,11 @@
 
 
 
-    <!-- Portfolio Section -->
-    <h2 class="text-center my-3" style="text-transform: uppercase; font-weight: bold;">Popular Courses</h2>
+    <!-- Courses Section -->
+    <h2 class="text-center my-3" style="text-transform: uppercase; font-weight: bold; ">Popular Courses</h2>
     <hr style="border-bottom: 1px solid black;">
 
-    <div class="row">
+    <div class="row" >
       {% for course in courses %}
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
@@ -156,7 +163,7 @@
               <a href="{% url 'course_details' course_name=course.course_name course_id=course.id %}">{{course.course_name}}</a>
             </h4>
             <p class="card-text">{{course.mini_info|slice:":100"}}...</p>
-            <h4><strike style="color: #928e8e; font-size: 19px;">&#x20B9;25000</strike> &#x20B9;20000</h4>
+            <h4><strike style="color: #928e8e; font-size: 19px;">&#x20B9;{{course.price}}</strike> &#x20B9;{{course.special_price}}</h4>
           </div>
         </div>
       </div>
@@ -198,7 +205,7 @@
       <h5 class="text-secondary">Giving You What is Needed</h5>
       <hr>
       <p class="text-secondary" style="font-weight: bold;">e-Shiksha pie is the leading online coaching in the country at the school as well as competitive levels. We as team e-Shiksha pie ensure that each and every child/ student gets a coach or mentor to ignite his/her mind who can show them the right path to the success.</p>
-      <a href="{% url 'about' %}" class="btn btn-primary">LEARN MORE</a>
+      <a href="{% url 'about' %}" class="btn btn-primary learn-more-btn">LEARN MORE</a>
      </div>
    </div>
 </div>
