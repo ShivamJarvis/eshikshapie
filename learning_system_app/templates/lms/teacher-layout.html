@@ -12,6 +12,7 @@
   <title>E-Shiksha Pie - Aspiring Your Minds</title>
 
   <!-- Custom fonts for this template-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.min.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/js/sb-admin-2.js">
@@ -23,7 +24,15 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
 
 </head>
-
+<style>
+  #page-top{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #fff url('/static/lms/loader/732.gif') no-repeat center;
+  z-index: 99999;
+}
+</style>
   {% block css %}
   
   {% endblock %}
@@ -57,13 +66,13 @@
 
       <li class="nav-item {% block add_video %} {% endblock %}">
         <a class="nav-link" href="{% url 'teacher_add_video' %}">
-            <i class="fal fa-diploma"></i>
+          <i class="fab fa-youtube"></i>
           <span>Add Video</span></a>
       </li>
     
       <li class="nav-item {% block create_announcement %} {% endblock %}">
         <a class="nav-link" href="{% url 'teacher_announce' %}">
-            <i class="fal fa-diploma"></i>
+          <i class="fas fa-bullhorn"></i>
           <span>Create Announcement</span></a>
       </li>
       
@@ -87,6 +96,13 @@
         <span>Q / A</span></a>
     </li>
 
+{% if  user.is_superuser %}
+    <li class="nav-item {% block bulk_admission %} {% endblock %}">
+        <a class="nav-link" href="{% url 'bulk_admission' %}">
+          <i class="fas fa-mail-bulk"></i>
+        <span>Bulk Admission</span></a>
+    </li>
+{% endif %}
 
      
         <li class="nav-item">
@@ -154,6 +170,10 @@
 
  {% endblock %}
 
+</div>
+</div>
+</div>
+
 <!--   Custom CSS -->
   <link href="{% static 'lms/css/sb-admin-2.min.css' %}" rel="stylesheet">
   <!-- Bootstrap core JavaScript-->
@@ -176,9 +196,18 @@
 
 
 
-      </div>
-    </div>
-  </div>
+
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+          duration:1000
+        });
+    var preloader = document.getElementById('page-top');
+    function load_function(){
+      preloader.style.display = 'none';
+    }
+  </script>
+
 </body>
     {% block js %}
     {% endblock %}

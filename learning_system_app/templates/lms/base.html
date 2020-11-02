@@ -10,7 +10,10 @@
   <meta name="author" content="">
 
   <title>E-Shiksha Pie - Aspiring Your Minds</title>
- 
+  <link rel = "icon" href =  
+  "{% static 'lms/images/logo2.png' %}" 
+          type = "image/x-icon"> 
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Bootstrap core CSS -->
   <link href="{% static 'lms/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
@@ -33,7 +36,13 @@
   height: 100%;
   box-sizing: border-box;
 }
-
+  #loading{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #fff url('/static/lms/loader/732.gif') no-repeat center;
+    z-index: 99999;
+  }
   body{
     padding-bottom: 6rem;
     position: relative;
@@ -71,8 +80,8 @@
 {% endblock %}
 </head>
 
-<body>
-
+<body onload="load_function()">
+  <div id="loading"></div>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="font-size: 15x;">
     <div class="container-fluid">
@@ -190,7 +199,16 @@
       <script src="{% static 'lms/vendor/jquery/jquery.min.js' %}"></script>
       <script src="{% static 'lms/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
       <script src="{% static 'lms/js/jqBootstrapValidation.js' %}"></script>
-   
+      <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+      <script>
+        AOS.init({
+          duration:1000
+        });
+        var preloader = document.getElementById('loading');
+        function load_function(){
+          preloader.style.display = 'none';
+        }
+      </script>
     {% block js %}
     {% endblock %}
     </body>

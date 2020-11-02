@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 import requests
 import json
+import pandas as pd
 from learning_system_app.utils import generate_token
 from django.core.mail import send_mail,EmailMessage
 from django.conf import settings
@@ -59,7 +60,7 @@ def register(request):
         student_no_int = int(student_no[4:10])
         new_student_no_int = student_no_int + 1
         user_id = 'ESKP'  + str(new_student_no_int).zfill(6)
-    if request.method == 'POST' and request.FILES['image']:
+    if request.method == 'POST':
         f_name = request.POST['f_name']
         l_name = request.POST['l_name']
         mother_name = request.POST['mother_name']
@@ -85,10 +86,13 @@ def register(request):
         verify = response['success']
         if verify:
             if pass1 == pass2:
-                myfile = request.FILES['image']
-                fs = FileSystemStorage()
-                filename = fs.save(myfile.name,myfile)
-                url = fs.url(filename)
+                try:
+                    myfile = request.FILES['image']
+                    fs = FileSystemStorage()
+                    filename = fs.save(myfile.name,myfile)
+                    url = fs.url(filename)
+                except:
+                    url = ""
                 new_user = User.objects.create_user(first_name=f_name,username=username,last_name=l_name,email=email,is_active=False,password=pass1)
                 
                 new_user_profile = user_profile(phone=phone,image=url,student_id=user_id,school_name='',dob=dob,session='',mother_name=mother_name,father_name=father_name,address=address,state=state,city=city,zip_code=zip_code,user=new_user)
@@ -166,8 +170,7 @@ def handle_login(request):
         else:
             messages.add_message(request,messages.WARNING,"Sorry, seems you are a Robot.")
     return render(request,'lms/login.html',context)
-    
-    
+       
 def handle_logout(request):
     logout(request)
     messages.add_message(request,messages.SUCCESS,"Success, You Logged Out Successfully.")
@@ -547,3 +550,69 @@ def search_result(request,slug):
         'courses':current_page
     }
     return render(request,'lms/search_result.html',context)
+
+
+def bulk_admission(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        school_file = pd.read_csv(myfile)
+        total_rows = school_file.count()[0]
+        for i in range(0,total_rows):
+            f_name = school_file['first_name'][i]
+            l_name = school_file['last_name'][i]
+            username = school_file['username'][i]
+            email = school_file['email'][i]
+            password = school_file['password'][i]
+            phone = school_file['phone'][i]
+            state = school_file['state'][i]
+            city = school_file['city'][i]
+            address = school_file['address'][i]
+            father_name = school_file['father_name'][i]
+            mother_name = school_file['mother_name'][i]
+            zip_code = school_file['zip_code'][i]
+            school_name = school_file['school_name'][i]
+            dob = school_file['dob'][i]
+            course_name = school_file['course'][i]
+            last_student_no = user_profile.objects.all().order_by('id').last()
+
+            if not last_student_no:
+                user_id =  'ESKP' + '000001'
+            else:
+                student_no = last_student_no.student_id
+                student_no_int = int(student_no[4:10])
+                new_student_no_int = student_no_int + 1
+                user_id = 'ESKP'  + str(new_student_no_int).zfill(6)
+
+            new_user = User.objects.create_user(first_name=f_name,username=username,last_name=l_name,email=email,is_active=False,password=str(password))
+            course = Course.objects.filter(course_name=course_name).first()
+            last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
+            if not last_enroll_no:
+                enroll_id =  'ENCID' + '000001'
+            else:
+                enroll_no = last_enroll_no.enroll_id
+                enroll_no_int = int(enroll_no[5:11])
+                new_enroll_no_int = enroll_no_int + 1
+                enroll_id = 'ENCID'  + str(new_enroll_no_int).zfill(6)
+            new_enroll = EnrolledCourse(user=new_user,course=course,enroll_id=enroll_id,status=True)
+            new_enroll.save()
+
+        
+            new_user_profile = user_profile(phone=phone,student_id=user_id,school_name=school_name,dob=dob,session='',mother_name=mother_name,father_name=father_name,address=address,state=state,city=city,zip_code=zip_code,user=new_user)
+            new_user_profile.save()
+            current_site = get_current_site(request).domain
+            subject = "Activate Your Account"
+            from_email = settings.EMAIL_HOST_USER
+            to_mail = [email]
+            
+            message = render_to_string('lms/activate.html',
+            {
+                'user':new_user,
+                'domain':current_site,
+                'uid':urlsafe_base64_encode(force_bytes(new_user.pk)),
+                'token':generate_token.make_token(new_user)
+
+            }
+            )
+            send_mail(subject,message,from_email,to_mail,fail_silently=True)
+    
+    return render(request,'lms/bulk_admission.html')

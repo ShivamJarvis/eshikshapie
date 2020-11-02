@@ -1,0 +1,24 @@
+{% extends 'lms/teacher-layout.html' %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block bulk_admission %}active{% endblock %}
+{% block body %}
+
+    <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <h1>Bulk Admission</h1>
+            <hr>
+            
+            <form action="{% url 'bulk_admission' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                Upload File
+                <input type="file" name="myfile" class="form-control mb-4">
+                <button type="submit" class="btn btn-info">Make Admissions</button>
+            </form>
+            
+      </div>
+
+  
+
+
+{% endblock %}
+

@@ -54,7 +54,7 @@
 
 <div class="container mt-5">
 
-    <div class="card bg-light">
+    <div class="card bg-light" data-aos="zoom-in">
         <article class="card-body mx-auto" style=" width: 90%!important;">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
 
@@ -78,7 +78,7 @@
 
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
@@ -87,7 +87,7 @@
                             <input name="f_name" class="form-control" placeholder="First name" type="text">
                         </div> <!-- form-group// -->
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
 
 
@@ -102,7 +102,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
@@ -112,7 +112,7 @@
                         </div> <!-- form-group// -->
                         
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
                         
                         
@@ -125,7 +125,7 @@
                     </div>
             </div>
             <div class="row">
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-sm-12">
 
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
@@ -138,7 +138,7 @@
                         <input name="phone" class="form-control" placeholder="Phone number" type="text">
                     </div> <!-- form-group// -->
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-md-6 col-sm-12">
 
                     <div class="form-group input-group">
                         <div class="input-group-prepend">
@@ -151,7 +151,7 @@
             </div>
 
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
@@ -160,7 +160,7 @@
                             <input name="father_name" class="form-control" placeholder="Father Name" type="text">
                         </div> <!-- form-group// -->
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
@@ -186,7 +186,7 @@
 
               
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-lg-4 col-md-4 col-sm-12">
 
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
@@ -195,7 +195,7 @@
                             <input name="state" class="form-control" placeholder="State" type="text">
                         </div> <!-- form-group// -->
                     </div>
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
 
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -204,7 +204,7 @@
                                 <input name="city" class="form-control" placeholder="City" type="text">
                             </div> <!-- form-group// -->
                         </div>
-                        <div class="col-4">
+                        <div class="col-lg-4 col-md-4 col-sm-12">
 
                             <div class="form-group input-group">
                                 <div class="input-group-prepend">
@@ -216,24 +216,36 @@
                     
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                             </div>
-                            <input class="form-control" name="pass1" placeholder="Create password" type="password">
-                        </div> <!-- form-group// -->
+                            <input class="form-control" name="pass1" placeholder="Create password" minlength="6" maxlength="20" type="password">
+                        </div> 
+                      
+                        <!-- form-group// -->
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
 
                         <div class="form-group input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                             </div>
-                            <input class="form-control" name="pass2" placeholder="Repeat password" type="password">
-                        </div> <!-- form-group// -->
+                            <input class="form-control" name="pass2" placeholder="Repeat password" minlength="6" maxlength="20" type="password">
+
+                        </div> 
+                        
+                        <!-- form-group// -->
                     </div>
+            </div>
+            <div class="pass-info">
+                <ul>
+                    <li>Password Must Contain Characters between 6 and 20</li>
+                    <!-- <li>Password Must Contain At Least one Special Character</li>
+                    <li>Password Must Contain At Least one Capital Alphabet</li> -->
+                </ul>
             </div>
             <div class="g-recaptcha mt-4 mb-3" data-sitekey="6LeqZ9YZAAAAAMcx8jfqoL22OpowhKrzCC5Z2RNG"></div>
                 <div class="form-group">

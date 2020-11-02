@@ -9,6 +9,17 @@
   border-color: #054546!important;
   background-color: #054546!important;
 }
+.inner{
+  overflow: hidden;
+}
+
+.inner img{
+  transition: all 1s ease;
+}
+
+.inner:hover img{
+  transform: scale(1.5);
+}
 </style>
 
 {% endblock %}
@@ -20,19 +31,22 @@
 
     <!-- Page Heading-->
     <h1 class="mt-4 mb-3">In 
-      <small>{{category_name}}</small>
+      <small data-aos="fade-up-right">{{category_name}}</small>
     </h1>
     {% if not courses %}
     <h1 class="text-center display-4 text-secondary">Coming Soon...</h1>
     {% endif %}
     {% for course in courses %}
     <!-- Blog Post -->
-    <div class="card mb-4">
+    <div class="card mb-4" data-aos='fade-up'>
       <div class="card-body">
         <div class="row">
           <div class="col-lg-3">
-            <a href="#">
-              <img class="img-fluid rounded" style="width: 240px;" src="/media/{{course.course.image}}" alt="">
+            <a href="{% url 'course_details' course_name=course.course.course_name course_id=course.course.id %}">
+              <div class="inner">
+
+                <img class="img-fluid rounded" style="width: 240px;" src="/media/{{course.course.image}}" alt="Course Image">
+              </div>
             </a>
           </div>
           <div class="col-lg-9">

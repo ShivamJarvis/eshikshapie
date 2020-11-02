@@ -23,7 +23,7 @@ class LoggedInUser(models.Model):
 class user_profile(models.Model):
     student_id = models.CharField(max_length=30,null=False,blank=False)
     phone = models.CharField(max_length=15,null=False,blank=False)
-    image = models.ImageField()
+    image = models.ImageField(blank=True,null=True)
     image_qr = models.ImageField(blank=True)
     school_name = models.CharField(max_length=100,null=True,blank=True)
     dob = models.DateField()

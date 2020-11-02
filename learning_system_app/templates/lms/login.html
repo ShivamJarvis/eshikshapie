@@ -92,9 +92,9 @@
 
 {% if messages %}
     {% for message in messages %}
-    <div class="alert alert-warning mt-0 mb-0 alert-dismissible fade show" style="padding-top: 45px;" role="alert">
+    <div class="alert alert-warning mt-0 mb-0 alert-dismissible fade show" style="padding-top: 30px;" role="alert">
         {{ message }}
-        <button type="button" class="close" style="padding-top: 45px;" data-dismiss="alert" aria-label="Close">
+        <button type="button" class="close" style="padding-top: 30px;" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -104,7 +104,7 @@
 
 <div class="container mt-5">
 
-    <div class="login-form">    
+    <div class="login-form" data-aos="zoom-in">    
         <form action="{% url 'handle_login' %}" method="post">
             {% csrf_token %}
 		<div class="avatar"><i class="fas fa fa-user-tie fa-3x"></i></div>

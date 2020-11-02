@@ -23,7 +23,7 @@
 }
 
 .course-image{
-  padding: 10px!important;
+  
   height: 300px!important;
 }
 .learn-more-btn{
@@ -32,6 +32,17 @@
   border-color: #054546;;
 }
 
+.inner{
+  overflow: hidden;
+}
+
+.inner img{
+  transition: all 1s ease;
+}
+
+.inner:hover img{
+  transform: scale(1.5);
+}
 
 
 
@@ -41,9 +52,9 @@
 {% block body %}
 {% if messages %}
 {% for message in messages %}
-<div class="alert alert-warning mt-0 mb-0 alert-dismissible fade show" style="padding-top: 45px;" role="alert">
+<div class="alert alert-warning mt-0 mb-0 alert-dismissible fade show" style="padding-top: 30px;" role="alert">
     {{ message }}
-    <button type="button" class="close" style="padding-top: 45px;" data-dismiss="alert" aria-label="Close">
+    <button type="button" class="close" style="padding-top: 30px;" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -156,8 +167,10 @@
     <div class="row" >
       {% for course in courses %}
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="{% url 'course_details' course_name=course.course_name course_id=course.id %}"><img class="card-img-top course-image" src="/media/{{ course.image }}" alt=""></a>
+        <div class="card shadow h-100" data-aos="fade-up">
+          <div class="inner">
+            <a href="{% url 'course_details' course_name=course.course_name course_id=course.id %}"><img class="card-img-top course-image" src="/media/{{ course.image }}" alt=""></a>
+          </div>
           <div class="card-body">
             <h4 class="card-title">
               <a href="{% url 'course_details' course_name=course.course_name course_id=course.id %}">{{course.course_name}}</a>

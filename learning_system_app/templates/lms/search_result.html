@@ -9,6 +9,17 @@
   border-color: #054546!important;
   background-color: #054546!important;
 }
+.inner{
+  overflow: hidden;
+}
+
+.inner img{
+  transition: all 1s ease;
+}
+
+.inner:hover img{
+  transform: scale(1.5);
+}
 </style>
 
 {% endblock %}
@@ -27,12 +38,14 @@
     {% endif %}
     {% for course in courses %}
     <!-- Blog Post -->
-    <div class="card mb-4">
+    <div class="card mb-4" data-aos='fade-up'> 
       <div class="card-body">
         <div class="row">
           <div class="col-lg-3">
             <a href="#">
-              <img class="img-fluid rounded" style="width: 240px;" src="/media/{{course.image}}" alt="">
+              <div class="inner">
+                <img class="img-fluid rounded" style="width: 240px;" src="/media/{{course.image}}" alt="">
+              </div>
             </a>
           </div>
           <div class="col-lg-9">
