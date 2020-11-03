@@ -222,7 +222,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                             </div>
-                            <input class="form-control" name="pass1" placeholder="Create password" minlength="6" maxlength="20" type="password">
+                            <input class="form-control" name="pass1" id="pass1" placeholder="Create password" minlength="6" maxlength="20" type="password">
+                            <i class="far fa-eye" id="togglePassword1" style=" margin-left: -30px; z-index: 1; margin-top: 10px; cursor: pointer;"></i>
                         </div> 
                       
                         <!-- form-group// -->
@@ -233,7 +234,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                             </div>
-                            <input class="form-control" name="pass2" placeholder="Repeat password" minlength="6" maxlength="20" type="password">
+                            <input class="form-control" name="pass2" id="pass2" placeholder="Repeat password" minlength="6" maxlength="20" type="password">
+                            <i class="far fa-eye" id="togglePassword2" style=" margin-left: -30px; margin-top: 10px; z-index: 1; cursor: pointer;"></i>
 
                         </div> 
                         
@@ -261,4 +263,28 @@
 
 
 
+{% endblock %}
+
+{% block js %}
+<script>
+    const togglePassword1 = document.querySelector('#togglePassword1');
+    const togglePassword2 = document.querySelector('#togglePassword2');
+    const password1 = document.querySelector('#pass1');
+    const password2 = document.querySelector('#pass2');
+    togglePassword1.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type1 = password1.getAttribute('type') === 'password' ? 'text' : 'password';
+    password1.setAttribute('type', type1);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+
+
+});
+togglePassword2.addEventListener('click', function (e) {
+    const type2 = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+    password2.setAttribute('type', type2);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+</script>
 {% endblock %}

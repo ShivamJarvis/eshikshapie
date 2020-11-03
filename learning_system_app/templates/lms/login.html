@@ -85,6 +85,10 @@
     .login-form a {
         color: #4aba70;
     }
+    .fm-self{
+        display: inline!important;
+        width: 98%!important;
+    }
     </style>
 {% endblock %}
 
@@ -113,7 +117,8 @@
             <input type="text" class="form-control" name="username" placeholder="Username" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+            <input type="password" class="form-control fm-self" id="password" name="password" placeholder="Password" required="required">
+            <i class="far fa-eye" id="togglePassword" style=" margin-left: -30px; cursor: pointer;"></i>
         </div>
         <div class="form-group small clearfix">
            
@@ -130,4 +135,15 @@
 {% endblock %}
 
 {% block js %}
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
+</script>
 {% endblock %}

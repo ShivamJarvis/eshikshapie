@@ -6,6 +6,8 @@ from django.core.files import File
 from PIL import Image,ImageDraw
 # Create your models here.
 
+
+
 class Contact(models.Model):
     name = models.CharField(max_length=100,null=False,blank=False)
     phone = models.CharField(max_length=15,null=False,blank=False)
@@ -80,7 +82,8 @@ class Instructor(models.Model):
 
 class Course(models.Model):
     course_name = models.CharField(max_length=300,null=False,blank=False)
-    image = models.ImageField()
+    intro_video = models.CharField(max_length=300,null=True,blank=True)
+    image = models.ImageField(null = True,blank=True)
     curriculum = models.URLField(null=True,blank=True)
     price = models.FloatField()
     special_price = models.FloatField()
@@ -103,8 +106,6 @@ class CategoryName(models.Model):
 class Category(models.Model):
     category_name = models.ForeignKey(CategoryName,on_delete=models.CASCADE,related_name='category_name')
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='category_course')
-
-
 
 class Subject(models.Model):
     display_name = models.CharField(max_length=200,null=False,blank=False)

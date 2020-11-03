@@ -455,10 +455,12 @@ def teacher_announce(request):
 
 @login_required(login_url='handle_login')
 def teacher_student(request):
-    teacher_subject = Subject.objects.filter(instructor__user__id=request.user.id).all()
+    if not request.user.is_staff:
+        return redirect('index')
+    teacher_course = Course.objects.filter(instructor__user__id=request.user.id).all()
     students = []
-    for i in teacher_subject:
-        course = EnrolledCourse.objects.filter(course__id=i.course.id).all()
+    for i in teacher_course:
+        course = EnrolledCourse.objects.filter(course__id=i.id).all()
         for j in course:
             student = User.objects.filter(id=j.user.id).first()
             if not student in students:
