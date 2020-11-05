@@ -87,6 +87,7 @@ class Course(models.Model):
     curriculum = models.URLField(null=True,blank=True)
     price = models.FloatField()
     special_price = models.FloatField()
+    price_key = models.CharField(max_length=200,null=True,blank=True)
     description = models.TextField(max_length=1000,null=False,blank=False)
     mini_info = models.TextField(max_length=400,null=True,blank=True)
     duration = models.CharField(max_length=50)

@@ -1,0 +1,23 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+{% block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+  <h1 class="display-4">Payment Status Regarding Your Enrollment ID </h1>
+  <p class="lead">{{enroll_id}}</p>
+  <p class="lead"></p>
+    </div>
+  </div>
+  
+
+  <div class="container text-center pt-4" style="margin-bottom: 183px;">
+    <img src="{% static 'lms/images/done.png' %}" style="width: 150px;" alt="">
+    <h2 class="mt-3">You are Successfully Enrolled in this course</h2> 
+    <a href="{% url 'index' %}" class="btn btn-info mt-4">Go to Home Page</a>
+</div>
+
+
+
+
+
+{% endblock %}

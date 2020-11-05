@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2020 at 11:17 AM
+-- Generation Time: Nov 05, 2020 at 10:20 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -164,8 +164,10 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$gM0ONSynpTy7$jyMvKeNMTYkGPNnlOdDcpAO0XGvb7bKla1+N6koLSNc=', '2020-11-01 10:11:59.871298', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-11-01 06:19:27.000000'),
-(2, 'pbkdf2_sha256$216000$GsTaXvcx1Vqi$dkiiBQLWdwKywPOzz7lBBPPV2SscrS7B1cB5Adb0cXo=', NULL, 1, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-11-01 06:20:02.000000');
+(1, 'pbkdf2_sha256$216000$gM0ONSynpTy7$jyMvKeNMTYkGPNnlOdDcpAO0XGvb7bKla1+N6koLSNc=', '2020-11-05 09:00:19.721832', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-11-01 06:19:27.000000'),
+(2, 'pbkdf2_sha256$216000$GsTaXvcx1Vqi$dkiiBQLWdwKywPOzz7lBBPPV2SscrS7B1cB5Adb0cXo=', NULL, 1, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-11-01 06:20:02.000000'),
+(20, 'pbkdf2_sha256$216000$AcCCTUf2L9UC$EataHN5mDt7Az5i4oT8SrUD71hDUwkAzi2V/VFVmQOA=', '2020-11-05 09:00:44.750064', 0, 'mpsShivamGupta', 'Shivam', 'Gupta', 'shivamgupta812367@gmail.com', 0, 1, '2020-11-03 08:55:59.000000'),
+(21, 'pbkdf2_sha256$216000$VwBFjbp3PJ4h$EhDuZbqFKqh9d7Kr4smGTEHMkAhBRDKhMTnjl07Vzvk=', NULL, 0, 'mpsRishabhGogia', 'Rishabh', 'Gogia', 'jarvis12g@gmail.com', 0, 1, '2020-11-03 08:56:04.000000');
 
 -- --------------------------------------------------------
 
@@ -232,7 +234,56 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (17, '2020-11-01 07:43:35.134940', '3', 'Pre-Foundation Courses', 3, '', 19, 1),
 (18, '2020-11-01 08:22:49.005668', '4', 'nobita', 3, '', 16, 1),
 (19, '2020-11-01 08:23:04.884613', '3', 'shinchan', 3, '', 16, 1),
-(20, '2020-11-01 09:10:14.121379', '2', '2 Class 12 Crash Course by (Pulkit Arora)', 1, '[{\"added\": {}}]', 2, 1);
+(20, '2020-11-01 09:10:14.121379', '2', '2 Class 12 Crash Course by (Pulkit Arora)', 1, '[{\"added\": {}}]', 2, 1),
+(21, '2020-11-02 10:00:11.978469', '2', 'Category object (2)', 1, '[{\"added\": {}}]', 12, 1),
+(22, '2020-11-02 11:48:38.961325', '5', 'mpsShivamGupta', 3, '', 16, 1),
+(23, '2020-11-02 11:49:22.642004', '6', 'mpsShivamGupta', 3, '', 16, 1),
+(24, '2020-11-02 12:04:56.194158', '8', 'mpsRishabhGogia', 3, '', 16, 1),
+(25, '2020-11-02 12:04:56.241155', '7', 'mpsShivamGupta', 3, '', 16, 1),
+(26, '2020-11-02 12:08:53.284448', '9', 'mpsShivamGupta', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
+(27, '2020-11-02 12:11:03.132465', '10', 'mpsRishabhGogia', 3, '', 16, 1),
+(28, '2020-11-02 12:11:03.161879', '9', 'mpsShivamGupta', 3, '', 16, 1),
+(29, '2020-11-02 12:12:32.828931', '11', 'mpsShivamGupta', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
+(30, '2020-11-02 12:13:37.997956', '11', 'mpsShivamGupta', 2, '[]', 16, 1),
+(31, '2020-11-02 12:13:45.523045', '12', 'mpsRishabhGogia', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
+(32, '2020-11-02 12:15:40.133227', '12', 'mpsRishabhGogia', 3, '', 16, 1),
+(33, '2020-11-02 12:15:40.180297', '11', 'mpsShivamGupta', 3, '', 16, 1),
+(34, '2020-11-02 12:21:37.414900', '14', 'mpsRishabhGogia', 3, '', 16, 1),
+(35, '2020-11-02 12:21:37.458803', '13', 'mpsShivamGupta', 3, '', 16, 1),
+(36, '2020-11-02 12:22:58.563935', '16', 'mpsRishabhGogia', 3, '', 16, 1),
+(37, '2020-11-02 12:22:58.602972', '15', 'mpsShivamGupta', 3, '', 16, 1),
+(38, '2020-11-02 12:23:54.057425', '11', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Status\"]}}]', 3, 1),
+(39, '2020-11-02 12:23:57.062799', '10', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Status\"]}}]', 3, 1),
+(40, '2020-11-02 12:24:53.244968', '17', 'mpsShivamGupta', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
+(41, '2020-11-02 12:32:07.652169', '18', 'mpsRishabhGogia', 3, '', 16, 1),
+(42, '2020-11-02 12:32:07.689023', '17', 'mpsShivamGupta', 3, '', 16, 1),
+(43, '2020-11-03 08:57:10.790686', '21', 'mpsRishabhGogia', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
+(44, '2020-11-03 08:57:23.404259', '20', 'mpsShivamGupta', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
+(45, '2020-11-03 09:06:16.563365', '12', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
+(46, '2020-11-03 09:06:20.264338', '13', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
+(47, '2020-11-03 09:06:49.609110', '13', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
+(48, '2020-11-03 09:06:55.400406', '12', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
+(49, '2020-11-03 09:07:09.303717', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Instructor\"]}}]', 2, 1),
+(50, '2020-11-03 09:07:50.215405', '3', 'English Class 10 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Instructor\"]}}]', 6, 1),
+(51, '2020-11-03 09:08:13.393417', '13', 'ENCID000002', 2, '[]', 3, 1),
+(52, '2020-11-03 09:08:16.279488', '12', 'ENCID000001', 2, '[]', 3, 1),
+(53, '2020-11-03 09:08:23.776412', '13', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
+(54, '2020-11-03 09:08:37.360333', '13', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
+(55, '2020-11-03 09:11:18.118154', '1', 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2 of (Maths Class 10 Crash Course)', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 7, 1),
+(56, '2020-11-03 09:11:24.383109', '1', 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2 of (Maths Class 10 Crash Course)', 2, '[]', 7, 1),
+(57, '2020-11-03 09:11:46.848940', '1', 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2 of (Maths Class 10 Crash Course)', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 7, 1),
+(58, '2020-11-03 09:12:23.832666', '19', 'mpsShivam', 3, '', 16, 1),
+(59, '2020-11-03 09:12:56.443429', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[]', 2, 1),
+(60, '2020-11-03 09:14:43.822943', '12', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
+(61, '2020-11-03 09:15:03.104503', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Instructor\"]}}]', 2, 1),
+(62, '2020-11-03 09:15:18.402393', '12', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
+(63, '2020-11-03 09:43:38.046923', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Intro video\"]}}]', 2, 1),
+(64, '2020-11-03 09:44:42.685451', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Intro video\"]}}]', 2, 1),
+(65, '2020-11-03 09:46:26.658814', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 2, 1),
+(66, '2020-11-03 09:46:32.879226', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 2, 1),
+(67, '2020-11-05 06:14:17.631970', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Price key\"]}}]', 2, 1),
+(68, '2020-11-05 08:57:22.437842', '14', 'ENCID000003', 3, '', 3, 1),
+(69, '2020-11-05 09:00:04.506191', '15', 'ENCID000003', 3, '', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -310,7 +361,11 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (19, 'sessions', '0001_initial', '2020-11-01 06:17:55.982300'),
 (20, 'learning_system_app', '0002_categoryname', '2020-11-01 06:47:50.690750'),
 (21, 'learning_system_app', '0003_auto_20201101_1220', '2020-11-01 06:50:39.302065'),
-(22, 'learning_system_app', '0004_subject_display_name', '2020-11-01 07:31:14.583767');
+(22, 'learning_system_app', '0004_subject_display_name', '2020-11-01 07:31:14.583767'),
+(23, 'learning_system_app', '0005_auto_20201102_1805', '2020-11-02 12:35:52.998959'),
+(24, 'learning_system_app', '0006_auto_20201103_1512', '2020-11-03 09:42:16.541310'),
+(25, 'learning_system_app', '0007_course_image', '2020-11-03 09:45:53.108246'),
+(26, 'learning_system_app', '0008_course_price_key', '2020-11-05 06:13:41.195214');
 
 -- --------------------------------------------------------
 
@@ -329,7 +384,7 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('lvq81nay4buwvn7j2vh8akkkj44nieh4', '.eJxVjMsOwiAQRf-FtSE8Bgou3fsNZIYBWzU0Ke3K-O_apAvd3nPOfYmE2zqmrZclTSzOQovT70aYH6XtgO_YbrPMc1uXieSuyIN2eZ25PC-H-3cwYh-_dQxoYogUPXhTnNZAoMkFsGRZcTSVlCs0YK4-W-NgqMUpBQzZAyOI9wfEWDdy:1kZAL9:MEeK9N4ZPvgEUEdq3vKepdTfLGJYGc3UkJYCdShuoXo', '2020-11-15 10:11:59.932745');
+('4p2mdoy6us7xje1ya6cgecwo0dkp7w8a', '.eJxVjEEOwiAQRe_C2hCGAkWX7j0DGYZBqgaS0q6Md7dNutDtf-_9twi4LiWsnecwJXERWonT7xiRnlx3kh5Y701Sq8s8Rbkr8qBd3lri1_Vw_w4K9rLV3sOgiclFn-OYmY2LyrrIOmk3MhACYGbaKCrjgYwbUgY_WCI4Jys-XyozOO4:1kab8O:UCwdCsMYGVCE-XfUB3quuFnU56hfXu9POuHCyE3_g9A', '2020-11-19 09:00:44.848978');
 
 -- --------------------------------------------------------
 
@@ -348,7 +403,8 @@ CREATE TABLE `learning_system_app_category` (
 --
 
 INSERT INTO `learning_system_app_category` (`id`, `category_name_id`, `course_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -392,7 +448,6 @@ CREATE TABLE `learning_system_app_contact` (
 CREATE TABLE `learning_system_app_course` (
   `id` int(11) NOT NULL,
   `course_name` varchar(300) NOT NULL,
-  `image` varchar(100) NOT NULL,
   `curriculum` varchar(200) DEFAULT NULL,
   `price` double NOT NULL,
   `special_price` double NOT NULL,
@@ -403,16 +458,19 @@ CREATE TABLE `learning_system_app_course` (
   `prequisites` varchar(50) NOT NULL,
   `has_certificate` tinyint(1) NOT NULL,
   `is_popular` tinyint(1) NOT NULL,
-  `instructor_id` int(11) NOT NULL
+  `instructor_id` int(11) NOT NULL,
+  `intro_video` varchar(300) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
+  `price_key` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `learning_system_app_course`
 --
 
-INSERT INTO `learning_system_app_course` (`id`, `course_name`, `image`, `curriculum`, `price`, `special_price`, `description`, `mini_info`, `duration`, `language`, `prequisites`, `has_certificate`, `is_popular`, `instructor_id`) VALUES
-(1, 'Class 10 Crash Course', 'content.jpg', NULL, 4000, 3500, 'This crash course for class 10 students who want to score more than 95% in Board Exams.', 'This crash course for class 10 students who want to score more than 95% in Board Exams.', 'Complete', 'Hindi/English', 'No', 1, 1, 1),
-(2, 'Class 12 Crash Course', 'banner1_VjJ5OMo.jpg', NULL, 4500, 4000, 'This Course for class 12 Students who wants to score more than 95% marks in boards', 'This Course for class 12 Students who wants to score more than 95% marks in boards', 'Complete', 'English/Hindi', 'No', 0, 1, 2);
+INSERT INTO `learning_system_app_course` (`id`, `course_name`, `curriculum`, `price`, `special_price`, `description`, `mini_info`, `duration`, `language`, `prequisites`, `has_certificate`, `is_popular`, `instructor_id`, `intro_video`, `image`, `price_key`) VALUES
+(1, 'Class 10 Crash Course', NULL, 4000, 3500, 'This crash course for class 10 students who want to score more than 95% in Board Exams.', 'This crash course for class 10 students who want to score more than 95% in Board Exams.', 'Complete', 'Hindi/English', 'No', 1, 1, 2, 'https://www.youtube.com/embed/dKIYUWrSc-0', 'corfor6.jpg', 'price_1Hk1YCEJThTwkNoP8krnIHM3'),
+(2, 'Class 12 Crash Course', NULL, 4500, 4000, 'This Course for class 12 Students who wants to score more than 95% marks in boards', 'This Course for class 12 Students who wants to score more than 95% marks in boards', 'Complete', 'English/Hindi', 'No', 0, 1, 1, 'https://www.youtube.com/embed/6G5Qr5eo-pk', 'corfor9.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -427,6 +485,14 @@ CREATE TABLE `learning_system_app_enrolledcourse` (
   `course_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `learning_system_app_enrolledcourse`
+--
+
+INSERT INTO `learning_system_app_enrolledcourse` (`id`, `enroll_id`, `status`, `course_id`, `user_id`) VALUES
+(12, 'ENCID000001', 1, 2, 20),
+(13, 'ENCID000002', 1, 2, 21);
 
 -- --------------------------------------------------------
 
@@ -475,7 +541,7 @@ CREATE TABLE `learning_system_app_loggedinuser` (
 --
 
 INSERT INTO `learning_system_app_loggedinuser` (`id`, `session_key`, `user_id`) VALUES
-(9, 'lvq81nay4buwvn7j2vh8akkkj44nieh4', 1);
+(38, '4p2mdoy6us7xje1ya6cgecwo0dkp7w8a', 20);
 
 -- --------------------------------------------------------
 
@@ -545,7 +611,7 @@ CREATE TABLE `learning_system_app_subject` (
 INSERT INTO `learning_system_app_subject` (`id`, `subject_name`, `course_id`, `instructor_id`, `display_name`) VALUES
 (1, 'Maths Class 10 Crash Course', 1, 1, 'Mathematics'),
 (2, 'Science Class 10 Crash Course', 1, 1, 'Science'),
-(3, 'English Class 10 Crash Course', 1, 2, 'English');
+(3, 'English Class 10 Crash Course', 1, 1, 'English');
 
 -- --------------------------------------------------------
 
@@ -557,7 +623,7 @@ CREATE TABLE `learning_system_app_user_profile` (
   `id` int(11) NOT NULL,
   `student_id` varchar(30) NOT NULL,
   `phone` varchar(15) NOT NULL,
-  `image` varchar(100) NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `image_qr` varchar(100) NOT NULL,
   `school_name` varchar(100) DEFAULT NULL,
   `dob` date NOT NULL,
@@ -570,6 +636,14 @@ CREATE TABLE `learning_system_app_user_profile` (
   `zip_code` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `learning_system_app_user_profile`
+--
+
+INSERT INTO `learning_system_app_user_profile` (`id`, `student_id`, `phone`, `image`, `image_qr`, `school_name`, `dob`, `session`, `mother_name`, `father_name`, `address`, `state`, `city`, `zip_code`, `user_id`) VALUES
+(16, 'ESKP000002', '1234567890', '', 'qr_codeESKP000002_EfrN0ZP.png', 'Modern Public School', '2000-05-03', '', 'XYZ', 'ABC', 'Delhi', 'Delhi', 'Delhi', '110051', 20),
+(17, 'ESKP000003', '1234567891', '', 'qr_codeESKP000003.png', 'Modern Public School', '2000-03-05', '', 'XYZ', 'ABC', 'Delhi', 'Delhi', 'Delhi', '110051', 21);
 
 -- --------------------------------------------------------
 
@@ -592,7 +666,7 @@ CREATE TABLE `learning_system_app_video` (
 --
 
 INSERT INTO `learning_system_app_video` (`id`, `title`, `url`, `description`, `resources`, `course_id`, `subject_id`) VALUES
-(1, 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2', 'https://www.youtube.com/embed/dKIYUWrSc-0', 'This Video on CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2', '', 1, 1);
+(1, 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2', 'https://www.youtube.com/embed/dKIYUWrSc-0', 'This Video on CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2', NULL, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -794,7 +868,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -812,7 +886,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -824,13 +898,13 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_category`
 --
 ALTER TABLE `learning_system_app_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_categoryname`
@@ -854,7 +928,7 @@ ALTER TABLE `learning_system_app_course`
 -- AUTO_INCREMENT for table `learning_system_app_enrolledcourse`
 --
 ALTER TABLE `learning_system_app_enrolledcourse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_instructor`
@@ -866,7 +940,7 @@ ALTER TABLE `learning_system_app_instructor`
 -- AUTO_INCREMENT for table `learning_system_app_loggedinuser`
 --
 ALTER TABLE `learning_system_app_loggedinuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_questionanswer`
@@ -896,7 +970,7 @@ ALTER TABLE `learning_system_app_subject`
 -- AUTO_INCREMENT for table `learning_system_app_user_profile`
 --
 ALTER TABLE `learning_system_app_user_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_video`

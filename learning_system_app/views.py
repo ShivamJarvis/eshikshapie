@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 import requests
 import json
+from django.urls import reverse
 import pandas as pd
 from learning_system_app.utils import generate_token
 from django.core.mail import send_mail,EmailMessage
@@ -20,9 +21,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage
+import stripe
 # Create your views here.
 
-MERCHANT_KEY = "7Gg9YJuMubv@MHim"
+# MERCHANT_KEY = "7Gg9YJuMubv@MHim"
+stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 def error_404_view(request,exception):
     return render(request,'lms/404.html')
@@ -217,7 +220,8 @@ def course_details(request,course_name,course_id):
             videos.append({'subject':subject,'video':0})
         if not subject.instructor in instructors:
             instructors.append(subject.instructor)
-            
+
+    
    
     context = {
         'videos':videos,
@@ -236,6 +240,8 @@ def enroll_to_course(request,course_id,course_name):
     if not request.user.is_authenticated:
         messages.add_message(request,messages.WARNING,"Sorry, seems you are not login or registered with us.")
         return redirect('handle_login')
+
+
     last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
     if not last_enroll_no:
         enroll_id =  'ENCID' + '000001'
@@ -245,47 +251,72 @@ def enroll_to_course(request,course_id,course_name):
         new_enroll_no_int = enroll_no_int + 1
         enroll_id = 'ENCID'  + str(new_enroll_no_int).zfill(6)
     course = Course.objects.filter(id=course_id).first()
+    
     user = request.user
     new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id)
     new_enroll.save()
     user = request.user.email
-    param_dict = {
-    'MID': 'fikOkF17976878422958',
-    'ORDER_ID': str(enroll_id),
-    'TXN_AMOUNT': f"{course.special_price}",
-    'CUST_ID': user,
-    'INDUSTRY_TYPE_ID': 'Retail',
-    'WEBSITE': 'WEBSTAGING',
-    'CHANNEL_ID': 'WEB',
-    'CALLBACK_URL':'http://127.0.0.1:8000/handlerequest/',
-    }
+    # param_dict = {
+    # 'MID': 'fikOkF17976878422958',
+    # 'ORDER_ID': str(enroll_id),
+    # 'TXN_AMOUNT': f"{course.special_price}",
+    # 'CUST_ID': user,
+    # 'INDUSTRY_TYPE_ID': 'Retail',
+    # 'WEBSITE': 'WEBSTAGING',
+    # 'CHANNEL_ID': 'WEB',
+    # 'CALLBACK_URL':'http://127.0.0.1:8000/handlerequest/',
+    # }
     
-    param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, MERCHANT_KEY)
+    # param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, MERCHANT_KEY)
 
-    return render(request=request, template_name="lms/paytm.html", context={'param_dict':param_dict})
-    return redirect('index')
+    # return render(request=request, template_name="lms/paytm.html", context={'param_dict':param_dict})
+    return render()
+
 
 @csrf_exempt
-def handle_request(request):
-    form = request.POST
-    enroll_id = form.get('ORDERID')
-    enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
+def checkout(request,courseid):
+    course = Course.objects.filter(id=courseid).first()
+    session = stripe.checkout.Session.create(
+        payment_method_types=['card'],
+        line_items=[{
+            'price': course.price_key,
+            'quantity': 1,
+        }],
+        mode='payment',
+        success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}&' + f'course_id={course.id}',
+        cancel_url=request.build_absolute_uri(reverse('index')),
+    )
 
-    response_dict = {}
-    for i in form.keys():
-        response_dict[i] = form[i]
-        if i == 'CHECKSUMHASH':
-            checksum = form[i]
-            verify = Checksum.verify_checksum(response_dict, MERCHANT_KEY, checksum)
-            if verify:
-                if not response_dict['RESPCODE'] == '01':
-                   enroll.status = True
-                   enroll.save()
-                else:
-                    enroll.delete()
-    
-      
-    return render(request, 'lms/paymentstatus.html', {'response': response_dict})
+    return JsonResponse({
+        'session_id' : session.id,
+        'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
+    })
+
+
+
+def thanks(request):
+    last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
+    if not last_enroll_no:
+        enroll_id =  'ENCID' + '000001'
+    else:
+        enroll_no = last_enroll_no.enroll_id
+        enroll_no_int = int(enroll_no[5:11])
+        new_enroll_no_int = enroll_no_int + 1 
+        enroll_id = 'ENCID'  + str(new_enroll_no_int).zfill(6)
+    course_id = request.GET.get('course_id') 
+    course = Course.objects.filter(id=int(course_id)).first()
+  
+    user = request.user
+    new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id,status=True)
+    new_enroll.save()
+    context={'enroll_id' : enroll_id}
+    return render(request,'lms/thanks.html',context)
+
+
+
+def fail(request):
+    return render(request,'lms/fail.html')
+
 
 @login_required(login_url='handle_login')
 def video_playlist(request,course_name,course_id,subject_id,video_id):
@@ -555,6 +586,7 @@ def search_result(request,slug):
 
 
 def bulk_admission(request):
+
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         school_file = pd.read_csv(myfile)
@@ -618,3 +650,5 @@ def bulk_admission(request):
             send_mail(subject,message,from_email,to_mail,fail_silently=True)
     
     return render(request,'lms/bulk_admission.html')
+
+
