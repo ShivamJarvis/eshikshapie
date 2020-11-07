@@ -1,11 +1,11 @@
 {% extends 'lms/teacher-layout.html' %}
 {% block title %}Teacher Dashboard{% endblock %}
-{% block enroll_student %}active{% endblock %}
+{% block deactivate_subscription %}active{% endblock %}
 {% block body %}
 
     <!-- Begin Page Content -->
         <div class="container-fluid">
-            <h1>Total Enrolled Students Details</h1>
+            <h1>Total Deactivate Requests</h1>
             <hr>
             
             <table id="example" class="display">
@@ -15,31 +15,28 @@
                         <th>Email</th>
                         <th>Phone No.</th>
                         <th>Enroll Date</th>
-                        <th>Course Expiry Date</th>
                         <th>Deactivate</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for student in students %}
-                    {% if not student.request_status == 3 %}
+                    {% for student in enroll %}
                     <tr>
-                        <td>{{student.student.first_name}} {{student.student.last_name}}</td>
-                        <td>{{student.student.email}}</td>
-                        <td>{{student.student.user_profile.phone}}</td>
+                        <td>{{student.user.first_name}} {{student.user.last_name}}</td>
+                        <td>{{student.user.email}}</td>
+                        <td>{{student.user.user_profile.phone}}</td>
                         <td>{{student.date}}</td>
-                        <td>{{student.course_expiry_date}}</td>
-
                         <td>
-                            {% if student.request_status == 1 %}
+                            {% if student.status %}
                             
-                            <a href="{% url 'request_deactivate_subscription' enroll_id=student.enroll_id %}" class="btn btn-danger">Deactivate Subscription</a>
+                            <a href="{% url 'confirm_deactivate_subscription' enroll_id=student.enroll_id %}" class="btn btn-danger">Confirm Deactivate Subscription</a>
+                            <a href="{% url 'cancel_deactivate_subscription' enroll_id=student.enroll_id %}" class="btn btn-success">Cancel Request</a>
+
                             {% else %}
-                            <button class="btn btn-secondary" disabled>Waiting For Approval</button>
+                            <button class="btn btn-secondary" disabled>Deactivated</a>
+
                             {% endif %}
                         </td>
-                        
                     </tr>
-                    {% endif %}
                     {% endfor %}
                
                 </tbody>

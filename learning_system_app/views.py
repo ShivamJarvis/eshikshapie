@@ -22,20 +22,19 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage
 import stripe
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 # Create your views here.
 
-# MERCHANT_KEY = "7Gg9YJuMubv@MHim"
 stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 def error_404_view(request,exception):
     return render(request,'lms/404.html')
 
 def index(request):
-    enroll = EnrolledCourse.objects.all()
+    
     category = CategoryName.objects.all()
-    for en in enroll:
-        if not en.status:
-            en.delete()
+  
     courses = Course.objects.filter(is_popular=True).all()
     context = {
         'courses':courses,
@@ -236,43 +235,6 @@ def course_details(request,course_name,course_id):
     }
     return render(request,'lms/course-detail.html',context)
 
-def enroll_to_course(request,course_id,course_name):
-    if not request.user.is_authenticated:
-        messages.add_message(request,messages.WARNING,"Sorry, seems you are not login or registered with us.")
-        return redirect('handle_login')
-
-
-    last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
-    if not last_enroll_no:
-        enroll_id =  'ENCID' + '000001'
-    else:
-        enroll_no = last_enroll_no.enroll_id
-        enroll_no_int = int(enroll_no[5:11])
-        new_enroll_no_int = enroll_no_int + 1
-        enroll_id = 'ENCID'  + str(new_enroll_no_int).zfill(6)
-    course = Course.objects.filter(id=course_id).first()
-    
-    user = request.user
-    new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id)
-    new_enroll.save()
-    user = request.user.email
-    # param_dict = {
-    # 'MID': 'fikOkF17976878422958',
-    # 'ORDER_ID': str(enroll_id),
-    # 'TXN_AMOUNT': f"{course.special_price}",
-    # 'CUST_ID': user,
-    # 'INDUSTRY_TYPE_ID': 'Retail',
-    # 'WEBSITE': 'WEBSTAGING',
-    # 'CHANNEL_ID': 'WEB',
-    # 'CALLBACK_URL':'http://127.0.0.1:8000/handlerequest/',
-    # }
-    
-    # param_dict['CHECKSUMHASH'] = Checksum.generate_checksum(param_dict, MERCHANT_KEY)
-
-    # return render(request=request, template_name="lms/paytm.html", context={'param_dict':param_dict})
-    return render()
-
-
 @csrf_exempt
 def checkout(request,courseid):
     course = Course.objects.filter(id=courseid).first()
@@ -292,8 +254,6 @@ def checkout(request,courseid):
         'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
     })
 
-
-
 def thanks(request):
     last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
     if not last_enroll_no:
@@ -307,16 +267,13 @@ def thanks(request):
     course = Course.objects.filter(id=int(course_id)).first()
   
     user = request.user
-    new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id,status=True)
+    new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id,status=True,date=datetime.now())
     new_enroll.save()
     context={'enroll_id' : enroll_id}
     return render(request,'lms/thanks.html',context)
 
-
-
 def fail(request):
     return render(request,'lms/fail.html')
-
 
 @login_required(login_url='handle_login')
 def video_playlist(request,course_name,course_id,subject_id,video_id):
@@ -494,7 +451,12 @@ def teacher_student(request):
         course = EnrolledCourse.objects.filter(course__id=i.id).all()
         for j in course:
             student = User.objects.filter(id=j.user.id).first()
+           
             if not student in students:
+                student1 = student
+                course_expiry_date = j.date + relativedelta(months =+ int(j.course.duration))
+                print(course_expiry_date)
+                student = {'student':student1,'date':j.date,'enroll_id':j.enroll_id, 'request_status':j.request_deactivate, 'course_expiry_date': course_expiry_date}
                 students.append(student)
     context = {
         'students':students
@@ -541,7 +503,6 @@ def category_details(request,category_name):
 
     return render(request,'lms/course_by_category.html',context)
 
-
 def study_material(request,class_level):
     category_names = CategoryName.objects.all()
     
@@ -557,8 +518,6 @@ def study_material(request,class_level):
 
     }
     return render(request,'lms/study-material.html',context)
-
-
 
 def search_result(request,slug):
     if request.method=='POST':
@@ -583,7 +542,6 @@ def search_result(request,slug):
         'courses':current_page
     }
     return render(request,'lms/search_result.html',context)
-
 
 def bulk_admission(request):
 
@@ -651,4 +609,50 @@ def bulk_admission(request):
     
     return render(request,'lms/bulk_admission.html')
 
+@login_required(login_url='handle_login')
+def change_password(request):
+    if request.method == 'POST':
+        current_password = request.POST['current_password']
+        verify = authenticate(username=request.user.username,password=current_password)
+        if verify:
+            print('Verify./......................................................')
+            new_password = request.POST['new_password']
+            re_password = request.POST['re_password']
+            if new_password == re_password:
+                user = User.objects.filter(username=request.user.username).first()
+                user.set_password(new_password)
+                user.save()
+            else:
+                return redirect('index')
+        return redirect('handle_logout')
+
+
+
+def request_deactivate_subscription(request,enroll_id):
+    enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
+    if enroll.request_deactivate == 1:
+        enroll.request_deactivate = 2
+        enroll.save()
+    return redirect('teacher_student')
+
+
+
+def deactivate_subscription(request):
+    enroll_users = EnrolledCourse.objects.exclude(request_deactivate=1).all()
+    context = {'enroll':enroll_users}
+    return render(request,'lms/deactivate-subscription.html',context)
+
+def confirm_deactivate_subscription(request,enroll_id):
+    enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
+    enroll.status = False
+    enroll.request_deactivate = 3
+    enroll.save()
+    return redirect('deactivate_subscription')
+
+
+def cancel_deactivate_subscription(request,enroll_id):
+    enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
+    enroll.request_deactivate = 1
+    enroll.save()
+    return redirect('deactivate_subscription')
 

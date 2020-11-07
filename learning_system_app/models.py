@@ -96,8 +96,9 @@ class Course(models.Model):
     has_certificate = models.BooleanField(default=False)
     instructor = models.ForeignKey(Instructor,on_delete=models.CASCADE)
     is_popular = models.BooleanField(default=False)
+    message = models.CharField(max_length=300,null=True,blank=True)
     def __str__(self):
-        return f'{self.id} {self.course_name} by ({self.instructor.user.first_name} {self.instructor.user.last_name})'
+        return f'{self.course_name} by ({self.instructor.user.first_name} {self.instructor.user.last_name})'
 
 class CategoryName(models.Model):
     name = models.CharField(max_length=200)
@@ -121,8 +122,11 @@ class EnrolledCourse(models.Model):
     course = models.ForeignKey(Course,on_delete=models.CASCADE,related_name='enrolled_course_detail')
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='enrolled_user_detail')
     status = models.BooleanField(default=False)
+    date = models.DateTimeField(null=True,blank=True)
+    request_deactivate = models.IntegerField(default=1)
     def __str__(self):
         return f'{self.enroll_id}'
+
 
 class Review(models.Model):
     review = models.TextField(max_length=400,null=False,blank=False)

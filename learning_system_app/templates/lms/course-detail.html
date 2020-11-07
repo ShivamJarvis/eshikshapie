@@ -73,10 +73,15 @@
                 {% else %}
                 <h3 class="mt-5">Video Coming Soon...</h3>
                 {% endif %}
-            
-              
+                
+                
+                {% else %}
+                {% if course.message %}
+                <h3 class="mt-5 text-danger">{{course.message}}</h3>
+
               {% else %}
             <a href="#" id='buy_now_btn' class="btn btn-primary btn-take-course mt-3">Take This Course</a>
+            {% endif %}
             {% endif %}
             {% else %}
             <h2 class="mt-3">Not For Staff</h2>

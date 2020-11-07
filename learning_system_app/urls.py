@@ -12,10 +12,10 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/',views.activate,name='activate'),
     path('logout/',views.handle_logout,name='handle_logout'),
     path('checkout/<courseid>/',views.checkout,name='checkout'),
-    # path('handlerequest/',views.handle_request,name='handle_request'),
+  
     path('enroll-course/thanks/',views.thanks,name='thanks'),
     path('enroll-course/fail/',views.fail,name='fail'),
-    path('course/details/<course_name>/<int:course_id>/enroll/proceed/',views.enroll_to_course,name='enroll_to_course'),
+
     path('course/details/<course_name>/<int:course_id>/videos/<int:subject_id>/<int:video_id>/',views.video_playlist,name='video_playlist'),
     path('course/details/<course_name>/<int:course_id>/videos/<int:video_id>/<int:subject_id>/question-answer/',views.question_answer,name='question_answer'),
     path('study-material/class=<int:class_level>/',views.study_material,name='study_material'),
@@ -27,11 +27,16 @@ urlpatterns = [
     path('dashboard/student/q&a/delete/<int:question_id>',views.delete_student_question,name='delete_student_question'),
     path('dashboard/student/profile/',views.student_profile,name='student_profile'),
     path('dashboard/teacher/profile/',views.teacher_profile,name='teacher_profile'),
+    path('dashboard/teacher/subscription/deactivate/',views.deactivate_subscription,name='deactivate_subscription'),
+    path('dashboard/teacher/subscription/deactivate/confirm/<enroll_id>/',views.confirm_deactivate_subscription,name='confirm_deactivate_subscription'),
+    path('dashboard/teacher/subscription/deactivate/cancel/<enroll_id>/',views.cancel_deactivate_subscription,name='cancel_deactivate_subscription'),
+    path('dashboard/teacher/subscription/deactivate/request/<enroll_id>/',views.request_deactivate_subscription,name='request_deactivate_subscription'),
     path('dashboard/teacher/add-video/',views.teacher_add_video,name='teacher_add_video'),
     path('dashboard/teacher/create-announcement/',views.teacher_announce,name='teacher_announce'),
     path('dashboard/teacher/enroll-student/',views.teacher_student,name='teacher_student'),
     path('dashboard/teacher/q&a/',views.teacher_qa,name='teacher_qa'),
     path('dashboard/teacher/bulk-admission/',views.bulk_admission,name='bulk_admission'),
-
+    path('change-password/',views.change_password,name='change_password')
+ 
 
 ]
