@@ -124,6 +124,7 @@ class EnrolledCourse(models.Model):
     status = models.BooleanField(default=False)
     date = models.DateTimeField(null=True,blank=True)
     request_deactivate = models.IntegerField(default=1)
+    expiry_date = models.DateTimeField(null=True,blank=True)
     def __str__(self):
         return f'{self.enroll_id}'
 

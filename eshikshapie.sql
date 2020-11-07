@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2020 at 10:20 AM
+-- Generation Time: Nov 07, 2020 at 01:46 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.33
 
@@ -164,10 +164,9 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$gM0ONSynpTy7$jyMvKeNMTYkGPNnlOdDcpAO0XGvb7bKla1+N6koLSNc=', '2020-11-05 09:00:19.721832', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-11-01 06:19:27.000000'),
-(2, 'pbkdf2_sha256$216000$GsTaXvcx1Vqi$dkiiBQLWdwKywPOzz7lBBPPV2SscrS7B1cB5Adb0cXo=', NULL, 1, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-11-01 06:20:02.000000'),
-(20, 'pbkdf2_sha256$216000$AcCCTUf2L9UC$EataHN5mDt7Az5i4oT8SrUD71hDUwkAzi2V/VFVmQOA=', '2020-11-05 09:00:44.750064', 0, 'mpsShivamGupta', 'Shivam', 'Gupta', 'shivamgupta812367@gmail.com', 0, 1, '2020-11-03 08:55:59.000000'),
-(21, 'pbkdf2_sha256$216000$VwBFjbp3PJ4h$EhDuZbqFKqh9d7Kr4smGTEHMkAhBRDKhMTnjl07Vzvk=', NULL, 0, 'mpsRishabhGogia', 'Rishabh', 'Gogia', 'jarvis12g@gmail.com', 0, 1, '2020-11-03 08:56:04.000000');
+(1, 'pbkdf2_sha256$216000$9cqoOEMgAKk5$ap78NctAMx/ytndFpLyO74jpONxKo/6I4XnvpoXbzBU=', '2020-11-07 12:38:33.728914', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-11-01 06:19:27.000000'),
+(22, 'pbkdf2_sha256$216000$ew7HuIHOUuw4$icjqhQIjZAvoTEuor3LWa8E+413R/ktHTeZIzb6jkUw=', '2020-11-07 05:42:54.800406', 1, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-11-07 05:33:25.000000'),
+(23, 'pbkdf2_sha256$216000$4soDIa6lNjDG$0KljZVEAfd1ilBm+DY4nDlW69l8WjDlxrpFFjVB7Dtw=', '2020-11-07 12:21:33.840515', 0, 'abc', 'ABC', 'DEF', 'abc@abcd.com', 0, 1, '2020-11-07 06:31:14.322698');
 
 -- --------------------------------------------------------
 
@@ -283,7 +282,48 @@ INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`,
 (66, '2020-11-03 09:46:32.879226', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 2, 1),
 (67, '2020-11-05 06:14:17.631970', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Price key\"]}}]', 2, 1),
 (68, '2020-11-05 08:57:22.437842', '14', 'ENCID000003', 3, '', 3, 1),
-(69, '2020-11-05 09:00:04.506191', '15', 'ENCID000003', 3, '', 3, 1);
+(69, '2020-11-05 09:00:04.506191', '15', 'ENCID000003', 3, '', 3, 1),
+(70, '2020-11-05 09:30:48.931067', '4', 'Programming Courses', 1, '[{\"added\": {}}]', 19, 1),
+(71, '2020-11-05 09:35:04.995668', '3', '3 Python Programming by (Pulkit Arora)', 1, '[{\"added\": {}}]', 2, 1),
+(72, '2020-11-05 09:35:14.994669', '3', 'Category object (3)', 1, '[{\"added\": {}}]', 12, 1),
+(73, '2020-11-05 09:36:29.001373', '4', 'beginers by (Shivam Gupta)', 1, '[{\"added\": {}}]', 6, 1),
+(74, '2020-11-05 09:37:20.653102', '3', '3 Python Programming by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Is popular\"]}}]', 2, 1),
+(75, '2020-11-06 07:43:11.655792', '4', 'beginers by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Display name\"]}}]', 6, 1),
+(76, '2020-11-06 07:43:53.680486', '5', 'intermediate-python by (Shivam Gupta)', 1, '[{\"added\": {}}]', 6, 1),
+(77, '2020-11-06 07:44:19.920298', '6', 'advanced-python by (Pulkit Arora)', 1, '[{\"added\": {}}]', 6, 1),
+(78, '2020-11-06 07:46:49.889004', '3', '3 Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Price key\", \"Instructor\"]}}]', 2, 1),
+(79, '2020-11-06 07:50:05.286804', '2', 'How To Install Python And Visual Studio Code of (beginers)', 1, '[{\"added\": {}}]', 7, 1),
+(80, '2020-11-06 07:54:50.926755', '17', 'ENCID000004', 3, '', 3, 1),
+(81, '2020-11-07 05:31:12.762691', '3', '3 Python Programming by (Shivam Gupta)', 3, '', 2, 1),
+(82, '2020-11-07 05:31:12.802671', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 3, '', 2, 1),
+(83, '2020-11-07 05:31:12.838662', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 3, '', 2, 1),
+(84, '2020-11-07 05:31:40.700853', '21', 'mpsRishabhGogia', 3, '', 16, 1),
+(85, '2020-11-07 05:31:40.729846', '20', 'mpsShivamGupta', 3, '', 16, 1),
+(86, '2020-11-07 05:31:40.770008', '2', 'Pulkit', 3, '', 16, 1),
+(87, '2020-11-07 05:32:12.604340', '1', 'Shivam Gupta', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 4, 1),
+(88, '2020-11-07 05:33:25.610440', '22', 'Pulkit', 1, '[{\"added\": {}}]', 16, 1),
+(89, '2020-11-07 05:34:05.910841', '22', 'Pulkit', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\", \"Superuser status\"]}}]', 16, 1),
+(90, '2020-11-07 05:38:55.098849', '3', 'Pulkit Arora', 1, '[{\"added\": {}}]', 4, 1),
+(91, '2020-11-07 05:41:48.010545', '1', 'Shivam Gupta', 2, '[{\"changed\": {\"fields\": [\"Phone\", \"Dob\", \"Address\", \"Qualifications\", \"Year of experience\"]}}]', 4, 1),
+(92, '2020-11-07 05:41:54.487926', '1', 'Shivam Gupta', 2, '[]', 4, 1),
+(93, '2020-11-07 06:36:09.413002', '4', '4 Python Programming by (Shivam Gupta)', 1, '[{\"added\": {}}]', 2, 1),
+(94, '2020-11-07 06:36:56.585671', '7', 'Beginer Python by (Shivam Gupta)', 1, '[{\"added\": {}}]', 6, 1),
+(95, '2020-11-07 06:37:11.093036', '8', 'Intermediate Python by (Pulkit Arora)', 1, '[{\"added\": {}}]', 6, 1),
+(96, '2020-11-07 06:40:20.771397', '4', 'Category object (4)', 1, '[{\"added\": {}}]', 12, 1),
+(97, '2020-11-07 06:40:27.378946', '4', '4 Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Is popular\"]}}]', 2, 1),
+(98, '2020-11-07 07:49:06.255319', '18', 'ENCID000001', 3, '', 3, 1),
+(99, '2020-11-07 07:50:34.589212', '4', '4 Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Message\"]}}]', 2, 1),
+(100, '2020-11-07 07:52:08.169541', '4', '4 Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Message\"]}}]', 2, 1),
+(101, '2020-11-07 08:29:49.817447', '4', 'Python Programming by (Shivam Gupta)', 2, '[]', 2, 1),
+(102, '2020-11-07 09:05:33.806291', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Status\"]}}]', 3, 1),
+(103, '2020-11-07 09:06:41.843479', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Request deactivate\"]}}]', 3, 1),
+(104, '2020-11-07 09:07:00.049325', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Request deactivate\"]}}]', 3, 1),
+(105, '2020-11-07 09:09:33.085218', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Request deactivate\"]}}]', 3, 1),
+(106, '2020-11-07 09:10:03.001753', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Status\"]}}]', 3, 1),
+(107, '2020-11-07 09:10:08.088540', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Request deactivate\"]}}]', 3, 1),
+(108, '2020-11-07 09:15:52.848776', '4', 'Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Duration\"]}}]', 2, 1),
+(109, '2020-11-07 09:16:38.145036', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Status\", \"Request deactivate\"]}}]', 3, 1),
+(110, '2020-11-07 12:21:16.121347', '19', 'ENCID000001', 3, '', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -365,7 +405,11 @@ INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
 (23, 'learning_system_app', '0005_auto_20201102_1805', '2020-11-02 12:35:52.998959'),
 (24, 'learning_system_app', '0006_auto_20201103_1512', '2020-11-03 09:42:16.541310'),
 (25, 'learning_system_app', '0007_course_image', '2020-11-03 09:45:53.108246'),
-(26, 'learning_system_app', '0008_course_price_key', '2020-11-05 06:13:41.195214');
+(26, 'learning_system_app', '0008_course_price_key', '2020-11-05 06:13:41.195214'),
+(27, 'learning_system_app', '0009_enrolledcourse_date', '2020-11-07 06:29:51.796309'),
+(28, 'learning_system_app', '0010_course_message', '2020-11-07 07:46:20.390233'),
+(29, 'learning_system_app', '0011_enrolledcourse_request_deactivate', '2020-11-07 08:42:28.009531'),
+(30, 'learning_system_app', '0012_enrolledcourse_expiry_date', '2020-11-07 12:20:44.377550');
 
 -- --------------------------------------------------------
 
@@ -384,7 +428,9 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('4p2mdoy6us7xje1ya6cgecwo0dkp7w8a', '.eJxVjEEOwiAQRe_C2hCGAkWX7j0DGYZBqgaS0q6Md7dNutDtf-_9twi4LiWsnecwJXERWonT7xiRnlx3kh5Y701Sq8s8Rbkr8qBd3lri1_Vw_w4K9rLV3sOgiclFn-OYmY2LyrrIOmk3MhACYGbaKCrjgYwbUgY_WCI4Jys-XyozOO4:1kab8O:UCwdCsMYGVCE-XfUB3quuFnU56hfXu9POuHCyE3_g9A', '2020-11-19 09:00:44.848978');
+('g40owu22yavgpsryk5owf94j79jke31m', '.eJxVjEEOwiAQRe_C2hCGKdBx6b5naJgOStVAUtqV8e7apAvd_vfef6kxbmset5aWcRZ1Vtaq0-_IcXqkshO5x3KreqplXWbWu6IP2vRQJT0vh_t3kGPL39pQQJOQRQLZK6MwJIsdi-kpAXW-B-fYxQDA6AmZrTPeIAVPgDao9wfyAzay:1kbH02:n0XCzHlArX-ZirxSqBE0WcnLeDylhRVCr3084cpoU74', '2020-11-21 05:42:54.851158'),
+('oy8pb9mfetmhbsnrnmhsp6ilt6570iox', '.eJxVjEsOwjAMRO-SNVSJ2-bDkj1niBzboXzUoKYFCcTdKRIbdqN58-al4g1rfZSJ4yRV5jiXi4xqp5CeSe7b4HOAvtWehLQL3AqBResyGwTqSG1UxGUe4lJliideTfPfJaT18Qv4jOOxNFTGeTql5jtpfrQ2h8Jy3f-2fwcD1mG1A4kDtJk6a41PRgSsz8lmhC6BSaJ7gLY1Wa8R0AdxGQL36DQHw6LeH0zhTY4:1kbNUH:wEBBqEvZGU5VqqCt9Z-7SQkO_ygACFjziFNTOkC6IMY', '2020-11-21 12:38:33.789876'),
+('u9k559x14q2g8uzx0vnwej0715hkjgce', '.eJxVjEEOwiAQRe_C2hCGAkWX7j0DGYZBqgaS0q6Md7dNutDtf-_9twi4LiWsnecwJXERWonT7xiRnlx3kh5Y701Sq8s8Rbkr8qBd3lri1_Vw_w4K9rLV3sOgiclFn-OYmY2LyrrIOmk3MhACYGbaKCrjgYwbUgY_WCI4Jys-XyozOO4:1kawaS:wqDhuEmf5M2GgacC_Kr4XSpwKf0xMx9XJ1Oti8ByWVs', '2020-11-20 07:55:08.561116');
 
 -- --------------------------------------------------------
 
@@ -403,8 +449,7 @@ CREATE TABLE `learning_system_app_category` (
 --
 
 INSERT INTO `learning_system_app_category` (`id`, `category_name_id`, `course_id`) VALUES
-(1, 1, 1),
-(2, 1, 2);
+(4, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -423,7 +468,8 @@ CREATE TABLE `learning_system_app_categoryname` (
 
 INSERT INTO `learning_system_app_categoryname` (`id`, `name`) VALUES
 (1, 'Crash Courses'),
-(2, 'Test Series');
+(2, 'Test Series'),
+(4, 'Programming Courses');
 
 -- --------------------------------------------------------
 
@@ -461,16 +507,16 @@ CREATE TABLE `learning_system_app_course` (
   `instructor_id` int(11) NOT NULL,
   `intro_video` varchar(300) DEFAULT NULL,
   `image` varchar(100) DEFAULT NULL,
-  `price_key` varchar(200) DEFAULT NULL
+  `price_key` varchar(200) DEFAULT NULL,
+  `message` varchar(300) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `learning_system_app_course`
 --
 
-INSERT INTO `learning_system_app_course` (`id`, `course_name`, `curriculum`, `price`, `special_price`, `description`, `mini_info`, `duration`, `language`, `prequisites`, `has_certificate`, `is_popular`, `instructor_id`, `intro_video`, `image`, `price_key`) VALUES
-(1, 'Class 10 Crash Course', NULL, 4000, 3500, 'This crash course for class 10 students who want to score more than 95% in Board Exams.', 'This crash course for class 10 students who want to score more than 95% in Board Exams.', 'Complete', 'Hindi/English', 'No', 1, 1, 2, 'https://www.youtube.com/embed/dKIYUWrSc-0', 'corfor6.jpg', 'price_1Hk1YCEJThTwkNoP8krnIHM3'),
-(2, 'Class 12 Crash Course', NULL, 4500, 4000, 'This Course for class 12 Students who wants to score more than 95% marks in boards', 'This Course for class 12 Students who wants to score more than 95% marks in boards', 'Complete', 'English/Hindi', 'No', 0, 1, 1, 'https://www.youtube.com/embed/6G5Qr5eo-pk', 'corfor9.jpg', NULL);
+INSERT INTO `learning_system_app_course` (`id`, `course_name`, `curriculum`, `price`, `special_price`, `description`, `mini_info`, `duration`, `language`, `prequisites`, `has_certificate`, `is_popular`, `instructor_id`, `intro_video`, `image`, `price_key`, `message`) VALUES
+(4, 'Python Programming', NULL, 3500, 3000, 'This is Python Programming', 'This is python programming', '12', 'Hindi', 'No', 1, 1, 1, 'https://www.youtube.com/embed/UuBnGMtZfiE', 'python-logo.png', 'price_1Hk1YCEJThTwkNoP8krnIHM3', NULL);
 
 -- --------------------------------------------------------
 
@@ -483,16 +529,18 @@ CREATE TABLE `learning_system_app_enrolledcourse` (
   `enroll_id` varchar(30) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `course_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL
+  `user_id` int(11) NOT NULL,
+  `date` datetime(6) DEFAULT NULL,
+  `request_deactivate` int(11) NOT NULL,
+  `expiry_date` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `learning_system_app_enrolledcourse`
 --
 
-INSERT INTO `learning_system_app_enrolledcourse` (`id`, `enroll_id`, `status`, `course_id`, `user_id`) VALUES
-(12, 'ENCID000001', 1, 2, 20),
-(13, 'ENCID000002', 1, 2, 21);
+INSERT INTO `learning_system_app_enrolledcourse` (`id`, `enroll_id`, `status`, `course_id`, `user_id`, `date`, `request_deactivate`, `expiry_date`) VALUES
+(20, 'ENCID000001', 1, 4, 23, '2020-11-07 12:22:54.613767', 1, '2021-11-07 12:22:54.613767');
 
 -- --------------------------------------------------------
 
@@ -521,8 +569,8 @@ CREATE TABLE `learning_system_app_instructor` (
 --
 
 INSERT INTO `learning_system_app_instructor` (`id`, `instructor_id`, `phone`, `image`, `image_qr`, `dob`, `address`, `state`, `city`, `zip_code`, `qualifications`, `year_of_experience`, `user_id`) VALUES
-(1, '1', '123456789', 'director.jpg', 'qr_code1.png', '2020-11-01', 'Delhi', 'Delhi', 'Delhi', 'Delhi', 'BCA', '4', 1),
-(2, '2', '123456789', 'banner1.jpg', 'qr_code2.png', '2020-11-01', 'Ghaziabad', 'Ghaziabad', 'Ghaziabad', '201016', 'BCA', '3', 2);
+(1, '1', '8800514445', 'GUPTA_SHIVAM.png', 'qr_code1_Mm36D0V.png', '2000-03-05', '358, New Layal Pur, East Krishna Nagar, Delhi-110051', 'Delhi', 'Delhi', 'Delhi', 'BCA, MCA', '2', 1),
+(3, '2', '7065971154', 'ARORA_PULKIT.jpeg', 'qr_code2.png', '2000-06-10', 'Flat No L-5 Tower-B Himalaya Tanishq Raj Nagar Extension Ghaziabad', 'Uttar Pradesh', 'Ghaziabad', '201017', 'BCA, MCA', '2', 22);
 
 -- --------------------------------------------------------
 
@@ -541,7 +589,8 @@ CREATE TABLE `learning_system_app_loggedinuser` (
 --
 
 INSERT INTO `learning_system_app_loggedinuser` (`id`, `session_key`, `user_id`) VALUES
-(38, '4p2mdoy6us7xje1ya6cgecwo0dkp7w8a', 20);
+(51, 'g40owu22yavgpsryk5owf94j79jke31m', 22),
+(73, 'oy8pb9mfetmhbsnrnmhsp6ilt6570iox', 1);
 
 -- --------------------------------------------------------
 
@@ -609,9 +658,8 @@ CREATE TABLE `learning_system_app_subject` (
 --
 
 INSERT INTO `learning_system_app_subject` (`id`, `subject_name`, `course_id`, `instructor_id`, `display_name`) VALUES
-(1, 'Maths Class 10 Crash Course', 1, 1, 'Mathematics'),
-(2, 'Science Class 10 Crash Course', 1, 1, 'Science'),
-(3, 'English Class 10 Crash Course', 1, 1, 'English');
+(7, 'Beginer Python', 4, 1, 'Beginer Python'),
+(8, 'Intermediate Python', 4, 3, 'Intermediate Python');
 
 -- --------------------------------------------------------
 
@@ -642,8 +690,7 @@ CREATE TABLE `learning_system_app_user_profile` (
 --
 
 INSERT INTO `learning_system_app_user_profile` (`id`, `student_id`, `phone`, `image`, `image_qr`, `school_name`, `dob`, `session`, `mother_name`, `father_name`, `address`, `state`, `city`, `zip_code`, `user_id`) VALUES
-(16, 'ESKP000002', '1234567890', '', 'qr_codeESKP000002_EfrN0ZP.png', 'Modern Public School', '2000-05-03', '', 'XYZ', 'ABC', 'Delhi', 'Delhi', 'Delhi', '110051', 20),
-(17, 'ESKP000003', '1234567891', '', 'qr_codeESKP000003.png', 'Modern Public School', '2000-03-05', '', 'XYZ', 'ABC', 'Delhi', 'Delhi', 'Delhi', '110051', 21);
+(18, 'ESKP000001', '123456789', '', 'qr_codeESKP000001.png', '', '2020-11-07', '', 'dgdgfd', 'gdfgdg', 'gdgdfg', 'dfgdfg', 'dfgdfg', 'dfgdfg', 23);
 
 -- --------------------------------------------------------
 
@@ -666,7 +713,7 @@ CREATE TABLE `learning_system_app_video` (
 --
 
 INSERT INTO `learning_system_app_video` (`id`, `title`, `url`, `description`, `resources`, `course_id`, `subject_id`) VALUES
-(1, 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2', 'https://www.youtube.com/embed/dKIYUWrSc-0', 'This Video on CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2', NULL, 1, 1);
+(3, 'Python Begin', 'https://www.youtube.com/embed/9FD2ugeS4OU', 'Python Begin', '/media/intro%20python%20eshikshapi.pdf', 4, 7);
 
 --
 -- Indexes for dumped tables
@@ -868,7 +915,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
@@ -886,7 +933,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -898,19 +945,19 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_category`
 --
 ALTER TABLE `learning_system_app_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_categoryname`
 --
 ALTER TABLE `learning_system_app_categoryname`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_contact`
@@ -922,31 +969,31 @@ ALTER TABLE `learning_system_app_contact`
 -- AUTO_INCREMENT for table `learning_system_app_course`
 --
 ALTER TABLE `learning_system_app_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_enrolledcourse`
 --
 ALTER TABLE `learning_system_app_enrolledcourse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_instructor`
 --
 ALTER TABLE `learning_system_app_instructor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_loggedinuser`
 --
 ALTER TABLE `learning_system_app_loggedinuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_questionanswer`
 --
 ALTER TABLE `learning_system_app_questionanswer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_review`
@@ -964,19 +1011,19 @@ ALTER TABLE `learning_system_app_studymaterial`
 -- AUTO_INCREMENT for table `learning_system_app_subject`
 --
 ALTER TABLE `learning_system_app_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_user_profile`
 --
 ALTER TABLE `learning_system_app_user_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `learning_system_app_video`
 --
 ALTER TABLE `learning_system_app_video`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

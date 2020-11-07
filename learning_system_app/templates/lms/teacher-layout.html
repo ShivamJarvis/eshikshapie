@@ -80,13 +80,6 @@
           <span>Create Announcement</span></a>
       </li>
       
-      <!-- <li class="nav-item {% block update_video %} {% endblock %}">
-        <a class="nav-link" href="">
-            <i class="fal fa-diploma"></i>
-          <span>Update Video</span></a>
-      </li> -->
-
-
       <li class="nav-item {% block enroll_student %} {% endblock %}">
         <a class="nav-link" href="{% url 'teacher_student' %}">
             <i class="fal fa-diploma"></i>
@@ -109,9 +102,17 @@
 
     <li class="nav-item {% block deactivate_subscription %} {% endblock %}">
         <a class="nav-link" href="{% url 'deactivate_subscription' %}">
-          <i class="fas fa-mail-bulk"></i>
+          <i class="far fa-window-close"></i>
         <span>Deactivate Requests</span></a>
     </li>
+    
+    
+    <li class="nav-item {% block view_review %} {% endblock %}">
+        <a class="nav-link" href="{% url 'view_review' %}">
+          <i class="fas fa-file-pdf"></i>
+        <span>Pending Reviews</span></a>
+    </li>
+
 {% endif %}
 
      

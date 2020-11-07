@@ -1,0 +1,51 @@
+{% extends 'lms/teacher-layout.html' %}
+{% block title %}Teacher Dashboard{% endblock %}
+{% block view_review %}active{% endblock %}
+{% block body %}
+
+    <!-- Begin Page Content -->
+        <div class="container-fluid">
+            <h1>Total Deactivate Requests</h1>
+            <hr>
+            
+            <table id="example" class="display">
+                <thead>
+                    <tr>
+                        <th>Review</th>
+                        <th>Decision</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for review in reviews %}
+                    <tr>
+                        <td>{{review.review}}</td>
+                        <td>
+                            <a href="{% url 'accept_review' review_id=review.id %}" class="btn btn-primary">Accept</a>
+                            <a href="{% url 'dismiss_review' review_id=review.id %}" class="btn btn-danger">Dismiss</a>
+                        
+                        </td>
+                       
+                    </tr>
+                    {% endfor %}
+               
+                </tbody>
+            </table>
+      </div>
+
+  
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+{% endblock %}

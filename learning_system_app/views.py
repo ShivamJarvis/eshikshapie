@@ -16,7 +16,6 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes,force_text,DjangoUnicodeDecodeError
 from .utils import generate_token
 from learning_system_app.models import Contact,user_profile,Course,Instructor,EnrolledCourse,Review,Video,QuestionAnswer,Subject,Category,StudyMaterial,CategoryName
-from .Paytm import Checksum
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
@@ -265,9 +264,9 @@ def thanks(request):
         enroll_id = 'ENCID'  + str(new_enroll_no_int).zfill(6)
     course_id = request.GET.get('course_id') 
     course = Course.objects.filter(id=int(course_id)).first()
-  
+    course_expiry_date = datetime.now() + relativedelta(months =+ int(course.duration))
     user = request.user
-    new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id,status=True,date=datetime.now())
+    new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id,status=True,date=datetime.now(),expiry_date=course_expiry_date)
     new_enroll.save()
     context={'enroll_id' : enroll_id}
     return render(request,'lms/thanks.html',context)
@@ -454,9 +453,7 @@ def teacher_student(request):
            
             if not student in students:
                 student1 = student
-                course_expiry_date = j.date + relativedelta(months =+ int(j.course.duration))
-                print(course_expiry_date)
-                student = {'student':student1,'date':j.date,'enroll_id':j.enroll_id, 'request_status':j.request_deactivate, 'course_expiry_date': course_expiry_date}
+                student = {'student':student1,'date':j.date,'enroll_id':j.enroll_id, 'request_status':j.request_deactivate, 'course_expiry_date': j.expiry_date}
                 students.append(student)
     context = {
         'students':students
@@ -615,7 +612,6 @@ def change_password(request):
         current_password = request.POST['current_password']
         verify = authenticate(username=request.user.username,password=current_password)
         if verify:
-            print('Verify./......................................................')
             new_password = request.POST['new_password']
             re_password = request.POST['re_password']
             if new_password == re_password:
@@ -626,16 +622,12 @@ def change_password(request):
                 return redirect('index')
         return redirect('handle_logout')
 
-
-
 def request_deactivate_subscription(request,enroll_id):
     enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
     if enroll.request_deactivate == 1:
         enroll.request_deactivate = 2
         enroll.save()
     return redirect('teacher_student')
-
-
 
 def deactivate_subscription(request):
     enroll_users = EnrolledCourse.objects.exclude(request_deactivate=1).all()
@@ -649,10 +641,31 @@ def confirm_deactivate_subscription(request,enroll_id):
     enroll.save()
     return redirect('deactivate_subscription')
 
-
 def cancel_deactivate_subscription(request,enroll_id):
     enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
     enroll.request_deactivate = 1
     enroll.save()
     return redirect('deactivate_subscription')
 
+
+def rollback_deactivate_subscription(request,enroll_id):
+    enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
+    enroll.status = True
+    enroll.request_deactivate = 1
+    enroll.save()
+    return redirect('deactivate_subscription')
+
+def view_review(request):
+    reviews = Review.objects.exclude(is_approved=True).all()
+    context = {'reviews':reviews}
+    return render(request,'lms/view-review.html',context)
+
+def accept_review(request,review_id):
+    review = Review.objects.filter(id=review_id).first()
+    review.is_approved = True
+    review.save()
+    return redirect('view_review')
+
+def dismiss_review(request,review_id):
+    review = Review.objects.filter(id=review_id).delete()
+    return redirect('view_review')
