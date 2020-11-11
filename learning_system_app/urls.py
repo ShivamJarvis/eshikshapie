@@ -7,6 +7,8 @@ urlpatterns = [
     # Home Url
     path('',views.index,name='index'),
 
+    path('eshikshapie/terms-and-conditions/',views.t_and_c,name='tandc'),
+
     # About Page Url
     path('about/',views.about,name='about'),
 

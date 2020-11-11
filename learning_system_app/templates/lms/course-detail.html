@@ -30,6 +30,9 @@
     color: grey;
     text-transform: uppercase;
 }
+.modal-lg{
+  width: 80%!important;
+}
 </style>
 
 {% endblock %}
@@ -80,7 +83,11 @@
                 <h3 class="mt-5 text-danger">{{course.message}}</h3>
 
               {% else %}
+              {% if request.user.username %}
             <a href="#" id='buy_now_btn' class="btn btn-primary btn-take-course mt-3">Take This Course</a>
+            {% else %}
+            <a href="{% url 'handle_login' %}"  class="btn btn-primary btn-take-course mt-3">Login to take this course</a>
+            {% endif %}
             {% endif %}
             {% endif %}
             {% else %}
@@ -116,7 +123,7 @@
                  
                 </div>
                 <div class="col-6">
-                    <h6> {{course.duration}} </h6>
+                    <h6> {{course.duration}} Months</h6>
                     <hr>
                     <h6>{{course.language}} </h6>
                     <hr>
@@ -139,10 +146,58 @@
   </div>
 
   <div class="container my-2" >
-    <h3 class="my-3">CURRICULUMS</h3>
-    {% if course.curriculum %}
+    <h3 class="my-3">Course Content</h3>
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              Course Content
+            </button>
+          </h2>
+        </div>
+    
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+           <ol>
+             {% for video in all_videos %}
+             <li>{{video.title}} {% if video.is_free %}<!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary ml-5" data-toggle="modal" data-target="#exampleModal">
+                Preview
+              </button>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" data-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">{{video.title}}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <iframe width="780px" height="430px" class="p-3" src="{{video.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+             
+                    </div>
+                  </div>
+                </div>
+              </div>{% endif %}</li>
+             {% endfor %}
+             
+           </ol>
+          </div>
+        </div>
+      </div>
+     
+     
+    </div>
+    <!-- {% if course.curriculum %}
     <a href="#" class="btn btn-info">Download Curriculum</a>
-    {% endif %}
+    {% endif %} -->
     <hr>
   </div>
 

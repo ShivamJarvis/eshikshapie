@@ -220,9 +220,10 @@ def course_details(request,course_name,course_id):
             instructors.append(subject.instructor)
 
     
-   
+    all_videos = Video.objects.filter(course__id=course_id).all()
     context = {
         'videos':videos,
+        'all_videos':all_videos,
         'instructors':instructors,
         'subjects':subjects,
         'course':course,
@@ -234,8 +235,10 @@ def course_details(request,course_name,course_id):
     }
     return render(request,'lms/course-detail.html',context)
 
+
 @csrf_exempt
 def checkout(request,courseid):
+  
     course = Course.objects.filter(id=courseid).first()
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
@@ -254,6 +257,7 @@ def checkout(request,courseid):
     })
 
 def thanks(request):
+
     last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
     if not last_enroll_no:
         enroll_id =  'ENCID' + '000001'
@@ -266,6 +270,7 @@ def thanks(request):
     course = Course.objects.filter(id=int(course_id)).first()
     course_expiry_date = datetime.now() + relativedelta(months =+ int(course.duration))
     user = request.user
+    user = User.objects.filter(username=user.username).first()
     new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id,status=True,date=datetime.now(),expiry_date=course_expiry_date)
     new_enroll.save()
     context={'enroll_id' : enroll_id}
@@ -669,3 +674,7 @@ def accept_review(request,review_id):
 def dismiss_review(request,review_id):
     review = Review.objects.filter(id=review_id).delete()
     return redirect('view_review')
+
+
+def t_and_c(request):
+    return render(request,'lms/terms_and_conditions.html')

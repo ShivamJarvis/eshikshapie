@@ -84,7 +84,7 @@ class Course(models.Model):
     course_name = models.CharField(max_length=300,null=False,blank=False)
     intro_video = models.CharField(max_length=300,null=True,blank=True)
     image = models.ImageField(null = True,blank=True)
-    curriculum = models.URLField(null=True,blank=True)
+   
     price = models.FloatField()
     special_price = models.FloatField()
     price_key = models.CharField(max_length=200,null=True,blank=True)
@@ -143,6 +143,7 @@ class Video(models.Model):
     subject = models.ForeignKey(Subject,on_delete=models.CASCADE,null=True,blank=True,related_name='subject_video')
     course = models.ForeignKey(Course,on_delete=models.CASCADE,null=True,blank=True,related_name='course_video')
     resources = models.CharField(max_length=200,null=True,blank=True)
+    is_free = models.BooleanField(default=False)
     def __str__(self):
         return f'{self.title} of ({self.subject.subject_name})'
     
