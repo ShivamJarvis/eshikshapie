@@ -4,12 +4,12 @@
 {% block body %}
 
     <!-- Begin Page Content -->
-        <div class="container-fluid">
+    <div class="container-fluid">
 
       <h1 class="p-3">Add Video</h1>
             <hr>
 
-            <form action="{% url 'teacher_add_video' %}" method="POST" enctype="multipart/form-data" class="mb-5">
+            <form action="{% url 'teacher_add_video' %}" method="POST" enctype="multipart/form-data" class="mb-5" >
                 {% csrf_token %}
                 <div class="form-item my-4">
                     <label for="video_name">Video Title</label>

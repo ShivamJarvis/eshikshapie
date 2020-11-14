@@ -186,14 +186,20 @@ def contact(request):
         name = request.POST['name']
         email = request.POST['email']
         phone = request.POST['phone']
-        message = request.POST['message']
-        
-        new_contact = Contact(name=name,phone=phone,email=email,message=message)
+        my_message = request.POST['message']
+        new_contact = Contact(name=name,phone=phone,email=email,message=my_message)
         new_contact.save()
         subject = "Eshiksha Pie"
         message = "Thanks For Contacting Us "+name+". We will get in touch with you within 24 hours."
         from_email = settings.EMAIL_HOST_USER
         to_mail = [email]
+        send_mail(subject,message,from_email,to_mail,fail_silently=True)
+        
+        # For Office Use
+        subject = "New Contact"
+        message = f"Message from {name}\n{my_message}\n\nContact Info :\nPhone : {phone}\nEmail : {email}"
+        from_email = settings.EMAIL_HOST_USER
+        to_mail = [settings.EMAIL_HOST_USER]
         send_mail(subject,message,from_email,to_mail,fail_silently=True)
     return render(request,'lms/contact.html',context)
 
@@ -221,9 +227,11 @@ def course_details(request,course_name,course_id):
 
     
     all_videos = Video.objects.filter(course__id=course_id).all()
+    count_videos = Video.objects.filter(course__id=course_id).count()
     context = {
         'videos':videos,
         'all_videos':all_videos,
+        'count_videos':count_videos,
         'instructors':instructors,
         'subjects':subjects,
         'course':course,
@@ -234,7 +242,6 @@ def course_details(request,course_name,course_id):
   
     }
     return render(request,'lms/course-detail.html',context)
-
 
 @csrf_exempt
 def checkout(request,courseid):
