@@ -13,6 +13,15 @@
 }
 
 
+.razorpay-payment-button{
+
+  background-color: #054546;
+  color: white;
+  border-radius: 0px;
+  padding: 10px 15px;
+  border: none;
+
+}
 
 .btn-take-course{
     border-radius: 0px!important;
@@ -48,7 +57,7 @@
       <div class="row">
           <div class="col-lg-7 col-md-12 col-sm-12 text-center">
               <!-- 561x360 -->
-              <iframe width="561" height="360" src="{{course.intro_video}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="100%" height="360" src="{{course.intro_video}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
    
           <div class="col-lg-5 col-md-12 col-sm-12">
@@ -83,7 +92,24 @@
 
               {% else %}
               {% if request.user.username %}
-            <a href="#" id='buy_now_btn' class="btn btn-primary btn-take-course mt-3">Take This Course</a>
+              <form action="http://127.0.0.1:8000/payment/success/{{course.course_name}}/" method="POST">
+                {% csrf_token %}
+                <script
+                    src="https://checkout.razorpay.com/v1/checkout.js"
+                    data-key="rzp_test_LzwHnNu92TT3HV" 
+                    data-amount="{{special_price}}"
+                    data-currency="INR"
+             
+                    data-buttontext="Take This Course"
+                    data-name="Eshikshapie"
+                    data-description="{{course.course_name}}"
+                  
+                    data-prefill.name="{{request.user.first_name}}"
+                    data-prefill.email="{{request.user.email}}"
+                    data-theme.color="#2079AF"
+                ></script>
+                <input type="hidden" custom="Hidden Element" name="hidden">
+                </form>  
             {% else %}
             <a href="{% url 'handle_login' %}"  class="btn btn-primary btn-take-course mt-3">Login to take this course</a>
             {% endif %}
@@ -122,7 +148,7 @@
                  
                 </div>
                 <div class="col-6">
-                    <h6> {{course.duration}} Months</h6>
+                    <h6>Approx {{course.duration}} Months</h6>
                     <hr>
                     <h6>{{course.language}} </h6>
                     <hr>
@@ -178,7 +204,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                      <iframe width="780px" height="430px" class="p-3" src="{{video.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      <iframe width="100%" height="430px" class="p-3" src="{{video.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -241,28 +267,12 @@
 
 {% block js %}
 
-   <script src="https://js.stripe.com/v3/"></script>
+
 <script>
-  const buy_now_button = document.querySelector('#buy_now_btn')
 
-  buy_now_button.addEventListener('click', event => {   
-    fetch('/checkout/{{course.id}}/')
-    .then((result) => { return result.json() })
-    .then((data) => {
-      var stripe = Stripe(data.stripe_public_key);
 
-      stripe.redirectToCheckout({
-      // Make the id field from the Checkout Session creation API response
-      // available to this file, so you can provide it as parameter here
-      // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-        sessionId: data.session_id
-      }).then(function (result) {
-        // If `redirectToCheckout` fails due to a browser or network
-        // error, display the localized error message to your customer
-        // using `result.error.message`.
-      });
-    }) 
-  })
+
 </script>
+   
 
 {% endblock %}

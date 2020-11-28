@@ -37,11 +37,11 @@ urlpatterns = [
     path('checkout/<courseid>/',views.checkout,name='checkout'),
     
     # Checkout Success Url
-    path('enroll-course/thanks/',views.thanks,name='thanks'),
+    path('payment/success/<course_name>/',views.thanks,name='thanks'),
 
 
     # Checkout Fail Url
-    path('enroll-course/fail/',views.fail,name='fail'),
+    # path('enroll-course/fail/',views.fail,name='fail'),
 
     # Video Playlist Url
     path('course/details/<course_name>/<int:course_id>/videos/<int:subject_id>/<int:video_id>/',views.video_playlist,name='video_playlist'),

@@ -1,4 +1,4 @@
-{% extends 'lms/layout.html' %}
+{% extends 'lms/student_dashboard_layouts.html' %}
 {% block title %}Student Dashboard{% endblock %}
 {% block enroll_courses %}active{% endblock %}
 {% block css %}
@@ -12,7 +12,7 @@
 {% block body %}
 
 <!-- Begin Page Content -->
-<div class="container-fluid p-5">
+
 
     <h1>Enrolled Courses</h1>
     <hr>
@@ -56,8 +56,8 @@
                                 <div class="modal-body">
                                     <form action="{% url 'submit_reviews' enroll_id=course.enroll.id %}" method="POST">
                                         {% csrf_token %}
-                                        <label for="review{{course.course.id}}">Write A Review :</label>
-                                        <textarea name="review" id="review{{course.course.id}}" class="form-control" cols="5" rows="5"></textarea>
+                                        <label for="review{{course.enroll.course.id}}">Write A Review :</label>
+                                        <textarea name="review" id="review{{course.enroll.course.id}}" class="form-control" cols="5" rows="5"></textarea>
                                         <button class="btn btn-danger mt-3" type="submit">SUBMIT</button>
                                     </form>
                                     </div>
@@ -79,6 +79,5 @@
 
     </div>
 
-</div>
 
 {% endblock %}

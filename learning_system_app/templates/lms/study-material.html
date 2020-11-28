@@ -27,8 +27,11 @@
                     <td>{{material.chapter_no}}</td>
                     <td>{{material.name}}</td>
                     <td><a href="{{material.study_file}}" class="btn btn-info" download>Download</a></td>
+                    {% if material.answer_file %}
                     <td><a href="{{material.answer_file}}" class="btn btn-danger" download>Download</a></td>
-                    
+                    {% else %}
+                    <td>N/A</td>
+                    {% endif %}
                   </tr>
                   {% endif %}
                   {% endfor %}

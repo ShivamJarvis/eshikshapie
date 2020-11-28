@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
 ]
 
 MIDDLEWARE = [
@@ -129,8 +130,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static')
+STATIC_URL = '/static/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 
@@ -139,6 +141,3 @@ EMAIL_PORT= 587
 EMAIL_HOST_USER= 'spdevelopers2000@gmail.com'
 EMAIL_HOST_PASSWORD= 'ShivamPulkit@123'
 EMAIL_USE_TLS= True
-
-STRIPE_PUBLIC_KEY = 'pk_test_51HYq6AEJThTwkNoPk60wOnojEk66GUXmUaUiNzDkWaymqtDGkAse4iyoDwfzXcMdJ429xH7x1pUb50F6WqxcTaPl00N2h7qWBx'
-STRIPE_PRIVATE_KEY = 'sk_test_51HYq6AEJThTwkNoPhTwmPkwpAu7KPcCHkoJAneMjwGlxe6rC3UXjjq2EEwJhbQpiOhIjzEEHv5nNUnkgWPHsCThH00ANAwAeHt'

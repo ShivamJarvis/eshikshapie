@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.6.6deb5ubuntu0.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 12, 2020 at 08:49 AM
+-- Generation Time: Nov 21, 2020 at 07:28 AM
 -- Server version: 5.7.32-0ubuntu0.18.04.1
 -- PHP Version: 7.2.24-0ubuntu0.18.04.7
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `auth_group` (
   `id` int(11) NOT NULL,
   `name` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -41,7 +41,7 @@ CREATE TABLE `auth_group_permissions` (
   `id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -54,89 +54,89 @@ CREATE TABLE `auth_permission` (
   `name` varchar(255) NOT NULL,
   `content_type_id` int(11) NOT NULL,
   `codename` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `auth_permission`
 --
 
 INSERT INTO `auth_permission` (`id`, `name`, `content_type_id`, `codename`) VALUES
-(1, 'Can add contact', 1, 'add_contact'),
-(2, 'Can change contact', 1, 'change_contact'),
-(3, 'Can delete contact', 1, 'delete_contact'),
-(4, 'Can view contact', 1, 'view_contact'),
-(5, 'Can add course', 2, 'add_course'),
-(6, 'Can change course', 2, 'change_course'),
-(7, 'Can delete course', 2, 'delete_course'),
-(8, 'Can view course', 2, 'view_course'),
-(9, 'Can add enrolled course', 3, 'add_enrolledcourse'),
-(10, 'Can change enrolled course', 3, 'change_enrolledcourse'),
-(11, 'Can delete enrolled course', 3, 'delete_enrolledcourse'),
-(12, 'Can view enrolled course', 3, 'view_enrolledcourse'),
-(13, 'Can add instructor', 4, 'add_instructor'),
-(14, 'Can change instructor', 4, 'change_instructor'),
-(15, 'Can delete instructor', 4, 'delete_instructor'),
-(16, 'Can view instructor', 4, 'view_instructor'),
-(17, 'Can add study material', 5, 'add_studymaterial'),
-(18, 'Can change study material', 5, 'change_studymaterial'),
-(19, 'Can delete study material', 5, 'delete_studymaterial'),
-(20, 'Can view study material', 5, 'view_studymaterial'),
-(21, 'Can add subject', 6, 'add_subject'),
-(22, 'Can change subject', 6, 'change_subject'),
-(23, 'Can delete subject', 6, 'delete_subject'),
-(24, 'Can view subject', 6, 'view_subject'),
-(25, 'Can add video', 7, 'add_video'),
-(26, 'Can change video', 7, 'change_video'),
-(27, 'Can delete video', 7, 'delete_video'),
-(28, 'Can view video', 7, 'view_video'),
-(29, 'Can add user_profile', 8, 'add_user_profile'),
-(30, 'Can change user_profile', 8, 'change_user_profile'),
-(31, 'Can delete user_profile', 8, 'delete_user_profile'),
-(32, 'Can view user_profile', 8, 'view_user_profile'),
-(33, 'Can add review', 9, 'add_review'),
-(34, 'Can change review', 9, 'change_review'),
-(35, 'Can delete review', 9, 'delete_review'),
-(36, 'Can view review', 9, 'view_review'),
-(37, 'Can add question answer', 10, 'add_questionanswer'),
-(38, 'Can change question answer', 10, 'change_questionanswer'),
-(39, 'Can delete question answer', 10, 'delete_questionanswer'),
-(40, 'Can view question answer', 10, 'view_questionanswer'),
-(41, 'Can add logged in user', 11, 'add_loggedinuser'),
-(42, 'Can change logged in user', 11, 'change_loggedinuser'),
-(43, 'Can delete logged in user', 11, 'delete_loggedinuser'),
-(44, 'Can view logged in user', 11, 'view_loggedinuser'),
-(45, 'Can add category', 12, 'add_category'),
-(46, 'Can change category', 12, 'change_category'),
-(47, 'Can delete category', 12, 'delete_category'),
-(48, 'Can view category', 12, 'view_category'),
-(49, 'Can add log entry', 13, 'add_logentry'),
-(50, 'Can change log entry', 13, 'change_logentry'),
-(51, 'Can delete log entry', 13, 'delete_logentry'),
-(52, 'Can view log entry', 13, 'view_logentry'),
-(53, 'Can add permission', 14, 'add_permission'),
-(54, 'Can change permission', 14, 'change_permission'),
-(55, 'Can delete permission', 14, 'delete_permission'),
-(56, 'Can view permission', 14, 'view_permission'),
-(57, 'Can add group', 15, 'add_group'),
-(58, 'Can change group', 15, 'change_group'),
-(59, 'Can delete group', 15, 'delete_group'),
-(60, 'Can view group', 15, 'view_group'),
-(61, 'Can add user', 16, 'add_user'),
-(62, 'Can change user', 16, 'change_user'),
-(63, 'Can delete user', 16, 'delete_user'),
-(64, 'Can view user', 16, 'view_user'),
-(65, 'Can add content type', 17, 'add_contenttype'),
-(66, 'Can change content type', 17, 'change_contenttype'),
-(67, 'Can delete content type', 17, 'delete_contenttype'),
-(68, 'Can view content type', 17, 'view_contenttype'),
-(69, 'Can add session', 18, 'add_session'),
-(70, 'Can change session', 18, 'change_session'),
-(71, 'Can delete session', 18, 'delete_session'),
-(72, 'Can view session', 18, 'view_session'),
-(73, 'Can add category name', 19, 'add_categoryname'),
-(74, 'Can change category name', 19, 'change_categoryname'),
-(75, 'Can delete category name', 19, 'delete_categoryname'),
-(76, 'Can view category name', 19, 'view_categoryname');
+(1, 'Can add category name', 1, 'add_categoryname'),
+(2, 'Can change category name', 1, 'change_categoryname'),
+(3, 'Can delete category name', 1, 'delete_categoryname'),
+(4, 'Can view category name', 1, 'view_categoryname'),
+(5, 'Can add contact', 2, 'add_contact'),
+(6, 'Can change contact', 2, 'change_contact'),
+(7, 'Can delete contact', 2, 'delete_contact'),
+(8, 'Can view contact', 2, 'view_contact'),
+(9, 'Can add course', 3, 'add_course'),
+(10, 'Can change course', 3, 'change_course'),
+(11, 'Can delete course', 3, 'delete_course'),
+(12, 'Can view course', 3, 'view_course'),
+(13, 'Can add enrolled course', 4, 'add_enrolledcourse'),
+(14, 'Can change enrolled course', 4, 'change_enrolledcourse'),
+(15, 'Can delete enrolled course', 4, 'delete_enrolledcourse'),
+(16, 'Can view enrolled course', 4, 'view_enrolledcourse'),
+(17, 'Can add instructor', 5, 'add_instructor'),
+(18, 'Can change instructor', 5, 'change_instructor'),
+(19, 'Can delete instructor', 5, 'delete_instructor'),
+(20, 'Can view instructor', 5, 'view_instructor'),
+(21, 'Can add study material', 6, 'add_studymaterial'),
+(22, 'Can change study material', 6, 'change_studymaterial'),
+(23, 'Can delete study material', 6, 'delete_studymaterial'),
+(24, 'Can view study material', 6, 'view_studymaterial'),
+(25, 'Can add subject', 7, 'add_subject'),
+(26, 'Can change subject', 7, 'change_subject'),
+(27, 'Can delete subject', 7, 'delete_subject'),
+(28, 'Can view subject', 7, 'view_subject'),
+(29, 'Can add video', 8, 'add_video'),
+(30, 'Can change video', 8, 'change_video'),
+(31, 'Can delete video', 8, 'delete_video'),
+(32, 'Can view video', 8, 'view_video'),
+(33, 'Can add user_profile', 9, 'add_user_profile'),
+(34, 'Can change user_profile', 9, 'change_user_profile'),
+(35, 'Can delete user_profile', 9, 'delete_user_profile'),
+(36, 'Can view user_profile', 9, 'view_user_profile'),
+(37, 'Can add review', 10, 'add_review'),
+(38, 'Can change review', 10, 'change_review'),
+(39, 'Can delete review', 10, 'delete_review'),
+(40, 'Can view review', 10, 'view_review'),
+(41, 'Can add question answer', 11, 'add_questionanswer'),
+(42, 'Can change question answer', 11, 'change_questionanswer'),
+(43, 'Can delete question answer', 11, 'delete_questionanswer'),
+(44, 'Can view question answer', 11, 'view_questionanswer'),
+(45, 'Can add logged in user', 12, 'add_loggedinuser'),
+(46, 'Can change logged in user', 12, 'change_loggedinuser'),
+(47, 'Can delete logged in user', 12, 'delete_loggedinuser'),
+(48, 'Can view logged in user', 12, 'view_loggedinuser'),
+(49, 'Can add category', 13, 'add_category'),
+(50, 'Can change category', 13, 'change_category'),
+(51, 'Can delete category', 13, 'delete_category'),
+(52, 'Can view category', 13, 'view_category'),
+(53, 'Can add log entry', 14, 'add_logentry'),
+(54, 'Can change log entry', 14, 'change_logentry'),
+(55, 'Can delete log entry', 14, 'delete_logentry'),
+(56, 'Can view log entry', 14, 'view_logentry'),
+(57, 'Can add permission', 15, 'add_permission'),
+(58, 'Can change permission', 15, 'change_permission'),
+(59, 'Can delete permission', 15, 'delete_permission'),
+(60, 'Can view permission', 15, 'view_permission'),
+(61, 'Can add group', 16, 'add_group'),
+(62, 'Can change group', 16, 'change_group'),
+(63, 'Can delete group', 16, 'delete_group'),
+(64, 'Can view group', 16, 'view_group'),
+(65, 'Can add user', 17, 'add_user'),
+(66, 'Can change user', 17, 'change_user'),
+(67, 'Can delete user', 17, 'delete_user'),
+(68, 'Can view user', 17, 'view_user'),
+(69, 'Can add content type', 18, 'add_contenttype'),
+(70, 'Can change content type', 18, 'change_contenttype'),
+(71, 'Can delete content type', 18, 'delete_contenttype'),
+(72, 'Can view content type', 18, 'view_contenttype'),
+(73, 'Can add session', 19, 'add_session'),
+(74, 'Can change session', 19, 'change_session'),
+(75, 'Can delete session', 19, 'delete_session'),
+(76, 'Can view session', 19, 'view_session');
 
 -- --------------------------------------------------------
 
@@ -156,19 +156,18 @@ CREATE TABLE `auth_user` (
   `is_staff` tinyint(1) NOT NULL,
   `is_active` tinyint(1) NOT NULL,
   `date_joined` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `auth_user`
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$Mjd41s8IXKTY$3/t73QZNxmNRrE/pkt43K+sSNr/ARDFfsqlZA91PWtg=', '2020-11-11 11:39:33.060302', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-11-01 06:19:27.000000'),
-(22, 'pbkdf2_sha256$216000$EDs7wlJEXmKb$hYShYtihd892cA6Qq4dg0f6r4z4W9aMOpIFJsZ01ZS4=', '2020-11-08 16:59:09.645945', 1, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-11-07 05:33:25.000000'),
-(24, 'pbkdf2_sha256$216000$pvPJFcYEIer8$ZxdfKxEuECn3b9us0v7gTyGQdx+3ms2jnR7WRW188o8=', '2020-11-08 09:46:23.926120', 0, 'AmitKumar', 'Amit', 'Tyagi', 'aktyagi2807@gmail.com', 1, 1, '2020-11-08 07:49:33.000000'),
-(25, 'pbkdf2_sha256$216000$Oh2JTnVfbhYq$IrGn90TujkSo5mfCMzx0ifntHkU7/4UQuICkzFii5SI=', NULL, 0, 'CSYadav', 'Chandrajeet Singh', 'Yadav', 'yashvita09@gmail.com', 1, 1, '2020-11-08 08:07:14.000000'),
-(26, 'pbkdf2_sha256$216000$Z0clmwA2L5hu$4aQhh+FEEFVA6aRw2AtiVha6cqlil602SXlzQ2X96rs=', NULL, 0, 'Vikas', 'Vikas', 'Chauhan', 'vc171098@gmail.com', 1, 1, '2020-11-08 08:09:44.000000'),
-(27, 'pbkdf2_sha256$216000$sxbhFcb2fTjs$0nfWN5/nFGvUh67uRzzcerUM10QDIBAjpBufPc+fPUQ=', '2020-11-08 08:23:57.766945', 0, 'Jyoti', 'Jyoti', 'Pal', 'jyotipal12341@gmail.com', 1, 1, '2020-11-08 08:11:12.000000');
+(1, 'pbkdf2_sha256$216000$VIMchPbCzUEn$qImFvdkOYsvd/60sPnpzeoVAJmnluQnOV8XwMHFjnXo=', '2020-11-19 05:17:47.391702', 1, 'Shivam', 'Shivam', 'Gupta', 'sg330415@gmail.com', 1, 1, '2020-11-13 06:14:29.000000'),
+(2, 'pbkdf2_sha256$216000$0PZetGYJluyw$2sHOXT0trKly1ldIcs51hATTMjQvAcrfBAkHwxYXMug=', '2020-11-15 14:38:16.267671', 1, 'Pulkit', 'Pulkit', 'Arora', 'apulkit674@gmail.com', 1, 1, '2020-11-13 06:30:39.000000'),
+(3, 'pbkdf2_sha256$216000$CDq77iVoYeLV$rV97Yxl0ySi9ACFfMQZqsFD+43oHckWnX62W2PCfwwc=', '2020-11-15 10:45:48.095022', 1, 'AmitKumar', 'Amit', 'Tyagi', 'aktyagi2807@gmail.com', 1, 1, '2020-11-13 07:10:06.000000'),
+(4, 'pbkdf2_sha256$216000$OQbbB02znjv8$/kkSkxMD3qNvb430DfF1voyvx2Z7C3QJx7ouThV1Mkw=', '2020-11-13 15:11:49.737887', 0, 'CSYadav', 'C.S.', 'Yadav', 'yashvita09@gmail.com', 1, 1, '2020-11-13 07:11:24.000000'),
+(5, 'pbkdf2_sha256$216000$IMHwouk15X3Y$qmScJBzmCOHAkD2taavLsV6rBw329KFd69Qf/FKw0cs=', NULL, 0, 'Vikas', 'Vikas', 'Chauhan', 'vc171098@gmail.com', 1, 1, '2020-11-13 07:13:38.000000');
 
 -- --------------------------------------------------------
 
@@ -180,7 +179,7 @@ CREATE TABLE `auth_user_groups` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `group_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -192,7 +191,7 @@ CREATE TABLE `auth_user_user_permissions` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -209,144 +208,54 @@ CREATE TABLE `django_admin_log` (
   `change_message` longtext NOT NULL,
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `django_admin_log`
 --
 
 INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
-(1, '2020-11-01 06:48:19.355255', '1', 'Crash Courses', 1, '[{\"added\": {}}]', 19, 1),
-(2, '2020-11-01 06:48:29.710437', '2', 'Test Series', 1, '[{\"added\": {}}]', 19, 1),
-(3, '2020-11-01 07:21:36.415893', '1', ' ', 1, '[{\"added\": {}}]', 4, 1),
-(4, '2020-11-01 07:21:52.992557', '1', 'Shivam', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]', 16, 1),
-(5, '2020-11-01 07:22:03.890405', '2', 'Pulkit', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]', 16, 1),
-(6, '2020-11-01 07:23:50.292993', '1', '1 Class 10 Crash Course by (Shivam Gupta)', 1, '[{\"added\": {}}]', 2, 1),
-(7, '2020-11-01 07:24:02.344543', '1', 'Category object (1)', 1, '[{\"added\": {}}]', 12, 1),
-(8, '2020-11-01 07:24:29.167341', '1', '1 Class 10 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Description\", \"Mini info\"]}}]', 2, 1),
-(9, '2020-11-01 07:27:36.336960', '1', 'Maths Class 10 Crash Course by (Shivam Gupta)', 1, '[{\"added\": {}}]', 6, 1),
-(10, '2020-11-01 07:28:15.920670', '2', 'Science Class 10 Crash Course by (Shivam Gupta)', 1, '[{\"added\": {}}]', 6, 1),
-(11, '2020-11-01 07:29:18.982196', '2', 'Pulkit Arora', 1, '[{\"added\": {}}]', 4, 1),
-(12, '2020-11-01 07:29:42.511045', '3', 'English Class 10 Crash Course by (Pulkit Arora)', 1, '[{\"added\": {}}]', 6, 1),
-(13, '2020-11-01 07:31:31.282247', '1', 'Maths Class 10 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Display name\"]}}]', 6, 1),
-(14, '2020-11-01 07:31:37.350203', '2', 'Science Class 10 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Display name\"]}}]', 6, 1),
-(15, '2020-11-01 07:31:44.144153', '3', 'English Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Display name\"]}}]', 6, 1),
-(16, '2020-11-01 07:43:20.289949', '3', 'Pre-Foundation Courses', 1, '[{\"added\": {}}]', 19, 1),
-(17, '2020-11-01 07:43:35.134940', '3', 'Pre-Foundation Courses', 3, '', 19, 1),
-(18, '2020-11-01 08:22:49.005668', '4', 'nobita', 3, '', 16, 1),
-(19, '2020-11-01 08:23:04.884613', '3', 'shinchan', 3, '', 16, 1),
-(20, '2020-11-01 09:10:14.121379', '2', '2 Class 12 Crash Course by (Pulkit Arora)', 1, '[{\"added\": {}}]', 2, 1),
-(21, '2020-11-02 10:00:11.978469', '2', 'Category object (2)', 1, '[{\"added\": {}}]', 12, 1),
-(22, '2020-11-02 11:48:38.961325', '5', 'mpsShivamGupta', 3, '', 16, 1),
-(23, '2020-11-02 11:49:22.642004', '6', 'mpsShivamGupta', 3, '', 16, 1),
-(24, '2020-11-02 12:04:56.194158', '8', 'mpsRishabhGogia', 3, '', 16, 1),
-(25, '2020-11-02 12:04:56.241155', '7', 'mpsShivamGupta', 3, '', 16, 1),
-(26, '2020-11-02 12:08:53.284448', '9', 'mpsShivamGupta', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
-(27, '2020-11-02 12:11:03.132465', '10', 'mpsRishabhGogia', 3, '', 16, 1),
-(28, '2020-11-02 12:11:03.161879', '9', 'mpsShivamGupta', 3, '', 16, 1),
-(29, '2020-11-02 12:12:32.828931', '11', 'mpsShivamGupta', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
-(30, '2020-11-02 12:13:37.997956', '11', 'mpsShivamGupta', 2, '[]', 16, 1),
-(31, '2020-11-02 12:13:45.523045', '12', 'mpsRishabhGogia', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
-(32, '2020-11-02 12:15:40.133227', '12', 'mpsRishabhGogia', 3, '', 16, 1),
-(33, '2020-11-02 12:15:40.180297', '11', 'mpsShivamGupta', 3, '', 16, 1),
-(34, '2020-11-02 12:21:37.414900', '14', 'mpsRishabhGogia', 3, '', 16, 1),
-(35, '2020-11-02 12:21:37.458803', '13', 'mpsShivamGupta', 3, '', 16, 1),
-(36, '2020-11-02 12:22:58.563935', '16', 'mpsRishabhGogia', 3, '', 16, 1),
-(37, '2020-11-02 12:22:58.602972', '15', 'mpsShivamGupta', 3, '', 16, 1),
-(38, '2020-11-02 12:23:54.057425', '11', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Status\"]}}]', 3, 1),
-(39, '2020-11-02 12:23:57.062799', '10', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Status\"]}}]', 3, 1),
-(40, '2020-11-02 12:24:53.244968', '17', 'mpsShivamGupta', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
-(41, '2020-11-02 12:32:07.652169', '18', 'mpsRishabhGogia', 3, '', 16, 1),
-(42, '2020-11-02 12:32:07.689023', '17', 'mpsShivamGupta', 3, '', 16, 1),
-(43, '2020-11-03 08:57:10.790686', '21', 'mpsRishabhGogia', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
-(44, '2020-11-03 08:57:23.404259', '20', 'mpsShivamGupta', 2, '[{\"changed\": {\"fields\": [\"Active\"]}}]', 16, 1),
-(45, '2020-11-03 09:06:16.563365', '12', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
-(46, '2020-11-03 09:06:20.264338', '13', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
-(47, '2020-11-03 09:06:49.609110', '13', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
-(48, '2020-11-03 09:06:55.400406', '12', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
-(49, '2020-11-03 09:07:09.303717', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Instructor\"]}}]', 2, 1),
-(50, '2020-11-03 09:07:50.215405', '3', 'English Class 10 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Instructor\"]}}]', 6, 1),
-(51, '2020-11-03 09:08:13.393417', '13', 'ENCID000002', 2, '[]', 3, 1),
-(52, '2020-11-03 09:08:16.279488', '12', 'ENCID000001', 2, '[]', 3, 1),
-(53, '2020-11-03 09:08:23.776412', '13', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
-(54, '2020-11-03 09:08:37.360333', '13', 'ENCID000002', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
-(55, '2020-11-03 09:11:18.118154', '1', 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2 of (Maths Class 10 Crash Course)', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 7, 1),
-(56, '2020-11-03 09:11:24.383109', '1', 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2 of (Maths Class 10 Crash Course)', 2, '[]', 7, 1),
-(57, '2020-11-03 09:11:46.848940', '1', 'CLASS 10 CHAPTER 3 LINEAR EQATIONS - 2 of (Maths Class 10 Crash Course)', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 7, 1),
-(58, '2020-11-03 09:12:23.832666', '19', 'mpsShivam', 3, '', 16, 1),
-(59, '2020-11-03 09:12:56.443429', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[]', 2, 1),
-(60, '2020-11-03 09:14:43.822943', '12', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
-(61, '2020-11-03 09:15:03.104503', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Instructor\"]}}]', 2, 1),
-(62, '2020-11-03 09:15:18.402393', '12', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Course\"]}}]', 3, 1),
-(63, '2020-11-03 09:43:38.046923', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Intro video\"]}}]', 2, 1),
-(64, '2020-11-03 09:44:42.685451', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Intro video\"]}}]', 2, 1),
-(65, '2020-11-03 09:46:26.658814', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 2, 1),
-(66, '2020-11-03 09:46:32.879226', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 2, 1),
-(67, '2020-11-05 06:14:17.631970', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Price key\"]}}]', 2, 1),
-(68, '2020-11-05 08:57:22.437842', '14', 'ENCID000003', 3, '', 3, 1),
-(69, '2020-11-05 09:00:04.506191', '15', 'ENCID000003', 3, '', 3, 1),
-(70, '2020-11-05 09:30:48.931067', '4', 'Programming Courses', 1, '[{\"added\": {}}]', 19, 1),
-(71, '2020-11-05 09:35:04.995668', '3', '3 Python Programming by (Pulkit Arora)', 1, '[{\"added\": {}}]', 2, 1),
-(72, '2020-11-05 09:35:14.994669', '3', 'Category object (3)', 1, '[{\"added\": {}}]', 12, 1),
-(73, '2020-11-05 09:36:29.001373', '4', 'beginers by (Shivam Gupta)', 1, '[{\"added\": {}}]', 6, 1),
-(74, '2020-11-05 09:37:20.653102', '3', '3 Python Programming by (Pulkit Arora)', 2, '[{\"changed\": {\"fields\": [\"Is popular\"]}}]', 2, 1),
-(75, '2020-11-06 07:43:11.655792', '4', 'beginers by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Display name\"]}}]', 6, 1),
-(76, '2020-11-06 07:43:53.680486', '5', 'intermediate-python by (Shivam Gupta)', 1, '[{\"added\": {}}]', 6, 1),
-(77, '2020-11-06 07:44:19.920298', '6', 'advanced-python by (Pulkit Arora)', 1, '[{\"added\": {}}]', 6, 1),
-(78, '2020-11-06 07:46:49.889004', '3', '3 Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Price key\", \"Instructor\"]}}]', 2, 1),
-(79, '2020-11-06 07:50:05.286804', '2', 'How To Install Python And Visual Studio Code of (beginers)', 1, '[{\"added\": {}}]', 7, 1),
-(80, '2020-11-06 07:54:50.926755', '17', 'ENCID000004', 3, '', 3, 1),
-(81, '2020-11-07 05:31:12.762691', '3', '3 Python Programming by (Shivam Gupta)', 3, '', 2, 1),
-(82, '2020-11-07 05:31:12.802671', '2', '2 Class 12 Crash Course by (Shivam Gupta)', 3, '', 2, 1),
-(83, '2020-11-07 05:31:12.838662', '1', '1 Class 10 Crash Course by (Pulkit Arora)', 3, '', 2, 1),
-(84, '2020-11-07 05:31:40.700853', '21', 'mpsRishabhGogia', 3, '', 16, 1),
-(85, '2020-11-07 05:31:40.729846', '20', 'mpsShivamGupta', 3, '', 16, 1),
-(86, '2020-11-07 05:31:40.770008', '2', 'Pulkit', 3, '', 16, 1),
-(87, '2020-11-07 05:32:12.604340', '1', 'Shivam Gupta', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 4, 1),
-(88, '2020-11-07 05:33:25.610440', '22', 'Pulkit', 1, '[{\"added\": {}}]', 16, 1),
-(89, '2020-11-07 05:34:05.910841', '22', 'Pulkit', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\", \"Superuser status\"]}}]', 16, 1),
-(90, '2020-11-07 05:38:55.098849', '3', 'Pulkit Arora', 1, '[{\"added\": {}}]', 4, 1),
-(91, '2020-11-07 05:41:48.010545', '1', 'Shivam Gupta', 2, '[{\"changed\": {\"fields\": [\"Phone\", \"Dob\", \"Address\", \"Qualifications\", \"Year of experience\"]}}]', 4, 1),
-(92, '2020-11-07 05:41:54.487926', '1', 'Shivam Gupta', 2, '[]', 4, 1),
-(93, '2020-11-07 06:36:09.413002', '4', '4 Python Programming by (Shivam Gupta)', 1, '[{\"added\": {}}]', 2, 1),
-(94, '2020-11-07 06:36:56.585671', '7', 'Beginer Python by (Shivam Gupta)', 1, '[{\"added\": {}}]', 6, 1),
-(95, '2020-11-07 06:37:11.093036', '8', 'Intermediate Python by (Pulkit Arora)', 1, '[{\"added\": {}}]', 6, 1),
-(96, '2020-11-07 06:40:20.771397', '4', 'Category object (4)', 1, '[{\"added\": {}}]', 12, 1),
-(97, '2020-11-07 06:40:27.378946', '4', '4 Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Is popular\"]}}]', 2, 1),
-(98, '2020-11-07 07:49:06.255319', '18', 'ENCID000001', 3, '', 3, 1),
-(99, '2020-11-07 07:50:34.589212', '4', '4 Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Message\"]}}]', 2, 1),
-(100, '2020-11-07 07:52:08.169541', '4', '4 Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Message\"]}}]', 2, 1),
-(101, '2020-11-07 08:29:49.817447', '4', 'Python Programming by (Shivam Gupta)', 2, '[]', 2, 1),
-(102, '2020-11-07 09:05:33.806291', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Status\"]}}]', 3, 1),
-(103, '2020-11-07 09:06:41.843479', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Request deactivate\"]}}]', 3, 1),
-(104, '2020-11-07 09:07:00.049325', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Request deactivate\"]}}]', 3, 1),
-(105, '2020-11-07 09:09:33.085218', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Request deactivate\"]}}]', 3, 1),
-(106, '2020-11-07 09:10:03.001753', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Status\"]}}]', 3, 1),
-(107, '2020-11-07 09:10:08.088540', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Request deactivate\"]}}]', 3, 1),
-(108, '2020-11-07 09:15:52.848776', '4', 'Python Programming by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Duration\"]}}]', 2, 1),
-(109, '2020-11-07 09:16:38.145036', '19', 'ENCID000001', 2, '[{\"changed\": {\"fields\": [\"Status\", \"Request deactivate\"]}}]', 3, 1),
-(110, '2020-11-07 12:21:16.121347', '19', 'ENCID000001', 3, '', 3, 1),
-(111, '2020-11-07 13:00:28.024881', '1', 'Review object (1)', 1, '[{\"added\": {}}]', 9, 1),
-(112, '2020-11-07 13:04:25.918645', '1', 'Review object (1)', 2, '[{\"changed\": {\"fields\": [\"Is approved\"]}}]', 9, 1),
-(113, '2020-11-07 13:05:26.932207', '1', 'Review object (1)', 2, '[{\"changed\": {\"fields\": [\"Is approved\"]}}]', 9, 1),
-(114, '2020-11-07 13:05:33.639283', '1', 'Review object (1)', 2, '[{\"changed\": {\"fields\": [\"Is approved\"]}}]', 9, 1),
-(115, '2020-11-08 07:49:33.261222', '24', 'AmitKumar', 1, '[{\"added\": {}}]', 16, 1),
-(116, '2020-11-08 07:50:22.482013', '24', 'AmitKumar', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\"]}}]', 16, 1),
-(117, '2020-11-08 08:00:23.717573', '4', 'Amit Tyagi', 1, '[{\"added\": {}}]', 4, 1),
-(118, '2020-11-08 08:00:36.164062', '4', 'Amit Tyagi', 3, '', 4, 1),
-(119, '2020-11-08 08:01:55.077476', '5', 'Amit Tyagi', 1, '[{\"added\": {}}]', 4, 1),
-(120, '2020-11-08 08:02:20.340682', '23', 'abc', 3, '', 16, 1),
-(121, '2020-11-08 08:05:11.424672', '5', 'Amit Tyagi', 2, '[{\"changed\": {\"fields\": [\"Address\"]}}]', 4, 1),
-(122, '2020-11-08 08:07:14.574437', '25', 'CSYadav', 1, '[{\"added\": {}}]', 16, 1),
-(123, '2020-11-08 08:08:19.230606', '25', 'CSYadav', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\"]}}]', 16, 1),
-(124, '2020-11-08 08:09:45.088611', '26', 'Vikas', 1, '[{\"added\": {}}]', 16, 1),
-(125, '2020-11-08 08:10:23.448098', '26', 'Vikas', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\"]}}]', 16, 1),
-(126, '2020-11-08 08:11:13.214087', '27', 'Jyoti', 1, '[{\"added\": {}}]', 16, 1),
-(127, '2020-11-08 08:12:24.109706', '27', 'Jyoti', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\"]}}]', 16, 1),
-(128, '2020-11-08 08:15:28.422224', '6', 'Chandrajeet Singh Yadav', 1, '[{\"added\": {}}]', 4, 1),
-(129, '2020-11-08 08:18:36.938567', '7', 'Vikas Chauhan', 1, '[{\"added\": {}}]', 4, 1),
-(130, '2020-11-08 08:22:18.397959', '8', 'Jyoti Pal', 1, '[{\"added\": {}}]', 4, 1),
-(131, '2020-11-08 08:33:06.647742', '4', 'Python Programming by (Shivam Gupta)', 3, '', 2, 1);
+(1, '2020-11-13 06:29:39.466433', '1', ' ', 1, '[{\"added\": {}}]', 5, 1),
+(2, '2020-11-13 06:29:54.475055', '1', 'Shivam', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\"]}}]', 17, 1),
+(3, '2020-11-13 06:30:39.376587', '2', 'Pulkit', 1, '[{\"added\": {}}]', 17, 1),
+(4, '2020-11-13 06:32:07.015543', '2', 'Pulkit', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\", \"Superuser status\"]}}]', 17, 1),
+(5, '2020-11-13 06:35:20.666889', '2', 'Pulkit Arora', 1, '[{\"added\": {}}]', 5, 1),
+(6, '2020-11-13 06:35:30.421064', '1', 'Shivam Gupta', 2, '[{\"changed\": {\"fields\": [\"Qualifications\"]}}]', 5, 1),
+(7, '2020-11-13 07:10:07.000119', '3', 'AmitKumar', 1, '[{\"added\": {}}]', 17, 1),
+(8, '2020-11-13 07:10:33.265924', '3', 'AmitKumar', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\", \"Superuser status\"]}}]', 17, 1),
+(9, '2020-11-13 07:11:24.789669', '4', 'CSYadav', 1, '[{\"added\": {}}]', 17, 1),
+(10, '2020-11-13 07:12:55.996729', '4', 'CSYadav', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\"]}}]', 17, 1),
+(11, '2020-11-13 07:13:38.853669', '5', 'Vikas', 1, '[{\"added\": {}}]', 17, 1),
+(12, '2020-11-13 07:14:18.687034', '5', 'Vikas', 2, '[{\"changed\": {\"fields\": [\"First name\", \"Last name\", \"Email address\", \"Staff status\"]}}]', 17, 1),
+(13, '2020-11-13 07:16:33.805350', '3', 'Amit Tyagi', 1, '[{\"added\": {}}]', 5, 1),
+(14, '2020-11-13 07:18:36.785698', '4', 'Vikas Chauhan', 1, '[{\"added\": {}}]', 5, 1),
+(15, '2020-11-13 07:21:00.130180', '5', 'C.S. Yadav', 1, '[{\"added\": {}}]', 5, 1),
+(16, '2020-11-13 07:21:57.958301', '1', 'Programming Courses', 1, '[{\"added\": {}}]', 1, 1),
+(17, '2020-11-13 07:22:12.062609', '2', 'Crash Courses', 1, '[{\"added\": {}}]', 1, 1),
+(18, '2020-11-13 07:22:51.984258', '3', 'Test Series', 1, '[{\"added\": {}}]', 1, 1),
+(19, '2020-11-13 07:32:53.746298', '1', 'Learn Python Programming Bootcamp by (Shivam Gupta)', 1, '[{\"added\": {}}]', 3, 1),
+(20, '2020-11-13 07:57:28.191980', '1', 'basic_python by (Shivam Gupta)', 1, '[{\"added\": {}}]', 7, 1),
+(21, '2020-11-13 07:58:10.045323', '2', 'advance_python by (Pulkit Arora)', 1, '[{\"added\": {}}]', 7, 1),
+(22, '2020-11-13 08:02:35.271758', '1', 'Learn Python Programming Bootcamp by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Intro video\"]}}]', 3, 1),
+(23, '2020-11-13 08:31:50.126237', '1', 'Category object (1)', 1, '[{\"added\": {}}]', 13, 1),
+(24, '2020-11-14 05:40:51.514459', '1', 'Shivam Gupta', 2, '[{\"changed\": {\"fields\": [\"Address\"]}}]', 5, 1),
+(25, '2020-11-15 06:51:54.517563', '1', 'Learn Python Programming Bootcamp by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Language\"]}}]', 3, 2),
+(26, '2020-11-15 08:37:13.793011', '1', 'Python Introduction of (basic_python)', 2, '[{\"changed\": {\"fields\": [\"Is free\"]}}]', 8, 1),
+(27, '2020-11-15 08:46:20.410791', '1', 'Learn Python Programming Bootcamp by (Shivam Gupta)', 2, '[{\"changed\": {\"fields\": [\"Intro video\"]}}]', 3, 1),
+(28, '2020-11-15 10:44:09.037513', '3', 'AmitKumar', 2, '[{\"changed\": {\"fields\": [\"Staff status\", \"Superuser status\"]}}]', 17, 1),
+(29, '2020-11-15 10:45:23.223092', '3', 'AmitKumar', 2, '[{\"changed\": {\"fields\": [\"Staff status\", \"Superuser status\"]}}]', 17, 1),
+(30, '2020-11-15 15:26:45.834003', '2', 'Class 9 | Class 10 Crash Course by (Amit Tyagi)', 1, '[{\"added\": {}}]', 3, 1),
+(31, '2020-11-15 15:29:20.694327', '2', 'Class 9 | Class 10 Crash Course by (Amit Tyagi)', 2, '[{\"changed\": {\"fields\": [\"Special price\", \"Message\"]}}]', 3, 1),
+(32, '2020-11-15 15:29:53.070624', '2', 'Class 9 | Class 10 Crash Course (With Live Lectures) by (Amit Tyagi)', 2, '[{\"changed\": {\"fields\": [\"Course name\", \"Message\"]}}]', 3, 1),
+(33, '2020-11-15 15:30:57.708522', '3', 'Class 9 | Class 10 Crash Course by (Amit Tyagi)', 1, '[{\"added\": {}}]', 3, 1),
+(34, '2020-11-15 15:31:12.132475', '2', 'Category object (2)', 1, '[{\"added\": {}}]', 13, 1),
+(35, '2020-11-15 15:31:20.166622', '3', 'Category object (3)', 1, '[{\"added\": {}}]', 13, 1),
+(36, '2020-11-16 04:45:26.053517', '2', 'Class 9 | Class 10 Crash Course by (Amit Tyagi)', 2, '[{\"changed\": {\"fields\": [\"Course name\"]}}]', 3, 1),
+(37, '2020-11-16 04:45:40.717050', '3', 'Class 9 | Class 10 Crash Course by (Amit Tyagi)', 3, '', 3, 1),
+(38, '2020-11-16 04:46:06.179434', '2', 'Class 10 Crash Course by (Amit Tyagi)', 2, '[{\"changed\": {\"fields\": [\"Course name\"]}}]', 3, 1),
+(39, '2020-11-16 11:34:40.509949', '2', 'Class 10 Crash Course by (Amit Tyagi)', 2, '[{\"changed\": {\"fields\": [\"Duration\"]}}]', 3, 1),
+(40, '2020-11-16 11:43:42.338821', '2', 'Class 10 Crash Course by (Amit Tyagi)', 2, '[{\"changed\": {\"fields\": [\"Image\"]}}]', 3, 1),
+(41, '2020-11-16 16:04:24.857849', '2', 'Python Installation of (basic_python)', 2, '[{\"changed\": {\"fields\": [\"Is free\"]}}]', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -358,32 +267,32 @@ CREATE TABLE `django_content_type` (
   `id` int(11) NOT NULL,
   `app_label` varchar(100) NOT NULL,
   `model` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `django_content_type`
 --
 
 INSERT INTO `django_content_type` (`id`, `app_label`, `model`) VALUES
-(13, 'admin', 'logentry'),
-(15, 'auth', 'group'),
-(14, 'auth', 'permission'),
-(16, 'auth', 'user'),
-(17, 'contenttypes', 'contenttype'),
-(12, 'learning_system_app', 'category'),
-(19, 'learning_system_app', 'categoryname'),
-(1, 'learning_system_app', 'contact'),
-(2, 'learning_system_app', 'course'),
-(3, 'learning_system_app', 'enrolledcourse'),
-(4, 'learning_system_app', 'instructor'),
-(11, 'learning_system_app', 'loggedinuser'),
-(10, 'learning_system_app', 'questionanswer'),
-(9, 'learning_system_app', 'review'),
-(5, 'learning_system_app', 'studymaterial'),
-(6, 'learning_system_app', 'subject'),
-(8, 'learning_system_app', 'user_profile'),
-(7, 'learning_system_app', 'video'),
-(18, 'sessions', 'session');
+(14, 'admin', 'logentry'),
+(16, 'auth', 'group'),
+(15, 'auth', 'permission'),
+(17, 'auth', 'user'),
+(18, 'contenttypes', 'contenttype'),
+(13, 'learning_system_app', 'category'),
+(1, 'learning_system_app', 'categoryname'),
+(2, 'learning_system_app', 'contact'),
+(3, 'learning_system_app', 'course'),
+(4, 'learning_system_app', 'enrolledcourse'),
+(5, 'learning_system_app', 'instructor'),
+(12, 'learning_system_app', 'loggedinuser'),
+(11, 'learning_system_app', 'questionanswer'),
+(10, 'learning_system_app', 'review'),
+(6, 'learning_system_app', 'studymaterial'),
+(7, 'learning_system_app', 'subject'),
+(9, 'learning_system_app', 'user_profile'),
+(8, 'learning_system_app', 'video'),
+(19, 'sessions', 'session');
 
 -- --------------------------------------------------------
 
@@ -396,44 +305,32 @@ CREATE TABLE `django_migrations` (
   `app` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `applied` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `django_migrations`
 --
 
 INSERT INTO `django_migrations` (`id`, `app`, `name`, `applied`) VALUES
-(1, 'contenttypes', '0001_initial', '2020-11-01 06:17:03.944421'),
-(2, 'auth', '0001_initial', '2020-11-01 06:17:06.771955'),
-(3, 'admin', '0001_initial', '2020-11-01 06:17:17.903707'),
-(4, 'admin', '0002_logentry_remove_auto_add', '2020-11-01 06:17:20.252938'),
-(5, 'admin', '0003_logentry_add_action_flag_choices', '2020-11-01 06:17:20.412001'),
-(6, 'contenttypes', '0002_remove_content_type_name', '2020-11-01 06:17:22.326817'),
-(7, 'auth', '0002_alter_permission_name_max_length', '2020-11-01 06:17:23.401518'),
-(8, 'auth', '0003_alter_user_email_max_length', '2020-11-01 06:17:23.531575'),
-(9, 'auth', '0004_alter_user_username_opts', '2020-11-01 06:17:23.595554'),
-(10, 'auth', '0005_alter_user_last_login_null', '2020-11-01 06:17:24.600575'),
-(11, 'auth', '0006_require_contenttypes_0002', '2020-11-01 06:17:24.667597'),
-(12, 'auth', '0007_alter_validators_add_error_messages', '2020-11-01 06:17:24.784623'),
-(13, 'auth', '0008_alter_user_username_max_length', '2020-11-01 06:17:24.967582'),
-(14, 'auth', '0009_alter_user_last_name_max_length', '2020-11-01 06:17:25.098571'),
-(15, 'auth', '0010_alter_group_name_max_length', '2020-11-01 06:17:25.317567'),
-(16, 'auth', '0011_update_proxy_permissions', '2020-11-01 06:17:25.595554'),
-(17, 'auth', '0012_alter_user_first_name_max_length', '2020-11-01 06:17:25.993365'),
-(18, 'learning_system_app', '0001_initial', '2020-11-01 06:17:31.012705'),
-(19, 'sessions', '0001_initial', '2020-11-01 06:17:55.982300'),
-(20, 'learning_system_app', '0002_categoryname', '2020-11-01 06:47:50.690750'),
-(21, 'learning_system_app', '0003_auto_20201101_1220', '2020-11-01 06:50:39.302065'),
-(22, 'learning_system_app', '0004_subject_display_name', '2020-11-01 07:31:14.583767'),
-(23, 'learning_system_app', '0005_auto_20201102_1805', '2020-11-02 12:35:52.998959'),
-(24, 'learning_system_app', '0006_auto_20201103_1512', '2020-11-03 09:42:16.541310'),
-(25, 'learning_system_app', '0007_course_image', '2020-11-03 09:45:53.108246'),
-(26, 'learning_system_app', '0008_course_price_key', '2020-11-05 06:13:41.195214'),
-(27, 'learning_system_app', '0009_enrolledcourse_date', '2020-11-07 06:29:51.796309'),
-(28, 'learning_system_app', '0010_course_message', '2020-11-07 07:46:20.390233'),
-(29, 'learning_system_app', '0011_enrolledcourse_request_deactivate', '2020-11-07 08:42:28.009531'),
-(30, 'learning_system_app', '0012_enrolledcourse_expiry_date', '2020-11-07 12:20:44.377550'),
-(31, 'learning_system_app', '0013_auto_20201111_1425', '2020-11-11 08:55:12.702952');
+(1, 'contenttypes', '0001_initial', '2020-11-13 06:13:14.766635'),
+(2, 'auth', '0001_initial', '2020-11-13 06:13:14.870805'),
+(3, 'admin', '0001_initial', '2020-11-13 06:13:15.058064'),
+(4, 'admin', '0002_logentry_remove_auto_add', '2020-11-13 06:13:15.131953'),
+(5, 'admin', '0003_logentry_add_action_flag_choices', '2020-11-13 06:13:15.149694'),
+(6, 'contenttypes', '0002_remove_content_type_name', '2020-11-13 06:13:15.210012'),
+(7, 'auth', '0002_alter_permission_name_max_length', '2020-11-13 06:13:15.229452'),
+(8, 'auth', '0003_alter_user_email_max_length', '2020-11-13 06:13:15.253542'),
+(9, 'auth', '0004_alter_user_username_opts', '2020-11-13 06:13:15.270479'),
+(10, 'auth', '0005_alter_user_last_login_null', '2020-11-13 06:13:15.302895'),
+(11, 'auth', '0006_require_contenttypes_0002', '2020-11-13 06:13:15.306651'),
+(12, 'auth', '0007_alter_validators_add_error_messages', '2020-11-13 06:13:15.325679'),
+(13, 'auth', '0008_alter_user_username_max_length', '2020-11-13 06:13:15.343087'),
+(14, 'auth', '0009_alter_user_last_name_max_length', '2020-11-13 06:13:15.362249'),
+(15, 'auth', '0010_alter_group_name_max_length', '2020-11-13 06:13:15.383904'),
+(16, 'auth', '0011_update_proxy_permissions', '2020-11-13 06:13:15.397104'),
+(17, 'auth', '0012_alter_user_first_name_max_length', '2020-11-13 06:13:15.420310'),
+(18, 'learning_system_app', '0001_initial', '2020-11-13 06:13:16.186636'),
+(19, 'sessions', '0001_initial', '2020-11-13 06:13:16.526235');
 
 -- --------------------------------------------------------
 
@@ -445,20 +342,14 @@ CREATE TABLE `django_session` (
   `session_key` varchar(40) NOT NULL,
   `session_data` longtext NOT NULL,
   `expire_date` datetime(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `django_session`
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('2klj26mwhpiv759ckmpmui5t31x621jl', 'eyJfcGFzc3dvcmRfcmVzZXRfdG9rZW4iOiJhZDBzdzYtODY1MTFiZjdlNWI2YjY2Mjg3MDQ4ZGEzMmNkYzZlZjIifQ:1kbfQ4:qTI5PI30APfhHp_wKnZZ7NgTbavcvB5NvyvR9l4xPhE', '2020-11-22 07:47:24.414297'),
-('77h02nax2ytylslc20dtfxlt2mkphfjq', '.eJxVjMEOwiAQRP-FsyFQKLt49N5vIJRdpGpoUtqT8d9tkx70NMm8N_MWIW5rCVvjJUwkrkKLy283xvTkegB6xHqfZZrrukyjPBR50iaHmfh1O92_gxJb2de9TcoCI_dKodHItCdAVp0nnb11hjB2fuTsTAJFBJh87o1BBxY1iM8XvlI21Q:1kcoTN:dW3C5g47s4_wZwpoIM2NP3fBv-bu2Wy2oNbGQ6gq1B0', '2020-11-25 11:39:33.071937'),
-('7b2yi8ugr0ay1pn8r97jr5c2r17fy6ib', 'eyJfcGFzc3dvcmRfcmVzZXRfdG9rZW4iOiJhZDBzdzYtODY1MTFiZjdlNWI2YjY2Mjg3MDQ4ZGEzMmNkYzZlZjIifQ:1kbfQ5:KU1MGcOiZXbDQE1X0qexj_w0VpllrVSfQik9eDwz9xY', '2020-11-22 07:47:25.549877'),
-('7vpjnl0afptheisr86cy3jq5ntp4tc4h', 'eyJfcGFzc3dvcmRfcmVzZXRfdG9rZW4iOiJhZDB5ZHAtNzZmNmIwMmY2ZWVmN2MxMTM3ODVkYjhiOGVkNTYyZGMifQ:1kbhGf:99GrJ5kQEgEUgA2sJs310ZVxIzIkkWLW5qJ0_QTwoSc', '2020-11-22 09:45:49.128246'),
-('b97298utk07dwwe9h97lx0e5tw1nz97p', 'eyJfcGFzc3dvcmRfcmVzZXRfdG9rZW4iOiJhZDB5ZHAtNzZmNmIwMmY2ZWVmN2MxMTM3ODVkYjhiOGVkNTYyZGMifQ:1kbhGe:mC7HTZJPI_oqKlH1JPRdnNxaDg52Q_Vwrhzn_Qg6U4U', '2020-11-22 09:45:48.890393'),
-('knv447mifj403z1kpp1zffqmmys8tffj', '.eJxVjsEOwiAQRP-FszYUZKEevfsNhGUXWzWlgRpjjP8uTbx4nXlvMm_hl1DrMxfyhSuvfs03nsVRBJIvWvYWEqBUCZiTjX2vrTOEDh2TAUVR7IQPj3X0j8rFT9RMdfgPMcQ2uTV0DfMldzHPa5mw25Du19bunInvpx_7NzCGOjabcSCGHtmQTYqUJGUwDeyQB8s6JG1cbB-1kwBRY2PAHkCjdoal0-LzBaZFTd0:1kbhHD:fd8H4_o0n7EedX0-HyiYZkQaIcTwJPEHw3nA_cr9KzQ', '2020-11-22 09:46:23.930363'),
-('u9k559x14q2g8uzx0vnwej0715hkjgce', '.eJxVjEEOwiAQRe_C2hCGAkWX7j0DGYZBqgaS0q6Md7dNutDtf-_9twi4LiWsnecwJXERWonT7xiRnlx3kh5Y701Sq8s8Rbkr8qBd3lri1_Vw_w4K9rLV3sOgiclFn-OYmY2LyrrIOmk3MhACYGbaKCrjgYwbUgY_WCI4Jys-XyozOO4:1kawaS:wqDhuEmf5M2GgacC_Kr4XSpwKf0xMx9XJ1Oti8ByWVs', '2020-11-20 07:55:08.561116');
+('vea4y341tm8jp0aoakb6avdabgoec9y3', '.eJxVjDsOwyAQRO9CHSFYm1_K9D4DAnYdnEQgGbuKcvdgyUUiTTXvzbyZD_uW_d5o9QuyK5Ps8tvFkJ5UDoCPUO6Vp1q2dYn8UPhJG58q0ut2un8HObTc1wmUIXRmtMrRPFgyUggrR2dRDz3ORlBKAEmQACJJ5WYEbSLqDgZgny-zIDZf:1kfcKJ:Q9SblaEuStLQXvnB17hyFPsrLkhN_lzR11V7ibo2E-0', '2020-12-03 05:17:47.398414');
 
 -- --------------------------------------------------------
 
@@ -470,7 +361,15 @@ CREATE TABLE `learning_system_app_category` (
   `id` int(11) NOT NULL,
   `category_name_id` int(11) NOT NULL,
   `course_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `learning_system_app_category`
+--
+
+INSERT INTO `learning_system_app_category` (`id`, `category_name_id`, `course_id`) VALUES
+(1, 1, 1),
+(2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -481,16 +380,16 @@ CREATE TABLE `learning_system_app_category` (
 CREATE TABLE `learning_system_app_categoryname` (
   `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `learning_system_app_categoryname`
 --
 
 INSERT INTO `learning_system_app_categoryname` (`id`, `name`) VALUES
-(1, 'Crash Courses'),
-(2, 'Test Series'),
-(4, 'Programming Courses');
+(1, 'Programming Courses'),
+(2, 'Crash Courses'),
+(3, 'Test Series');
 
 -- --------------------------------------------------------
 
@@ -504,16 +403,15 @@ CREATE TABLE `learning_system_app_contact` (
   `phone` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
   `message` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `learning_system_app_contact`
 --
 
 INSERT INTO `learning_system_app_contact` (`id`, `name`, `phone`, `email`, `message`) VALUES
-(1, 'Pulkit Arora', '7065971154', 'apulkit674@gmail.com', 'HI'),
-(2, 'Pulkit', '7065971154', 'sg330415@gmail.com', 'HI'),
-(3, 'Pulkit', '7065971154', 'apulkit674@gmail.com', 'Hi');
+(1, 'Eric Jones', '555-555-1212', 'ericjonesonline@outlook.com', 'Hello, my name’s Eric and I just ran across your website at eshikshapie.com...\r\n\r\nI found it after a quick search, so your SEO’s working out…\r\n\r\nContent looks pretty good…\r\n\r\nOne thing’s missing though…\r\n\r\nA QUICK, EASY way to connect with you NOW.\r\n\r\nBecause studies show that a web lead like me will only hang out a few seconds – 7 out of 10 disappear almost instantly, Surf Surf Surf… then gone forever.\r\n\r\nI have the solution:\r\n\r\nTalk With Web Visitor is a software widget that’s works on your site, ready to capture any visitor’s Name, Email address and Phone Number.  You’ll know immediately they’re interested and you can call them directly to TALK with them - literally while they’re still on the web looking at your site.\r\n\r\nCLICK HERE http://www.talkwithcustomer.com to try out a Live Demo with Talk With Web Visitor now to see exactly how it works and even give it a try… it could be huge for your business.\r\n\r\nPlus, now that you’ve got that phone number, with our new SMS Text With Lead feature, you can automatically start a text (SMS) conversation pronto… which is so powerful, because connecting with someone within the first 5 minutes is 100 times more effective than waiting 30 minutes or more later.\r\n\r\nThe new text messaging feature lets you follow up regularly with new offers, content links, even just follow up notes to build a relationship.\r\n\r\nEverything I’ve just described is extremely simple to implement, cost-effective, and profitable.\r\n \r\nCLICK HERE http://www.talkwithcustomer.com to discover what Talk With Web Visitor can do for your business, potentially converting up to 100X more eyeballs into leads today!\r\n\r\nEric\r\nPS: Talk With Web Visitor offers a FREE 14 days trial – and it even includes International Long Distance Calling. \r\nYou have customers waiting to talk with you right now… don’t keep them waiting. \r\nCLICK HERE http://www.talkwithcustomer.com to try Talk With Web Visitor now.\r\n\r\nIf you\'d like to unsubscribe click here http://talkwithcustomer.com/unsubscribe.aspx?d=eshikshapie.com\r\n'),
+(2, 'Virginia Weingarth', '06-35173367', 'eshikshapie.com@eshikshapie.com', 'Your domain name: eshikshapie.com\r\n\r\nE-Shiksha Pie - Aspiring Your Minds\r\n\r\nThis announcement  EXPIRES ON: Nov 18, 2020.\r\n\r\n\r\nWe have actually not received a settlement from you.\r\nWe  have actually tried to email you however were incapable to reach you.\r\n\r\n\r\nPlease Browse Through:  https://cutt.ly/yhqbiM8\r\n\r\n\r\nFor details and to post a optional payment for services.\r\n\r\n\r\n11182020195128\r\n');
 
 -- --------------------------------------------------------
 
@@ -524,8 +422,11 @@ INSERT INTO `learning_system_app_contact` (`id`, `name`, `phone`, `email`, `mess
 CREATE TABLE `learning_system_app_course` (
   `id` int(11) NOT NULL,
   `course_name` varchar(300) NOT NULL,
+  `intro_video` varchar(300) DEFAULT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `price` double NOT NULL,
   `special_price` double NOT NULL,
+  `price_key` varchar(200) DEFAULT NULL,
   `description` longtext NOT NULL,
   `mini_info` longtext,
   `duration` varchar(50) NOT NULL,
@@ -533,12 +434,17 @@ CREATE TABLE `learning_system_app_course` (
   `prequisites` varchar(50) NOT NULL,
   `has_certificate` tinyint(1) NOT NULL,
   `is_popular` tinyint(1) NOT NULL,
-  `instructor_id` int(11) NOT NULL,
-  `intro_video` varchar(300) DEFAULT NULL,
-  `image` varchar(100) DEFAULT NULL,
-  `price_key` varchar(200) DEFAULT NULL,
-  `message` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `message` varchar(300) DEFAULT NULL,
+  `instructor_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `learning_system_app_course`
+--
+
+INSERT INTO `learning_system_app_course` (`id`, `course_name`, `intro_video`, `image`, `price`, `special_price`, `price_key`, `description`, `mini_info`, `duration`, `language`, `prequisites`, `has_certificate`, `is_popular`, `message`, `instructor_id`) VALUES
+(1, 'Learn Python Programming Bootcamp', 'https://www.youtube.com/embed/QbFuodyr_30?rel=0', '1294275.jpg', 8000, 1500, NULL, 'Whether you want to:\r\n\r\n- build the skills you need to get your first Python programming job\r\n\r\n- move to a more senior software developer position\r\n\r\n- get started with Machine Learning, Data Science, Django or other hot areas that Python specialises in\r\n\r\n- or just learn Python to be able to create your own Python apps quickly.\r\n\r\n…then you need a solid foundation in Python programming. And this course is designed to give you those core skills, fast.\r\n\r\nThis course is aimed at complete beginners who have never programmed before, as well as existing programmers who want to increase their career options by learning Python.\r\n\r\nThe fact is, Python is one of the most popular programming languages in the world – Huge companies like Google use it in mission critical applications like Google Search.', 'Become a Python Programmer and learn one of employer\'s most requested skills of 2020!', '2', 'Hindi/English', 'No', 1, 1, 'Registration Starts From 1st December 2020', 1),
+(2, 'Class 10 Crash Course', 'https://www.youtube.com/embed/X2YrKz9TtTo?rel=0', 'Untitled-Project.jpg', 8000, 2400, NULL, 'This course is designed for students looking to strengthen their concepts as well as get exposed to the different types of questions asked in the Board Exam without having to deviate too much from their own preparation.\r\nThe sessions cover all the important topics as well as strategies for the exam. Students can resolve their doubts during the class or discuss their doubts later on with the respective faculty members.', 'This course is designed for students looking to strengthen their concepts as well as get exposed to the different types of questions asked in the Board Exam without having to deviate too much from their own preparation.', '3', 'Hindi/English', 'No', 0, 1, 'Registration Start from 5th December (With Live Classes)', 3);
 
 -- --------------------------------------------------------
 
@@ -550,12 +456,12 @@ CREATE TABLE `learning_system_app_enrolledcourse` (
   `id` int(11) NOT NULL,
   `enroll_id` varchar(30) NOT NULL,
   `status` tinyint(1) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
   `date` datetime(6) DEFAULT NULL,
   `request_deactivate` int(11) NOT NULL,
-  `expiry_date` datetime(6) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `expiry_date` datetime(6) DEFAULT NULL,
+  `course_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -577,19 +483,18 @@ CREATE TABLE `learning_system_app_instructor` (
   `qualifications` varchar(500) NOT NULL,
   `year_of_experience` varchar(300) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `learning_system_app_instructor`
 --
 
 INSERT INTO `learning_system_app_instructor` (`id`, `instructor_id`, `phone`, `image`, `image_qr`, `dob`, `address`, `state`, `city`, `zip_code`, `qualifications`, `year_of_experience`, `user_id`) VALUES
-(1, '1', '8800514445', 'GUPTA_SHIVAM.png', 'qr_code1_Mm36D0V.png', '2000-03-05', '358, New Layal Pur, East Krishna Nagar, Delhi-110051', 'Delhi', 'Delhi', 'Delhi', 'BCA, MCA', '2', 1),
-(3, '2', '7065971154', 'ARORA_PULKIT.jpeg', 'qr_code2.png', '2000-06-10', 'Flat No L-5 Tower-B Himalaya Tanishq Raj Nagar Extension Ghaziabad', 'Uttar Pradesh', 'Ghaziabad', '201017', 'BCA, MCA', '2', 22),
-(5, '3', '9717838491', 'KUMAR_AMIT_sDRe5qY.png', 'qr_code3_eij9ztM.png', '1980-04-01', 'House No. 1, Behind B-56 HIG, Raj Nagar Sector-23', 'Uttar Pradesh', 'Ghaziabad', '201002', 'Maths', '10', 24),
-(6, '4', 'Not Availabale', 'YADAV_CS.jpeg', 'qr_code4.png', '1975-07-30', 'Not Availabale', 'Uttar Pradesh', 'Ghaziabad', '201002', 'English', '8', 25),
-(7, '5', '9582094909', 'CHAUHAN_VIKAS.png', 'qr_code5.png', '1998-10-17', 'G-167/D, Sector-23, Sanjay Nagar', 'Uttar Pradesh', 'Ghaziabad', '201002', 'Accountacy', '3', 26),
-(8, '6', 'Not Available', 'PAL_JYOTI.png', 'qr_code6.png', '2000-10-19', '142, Sector-4, Raj Nagar', 'Uttar Pradesh', 'Ghaziabad', '201002', 'Science(Physics, Chemistry, Biology)', '3', 27);
+(1, 'INSTID1', '9643873974', 'GUPTA_SHIVAM.png', 'qr_codeINSTID1_O7CHRgQ.png', '2000-03-05', 'Krishna Nagar', 'Delhi', 'Delhi', '110051', 'Programming Instructor', '2', 1),
+(2, 'INSTID2', '7065971154', 'ARORA_PULKIT.jpeg', 'qr_codeINSTID2.png', '2000-06-10', 'Raj Nagar Extension, Ghaziabad', 'Uttar Pradesh', 'Ghaziabad', '201017', 'Programming Instructor', '2', 2),
+(3, 'INSTID3', '9717838491', 'KUMAR_AMIT.png', 'qr_codeINSTID3.png', '1980-04-01', 'Sanjay Nagar, Ghaziabad', 'Uttar Pradesh', 'Ghaziabad', '201002', 'Maths Instructor', '12', 3),
+(4, 'INSTID4', '9582094909', 'CHAUHAN_VIKAS.png', 'qr_codeINSTID4.png', '1998-10-17', 'Sanjay Nagar, Ghaziabad', 'Uttar Pradesh', 'Ghaziabad', '201002', 'Accounts Instructor', '3', 5),
+(5, 'INSTID5', '9873702827', 'YADAV_CS.jpeg', 'qr_codeINSTID5.png', '1975-07-30', 'Govindpuram, Ghaziabad', 'Uttar Pradesh', 'Ghaziabad', '201013', 'English Instructor', '10', 4);
 
 -- --------------------------------------------------------
 
@@ -601,15 +506,14 @@ CREATE TABLE `learning_system_app_loggedinuser` (
   `id` int(11) NOT NULL,
   `session_key` varchar(32) DEFAULT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `learning_system_app_loggedinuser`
 --
 
 INSERT INTO `learning_system_app_loggedinuser` (`id`, `session_key`, `user_id`) VALUES
-(80, 'knv447mifj403z1kpp1zffqmmys8tffj', 24),
-(85, '77h02nax2ytylslc20dtfxlt2mkphfjq', 1);
+(26, 'vea4y341tm8jp0aoakb6avdabgoec9y3', 1);
 
 -- --------------------------------------------------------
 
@@ -625,7 +529,7 @@ CREATE TABLE `learning_system_app_questionanswer` (
   `subject_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `video_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -640,7 +544,7 @@ CREATE TABLE `learning_system_app_review` (
   `course_id` int(11) DEFAULT NULL,
   `enrolled_course_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -656,7 +560,7 @@ CREATE TABLE `learning_system_app_studymaterial` (
   `subject` varchar(100) DEFAULT NULL,
   `class_level` int(11) NOT NULL,
   `chapter_no` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -666,11 +570,19 @@ CREATE TABLE `learning_system_app_studymaterial` (
 
 CREATE TABLE `learning_system_app_subject` (
   `id` int(11) NOT NULL,
+  `display_name` varchar(200) NOT NULL,
   `subject_name` varchar(100) NOT NULL,
   `course_id` int(11) NOT NULL,
-  `instructor_id` int(11) NOT NULL,
-  `display_name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `instructor_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `learning_system_app_subject`
+--
+
+INSERT INTO `learning_system_app_subject` (`id`, `display_name`, `subject_name`, `course_id`, `instructor_id`) VALUES
+(1, 'Basic Python', 'basic_python', 1, 1),
+(2, 'Advance Python', 'advance_python', 1, 2);
 
 -- --------------------------------------------------------
 
@@ -694,7 +606,7 @@ CREATE TABLE `learning_system_app_user_profile` (
   `city` varchar(50) NOT NULL,
   `zip_code` varchar(50) NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -708,10 +620,18 @@ CREATE TABLE `learning_system_app_video` (
   `url` varchar(200) NOT NULL,
   `description` longtext NOT NULL,
   `resources` varchar(200) DEFAULT NULL,
+  `is_free` tinyint(1) NOT NULL,
   `course_id` int(11) DEFAULT NULL,
-  `subject_id` int(11) DEFAULT NULL,
-  `is_free` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `subject_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `learning_system_app_video`
+--
+
+INSERT INTO `learning_system_app_video` (`id`, `title`, `url`, `description`, `resources`, `is_free`, `course_id`, `subject_id`) VALUES
+(1, 'Python Introduction', 'https://www.youtube.com/embed/QbFuodyr_30?rel=0', 'In this video I discuss about what is python and what is programming language and also discuss about why learn python, etc.', '/media/Intro%20Python%20Eshikshapie.pdf', 1, 1, 1),
+(2, 'Python Installation', 'https://www.youtube.com/embed/VxuswGkXShk?rel=0', 'In this video I discuss about how to install python on windows 10', NULL, 1, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -795,8 +715,8 @@ ALTER TABLE `django_session`
 --
 ALTER TABLE `learning_system_app_category`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `learning_system_app__course_id_9d3f1bbd_fk_learning_` (`course_id`),
-  ADD KEY `learning_system_app_category_category_name_id_458be2e2` (`category_name_id`);
+  ADD KEY `learning_system_app__category_name_id_458be2e2_fk_learning_` (`category_name_id`),
+  ADD KEY `learning_system_app__course_id_9d3f1bbd_fk_learning_` (`course_id`);
 
 --
 -- Indexes for table `learning_system_app_categoryname`
@@ -910,7 +830,7 @@ ALTER TABLE `auth_permission`
 -- AUTO_INCREMENT for table `auth_user`
 --
 ALTER TABLE `auth_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `auth_user_groups`
 --
@@ -925,7 +845,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `django_content_type`
 --
@@ -935,52 +855,52 @@ ALTER TABLE `django_content_type`
 -- AUTO_INCREMENT for table `django_migrations`
 --
 ALTER TABLE `django_migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `learning_system_app_category`
 --
 ALTER TABLE `learning_system_app_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `learning_system_app_categoryname`
 --
 ALTER TABLE `learning_system_app_categoryname`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `learning_system_app_contact`
 --
 ALTER TABLE `learning_system_app_contact`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `learning_system_app_course`
 --
 ALTER TABLE `learning_system_app_course`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `learning_system_app_enrolledcourse`
 --
 ALTER TABLE `learning_system_app_enrolledcourse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `learning_system_app_instructor`
 --
 ALTER TABLE `learning_system_app_instructor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `learning_system_app_loggedinuser`
 --
 ALTER TABLE `learning_system_app_loggedinuser`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `learning_system_app_questionanswer`
 --
 ALTER TABLE `learning_system_app_questionanswer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `learning_system_app_review`
 --
 ALTER TABLE `learning_system_app_review`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `learning_system_app_studymaterial`
 --
@@ -990,17 +910,17 @@ ALTER TABLE `learning_system_app_studymaterial`
 -- AUTO_INCREMENT for table `learning_system_app_subject`
 --
 ALTER TABLE `learning_system_app_subject`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `learning_system_app_user_profile`
 --
 ALTER TABLE `learning_system_app_user_profile`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `learning_system_app_video`
 --
 ALTER TABLE `learning_system_app_video`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --

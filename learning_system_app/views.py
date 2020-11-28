@@ -20,12 +20,11 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage
-import stripe
+
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import razorpay
 # Create your views here.
-
-stripe.api_key = settings.STRIPE_PRIVATE_KEY
 
 def error_404_view(request,exception):
     return render(request,'lms/404.html')
@@ -204,8 +203,14 @@ def contact(request):
     return render(request,'lms/contact.html',context)
 
 def course_details(request,course_name,course_id):
+    
     category_names = CategoryName.objects.all()
     course = Course.objects.filter(id=course_id).first()
+    order_amount = course.special_price * 100
+    order_currency = 'INR'
+    order_receipt = 'order_rcptid_11'
+    client = razorpay.Client(auth=('rzp_test_LzwHnNu92TT3HV','95rxpyjuohxBUEGNgL330Op8'))
+    payment = client.order.create({'amount':order_amount, 'currency':order_currency, 'payment_capture':'1'})
     if request.user.is_active:
         enrolled_course = EnrolledCourse.objects.filter(user=request.user).filter(course=course).first()
     else:
@@ -235,6 +240,7 @@ def course_details(request,course_name,course_id):
         'instructors':instructors,
         'subjects':subjects,
         'course':course,
+        'special_price':course.special_price*100,
         'enrolled' : enrolled_course,
         'reviews':reviews,
         'enrolled_count':enrolled_count,
@@ -243,28 +249,13 @@ def course_details(request,course_name,course_id):
     }
     return render(request,'lms/course-detail.html',context)
 
-@csrf_exempt
+
 def checkout(request,courseid):
   
-    course = Course.objects.filter(id=courseid).first()
-    session = stripe.checkout.Session.create(
-        payment_method_types=['card'],
-        line_items=[{
-            'price': course.price_key,
-            'quantity': 1,
-        }],
-        mode='payment',
-        success_url=request.build_absolute_uri(reverse('thanks')) + '?session_id={CHECKOUT_SESSION_ID}&' + f'course_id={course.id}',
-        cancel_url=request.build_absolute_uri(reverse('index')),
-    )
+    pass
 
-    return JsonResponse({
-        'session_id' : session.id,
-        'stripe_public_key' : settings.STRIPE_PUBLIC_KEY
-    })
-
-def thanks(request):
-
+@csrf_exempt
+def thanks(request,course_name):
     last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
     if not last_enroll_no:
         enroll_id =  'ENCID' + '000001'
@@ -273,8 +264,8 @@ def thanks(request):
         enroll_no_int = int(enroll_no[5:11])
         new_enroll_no_int = enroll_no_int + 1 
         enroll_id = 'ENCID'  + str(new_enroll_no_int).zfill(6)
-    course_id = request.GET.get('course_id') 
-    course = Course.objects.filter(id=int(course_id)).first()
+    
+    course = Course.objects.filter(course_name=(course_name)).first()
     course_expiry_date = datetime.now() + relativedelta(months =+ int(course.duration))
     user = request.user
     user = User.objects.filter(username=user.username).first()
