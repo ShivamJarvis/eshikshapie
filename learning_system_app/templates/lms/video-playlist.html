@@ -13,6 +13,8 @@
 .content-desc ul{
     list-style: none;
     margin-right: 50px;
+    height: 500px;
+    overflow-y: scroll;
 }
 .content-desc ul li a{
     color: #000000;
@@ -62,7 +64,7 @@
         </div>
         <div class="col-lg-4 col-12 content-desc">
             <h2 class="text-center mt-5" style="background-color: #EFEFF0; padding:20px;">{{subject.course.course_name}}</h2>
-            <h5 class="text-center mt-2" style="background-color: #EFEFF0; padding:20px;">Subject : {{subject.subject_name}}</h5>
+            <h5 class="text-center mt-2" style="background-color: #EFEFF0; padding:20px;">Subject : {{subject.display_name}}</h5>
             <ul>
                 {% for video in videos %}
                 {% if current_video.id == video.id %}
