@@ -21,6 +21,8 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator,EmptyPage
 
+
+
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 import razorpay
@@ -209,7 +211,7 @@ def course_details(request,course_name,course_id):
     order_amount = course.special_price * 100
     order_currency = 'INR'
     order_receipt = 'order_rcptid_11'
-    client = razorpay.Client(auth=('rzp_test_LzwHnNu92TT3HV','95rxpyjuohxBUEGNgL330Op8'))
+    client = razorpay.Client(auth=('rzp_test_ErnUAkBXJerQzn','9LjQwG7EA61wdujyrXG5bMs0'))
     payment = client.order.create({'amount':order_amount, 'currency':order_currency, 'payment_capture':'1'})
     if request.user.is_active:
         enrolled_course = EnrolledCourse.objects.filter(user=request.user).filter(course=course).first()
@@ -250,9 +252,7 @@ def course_details(request,course_name,course_id):
     return render(request,'lms/course-detail.html',context)
 
 
-def checkout(request,courseid):
-  
-    pass
+
 
 @csrf_exempt
 def thanks(request,course_name):
@@ -675,4 +675,5 @@ def dismiss_review(request,review_id):
 
 
 def t_and_c(request):
+    
     return render(request,'lms/terms_and_conditions.html')

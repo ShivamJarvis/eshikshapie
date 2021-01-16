@@ -33,8 +33,7 @@ urlpatterns = [
     # Logout Url
     path('logout/',views.handle_logout,name='handle_logout'),
 
-    # CheckOut Url
-    path('checkout/<courseid>/',views.checkout,name='checkout'),
+
     
     # Checkout Success Url
     path('payment/success/<course_name>/',views.thanks,name='thanks'),
