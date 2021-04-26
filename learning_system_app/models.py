@@ -36,6 +36,10 @@ class user_profile(models.Model):
     state = models.CharField(max_length=50,null=False,blank=False)
     city = models.CharField(max_length=50,null=False,blank=False)
     zip_code = models.CharField(max_length=50,null=False,blank=False)
+    referral_code = models.CharField(max_length=10,default="",null=True,blank=True)
+    points = models.IntegerField(default=0)
+    referred_by_code = models.CharField(max_length=10,default="",null=True,blank=True)
+    last_redeem_date = models.DateTimeField(null=True,blank=True)
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"

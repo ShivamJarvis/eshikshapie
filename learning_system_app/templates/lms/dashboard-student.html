@@ -42,7 +42,14 @@
                           <h6>Address</h6>
                           <h6>State</h6>
                           <h6>City</h6>
-                         
+                          <h6>Referral Code</h6>
+                          <h6>Referral Points</h6>
+                      
+                          <h6>Last Redeem Date</h6>
+                    
+                          {% if user.user_profile.referred_by_code %}
+                          <h6>Referred By</h6>
+                          {% endif %}
                         </div>
                         <div class="col-lg-9 col-md-6 col-sm-6">
                           <h6>{{user.user_profile.student_id}}</h6>
@@ -56,7 +63,16 @@
                          <h6> {{user.user_profile.address}}</h6>
                          <h6> {{user.user_profile.state}}</h6>
                          <h6> {{user.user_profile.city}}, {{user.user_profile.zip_code}}</h6>
-                    
+                         <h6> {{user.user_profile.referral_code}}</h6>
+                         <h6> {{user.user_profile.points}}</h6>
+                         {% if user.user_profile.last_redeem_date %}
+                         <h6> {{user.user_profile.last_redeem_date}}</h6>
+                         {% else %}
+                         <h6>N/A</h6>
+                          {% endif %}
+                         {% if user.user_profile.referred_by_code %}
+                         <h6> {{referred_by_name}}</h6>
+                          {% endif %}
                         </div>
                       </div>
                       

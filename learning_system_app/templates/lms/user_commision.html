@@ -1,0 +1,54 @@
+{% extends 'lms/teacher_dashboard_layouts.html' %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block commision %}active{% endblock %}
+{% block body %}
+
+<h1>Total Enrolled Students Details</h1>
+<hr>
+
+<table id="commisionTable" class="display">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone No.</th>
+            <th>Points</th>
+            <th>Redeemed</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for muser in user_profiles %}
+        {% if muser.points > 0 %}
+        <tr>
+            <td>{{muser.user.first_name}} {{muser.user.last_name}}</td>
+            <td>{{muser.user.email}}</td>
+            <td>{{muser.phone}}</td>
+            <td>{{muser.points}}</td>
+            <td>
+                <a href="{% url 'user_commision_done' cid=muser.id %}" class="btn btn-danger">Redeemed</a>
+            </td>
+            
+        </tr>
+        {% endif %}
+        {% endfor %}
+   
+    </tbody>
+</table>
+
+
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+$(document).ready(function() {
+$('#commisionTable').DataTable( {
+dom: 'Bfrtip',
+buttons: [
+'copy', 'csv', 'excel', 'pdf', 'print'
+]
+} );
+} );
+</script>
+{% endblock %}

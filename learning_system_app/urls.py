@@ -86,6 +86,11 @@ urlpatterns = [
     # For Teacher See Enrolled Students
     path('dashboard/teacher/enroll-student/',views.teacher_student,name='teacher_student'),
 
+    # For Admin Give Commision
+    path('dashboard/user-commision/redeem/',views.user_commision,name='user_commision'),
+    # For Admin Give Commision Redeem
+    path('dashboard/user-commision/redeem/done/<int:cid>/',views.user_commision_done,name='user_commision_done'),
+
     # For Teacher Answer Q and A
     path('dashboard/teacher/q&a/',views.teacher_qa,name='teacher_qa'),
 

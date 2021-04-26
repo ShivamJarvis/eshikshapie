@@ -1,5 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 import requests
+import string    
+import random 
 import json
 from django.urls import reverse
 import pandas as pd
@@ -77,6 +79,7 @@ def register(request):
         pass1 = request.POST['pass1']
         pass2 = request.POST['pass2']
         dob = request.POST['dob']
+        referred_by_code = request.POST['refer_code']
         clientkey = request.POST['g-recaptcha-response']
         secretkey = '6LeqZ9YZAAAAAL6jLRiF1M9G7v59iuNYSvThQxSB'
         captchaData = {
@@ -96,8 +99,8 @@ def register(request):
                 except:
                     url = ""
                 new_user = User.objects.create_user(first_name=f_name,username=username,last_name=l_name,email=email,is_active=False,password=pass1)
-                
-                new_user_profile = user_profile(phone=phone,image=url,student_id=user_id,school_name='',dob=dob,session='',mother_name=mother_name,father_name=father_name,address=address,state=state,city=city,zip_code=zip_code,user=new_user)
+                new_referal_code = ''.join(random.choices(string.ascii_uppercase + string.digits, k = 10))  
+                new_user_profile = user_profile(phone=phone,image=url,student_id=user_id,school_name='',dob=dob,session='',mother_name=mother_name,father_name=father_name,address=address,state=state,city=city,zip_code=zip_code,user=new_user,referral_code=new_referal_code,referred_by_code=referred_by_code)
                 new_user_profile.save()
                 current_site = get_current_site(request).domain
                 subject = "Activate Your Account"
@@ -251,9 +254,6 @@ def course_details(request,course_name,course_id):
     }
     return render(request,'lms/course-detail.html',context)
 
-
-
-
 @csrf_exempt
 def thanks(request,course_name):
     last_enroll_no = EnrolledCourse.objects.all().order_by('id').last()
@@ -269,6 +269,10 @@ def thanks(request,course_name):
     course_expiry_date = datetime.now() + relativedelta(months =+ int(course.duration))
     user = request.user
     user = User.objects.filter(username=user.username).first()
+    if user.user_profile.referred_by_code:
+        referrerUserProfile = user_profile.objects.filter(referral_code=user.user_profile.referred_by_code).first()
+        referrerUserProfile.points += 1
+        referrerUserProfile.save()
     new_enroll = EnrolledCourse(course=course,user=user,enroll_id=enroll_id,status=True,date=datetime.now(),expiry_date=course_expiry_date)
     new_enroll.save()
     context={'enroll_id' : enroll_id}
@@ -331,8 +335,13 @@ def submit_reviews(request,enroll_id):
 def student_profile(request):
     user_id = request.user.id
     user = User.objects.filter(id=user_id).first()
+    referred_by_name = ''
+    if user.user_profile.referred_by_code:
+        referrerUserProfile = user_profile.objects.filter(referral_code=user.user_profile.referred_by_code).first()
+        referred_by_name = referrerUserProfile.user.first_name+" "+referrerUserProfile.user.last_name
     context = {
-        'user':user
+        'user':user,
+        'referred_by_name':referred_by_name
     }
     return render(request,'lms/dashboard-student.html',context)
 
@@ -465,7 +474,6 @@ def teacher_student(request):
 
 @login_required(login_url='handle_login')
 def teacher_qa(request):
-
     if request.method == 'POST':
         question_id = request.POST['question_id']
         answer = request.POST['answer']
@@ -625,6 +633,7 @@ def change_password(request):
                 return redirect('index')
         return redirect('handle_logout')
 
+@login_required(login_url='handle_login')
 def request_deactivate_subscription(request,enroll_id):
     enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
     if enroll.request_deactivate == 1:
@@ -632,11 +641,13 @@ def request_deactivate_subscription(request,enroll_id):
         enroll.save()
     return redirect('teacher_student')
 
+@login_required(login_url='handle_login')
 def deactivate_subscription(request):
     enroll_users = EnrolledCourse.objects.exclude(request_deactivate=1).all()
     context = {'enroll':enroll_users}
     return render(request,'lms/deactivate-subscription.html',context)
 
+@login_required(login_url='handle_login')
 def confirm_deactivate_subscription(request,enroll_id):
     enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
     enroll.status = False
@@ -644,13 +655,14 @@ def confirm_deactivate_subscription(request,enroll_id):
     enroll.save()
     return redirect('deactivate_subscription')
 
+@login_required(login_url='handle_login')
 def cancel_deactivate_subscription(request,enroll_id):
     enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
     enroll.request_deactivate = 1
     enroll.save()
     return redirect('deactivate_subscription')
 
-
+@login_required(login_url='handle_login')
 def rollback_deactivate_subscription(request,enroll_id):
     enroll = EnrolledCourse.objects.filter(enroll_id=enroll_id).first()
     enroll.status = True
@@ -658,22 +670,40 @@ def rollback_deactivate_subscription(request,enroll_id):
     enroll.save()
     return redirect('deactivate_subscription')
 
+@login_required(login_url='handle_login')
 def view_review(request):
     reviews = Review.objects.exclude(is_approved=True).all()
     context = {'reviews':reviews}
     return render(request,'lms/view-review.html',context)
 
+@login_required(login_url='handle_login')
 def accept_review(request,review_id):
     review = Review.objects.filter(id=review_id).first()
     review.is_approved = True
     review.save()
     return redirect('view_review')
 
+@login_required(login_url='handle_login')
 def dismiss_review(request,review_id):
     review = Review.objects.filter(id=review_id).delete()
     return redirect('view_review')
 
 
 def t_and_c(request):
-    
     return render(request,'lms/terms_and_conditions.html')
+
+@login_required(login_url='handle_login')
+def user_commision(request):
+    userProfiles = user_profile.objects.all()
+    context = {
+        'user_profiles':userProfiles
+    }
+    return render(request,'lms/user_commision.html',context)
+
+@login_required(login_url='handle_login')
+def user_commision_done(request,cid):
+    userProfiles = user_profile.objects.filter(id=cid).first()
+    userProfiles.points = 0
+    userProfiles.last_redeem_date = datetime.now()
+    userProfiles.save()
+    return redirect('user_commision')
